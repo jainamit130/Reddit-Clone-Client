@@ -1,0 +1,30 @@
+<div class="redditOpen">
+  <div>
+    <a>
+      <img
+        src="assets\reddit_logo.png"
+        title="Go to reddit home"
+        alt="reddit_logo"
+        class="reddit-icon-svg"
+      />
+      <img
+        src="assets\reddit_text.png"
+        title="Go to reddit home"
+        alt="reddit_text"
+        class="reddit-text"
+      />
+    </a>
+  </div>
+  <div>
+    <a (click)="toggleLoginForm()" title="Log in to reddit" class="login"
+      >Log In</a
+    >
+    <img
+      (click)="toggleSettingsMenu()"
+      title="Open settings menu"
+      src="assets\three-dots.svg"
+      alt="settings menu"
+      class="settings-menu"
+    />
+  </div>
+</div>

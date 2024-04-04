@@ -1,0 +1,56 @@
+<div class="signUpForm">
+  <span *ngIf="!login" class="loginText">Sign Up</span>
+  <span *ngIf="login" class="loginText">Log In</span>
+  <form>
+    <br />
+    <div *ngIf="!login">
+      <label for="Email">Email</label><br />
+      <input
+        class="field"
+        type="text"
+        id="email"
+        placeholder="Email Address"
+        name="Email"
+      /><br /><br />
+    </div>
+    <label for="Username">Username</label><br />
+    <input
+      class="field"
+      placeholder="Username"
+      type="text"
+      id="username"
+      name="Username"
+    /><br /><br />
+    <label for="Password">Password</label><br />
+    <input
+      class="field"
+      placeholder="Password"
+      type="text"
+      id="password"
+      name="Password"
+    /><br /><br />
+    <input *ngIf="!login" class="loginButton" type="submit" value="Sign Up" />
+    <input
+      *ngIf="login"
+      class="loginButton"
+      type="submit"
+      value="Log In"
+    /><br />
+    <div *ngIf="login">
+      <span style="margin-left: 5px"
+        >New to Reddit?
+        <a (click)="signingUp()" style="margin-left: 6px" class="loginSignup"
+          >Sign Up</a
+        >
+      </span>
+    </div>
+    <div *ngIf="!login">
+      <span style="margin-left: 5px"
+        >Existing User?
+        <a (click)="loggingIn()" style="margin-left: 6px" class="loginSignup"
+          >Log In</a
+        >
+      </span>
+    </div>
+  </form>
+</div>
