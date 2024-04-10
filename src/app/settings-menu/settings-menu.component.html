@@ -1,6 +1,17 @@
-<header>
-  <div class="container-box" (click)="toggleSignUp()">
-    <img src="assets\login.svg" class="login-icon" alt="Log In / Sign Up" />
-    <a routerLink="/signup" class="signup">Log In / Sign Up</a>
-  </div>
-</header>
+<div appDetectOutsideClick (clickOutside)="closeSettings()">
+  <img
+    (click)="toggleSettingsMenu()"
+    title="Open settings menu"
+    src="assets\three-dots.svg"
+    alt="settings menu"
+    class="settings-menu"
+  />
+</div>
+<div (click)="openSignUpForm($event)">
+  <header class="container-box" *ngIf="settingsOn">
+    <div>
+      <img src="assets\login.svg" class="login-icon" alt="Log In / Sign Up" />
+      <a routerLink="/signup" class="signup">Log In / Sign Up</a>
+    </div>
+  </header>
+</div>

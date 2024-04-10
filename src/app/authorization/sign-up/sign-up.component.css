@@ -1,12 +1,42 @@
 .signUpForm{
     margin-top: 70px;
-    margin-left: 550px;
+    right: 550px;
     width: 500px;
-    height: 500px;
+    height: 550px;
     border-radius: 10px;
     padding-top: 20px;
     padding-left: 45px;
     padding-bottom: 500px;
+    position: absolute;
+    z-index: 1;
+}
+
+.top-right-activities{
+    display: flex;
+    justify-content: space-between;
+    left: 1450px;
+}
+
+.settings{
+    margin-right: 10px;
+}
+
+.login{
+    margin-right: 30px;
+    background-color: hsl(16.04deg 100% 42.55%);
+    border-color: transparent;
+    color: #ffffff;
+    fill: #0079D3;
+    border-radius: 999px;
+    border: 1px solid;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 12px;
+}
+
+.login:hover{
+    background-color: hsl(16.4deg 100% 29.41%);
+    color: #ffffff;
 }
 
 .loginText{

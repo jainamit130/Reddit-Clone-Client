@@ -1,40 +1,27 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-import { SettingsMenuComponent } from './settings-menu/settings-menu.component';
 import { CommonModule } from '@angular/common';
+import { SettingsMenuComponent } from './settings-menu/settings-menu.component';
+import { DetectOutsideClickDirective } from './directives/detect-outside-click.directive';
 import { SignUpComponent } from './authorization/sign-up/sign-up.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent,SettingsMenuComponent,SignUpComponent,CommonModule],
+  imports: [RouterOutlet,HeaderComponent,CommonModule,SignUpComponent,DetectOutsideClickDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
-  title = 'reddit-angular';
-
-  showSettingsMenu = false;
-  showSignUp = false;
+  settingsOn: boolean = false;
 
   toggleSettingsMenu() {
-    this.showSettingsMenu = !this.showSettingsMenu;
+    this.settingsOn=!this.settingsOn;
   }
 
-  toggleSignUp() {
-    this.showSettingsMenu=false;
-    this.showSignUp = !this.showSignUp;
+  closeSettings() {
+    this.settingsOn=false;
   }
 
-  closeSignUp() {
-    if (this.showSignUp) {
-      this.showSignUp=false;
-    }
-  }
-
-  toggleLogin() {
-    this.showSignUp = true;
-  }
 }

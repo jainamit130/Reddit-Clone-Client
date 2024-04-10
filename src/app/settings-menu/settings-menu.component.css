@@ -1,13 +1,26 @@
+.settings-menu{
+    max-height: 25px;
+    max-width: 25px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.settings-menu:hover{
+    background-color: #dad5d5;
+    opacity: 0.6;
+}
+
 .container-box{
+    position: absolute;
     width: 210px;
-    margin-top:65px;
-    margin-left: 1370px;
+    margin-top:20px;
     padding-bottom: 15px;
     padding-top: 15px;
     border-radius: 8px;
     border: 2px solid rgb(196, 193, 188);
     box-decoration-break: slice;
     position: absolute;
+    right: 10px;
     z-index: 10;
 }
 

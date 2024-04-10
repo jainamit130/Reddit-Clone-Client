@@ -1,13 +1,1 @@
-<app-settings-menu
-  [class.outOfFocus]="showSignUp"
-  *ngIf="showSettingsMenu"
-  (signUpClicked)="toggleSignUp()"
-></app-settings-menu>
-<div (click)="closeSignUp()">
-  <app-header
-    [class.outOfFocus]="showSignUp"
-    (loginClicked)="toggleSignUp()"
-    (settingsMenuClicked)="toggleSettingsMenu()"
-  ></app-header>
-</div>
-<app-sign-up *ngIf="showSignUp"></app-sign-up>
+<app-header> </app-header>
