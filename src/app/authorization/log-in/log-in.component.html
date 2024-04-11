@@ -1,8 +1,5 @@
 <div appDetectOutsideClick (clickOutside)="clickedOutsideForm()">
-  <div (click)="toggleSignInForm()" class="login">
-    <a title="Log in to reddit">Log In </a>
-  </div>
-  <div class="logInForm" *ngIf="logIn">
+  <div class="logInForm">
     <span class="loginText">Log In</span>
     <form [formGroup]="logInForm" (ngSubmit)="login()">
       <br /><br />
@@ -44,7 +41,10 @@
       <div>
         <span style="margin-left: 5px"
           >New to Reddit?
-          <a style="margin-left: 6px" class="loginSignup" routerLink="/signup"
+          <a
+            style="margin-left: 6px"
+            class="loginSignup"
+            (click)="navigateToSignup()"
             >Sign Up</a
           >
         </span>

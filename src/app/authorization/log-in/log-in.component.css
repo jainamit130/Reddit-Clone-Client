@@ -9,23 +9,6 @@
     position: absolute;
 }
 
-.login{
-    margin-left: 1300px;
-    max-width: fit-content;
-    background-color: hsl(16.04deg 100% 42.55%);
-    border-color: transparent;
-    color: #ffffff;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px 12px;
-}
-
-.login:hover{
-    background-color: hsl(16.4deg 100% 29.41%);
-    color: #ffffff;
-}
-
 .loginText{
     font-size: 30px;
     font-weight: 700;

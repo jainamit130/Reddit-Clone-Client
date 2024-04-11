@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LogInRequestPayload } from './log-in-request-payload';
 import { AuthService } from '../shared/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
   standalone: true,
-  imports: [DetectOutsideClickDirective,CommonModule,ReactiveFormsModule],
+  imports: [DetectOutsideClickDirective,CommonModule,ReactiveFormsModule,RouterLink,RouterOutlet],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css'
 })
@@ -17,7 +17,6 @@ export class LogInComponent implements OnInit{
 
   @Output() clickedOutside = new EventEmitter<void>();
 
-  logIn: boolean=false;
   logInForm!: FormGroup;
   logInRequestPayload!: LogInRequestPayload;
 
@@ -36,14 +35,17 @@ export class LogInComponent implements OnInit{
   }
 
   clickedOutsideForm(){
-    this.logIn=false;
     this.logInForm.reset();
     this.logInForm.markAsPristine();
     this.logInForm.markAsUntouched();
+    this.router.navigateByUrl("");
   }
 
-  toggleSignInForm() {
-    this.logIn=!this.logIn;
+  navigateToSignup(){
+    this.logInForm.reset();
+    this.logInForm.markAsPristine();
+    this.logInForm.markAsUntouched();
+    this.router.navigateByUrl("/signup");
   }
 
   login() {

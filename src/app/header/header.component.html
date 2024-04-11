@@ -15,6 +15,12 @@
       />
     </a>
   </div>
-  <app-log-in></app-log-in>
-  <app-sign-up></app-sign-up>
+  <div>
+    <div (click)="navigateToLogin(); $event.stopPropagation()" class="login">
+      <a title="Log in to reddit">Log In</a>
+    </div>
+    <div (click)="navigateToSignup(); $event.stopPropagation()" class="login">
+      <a title="Sign up to reddit">Sign Up</a>
+    </div>
+  </div>
 </div>

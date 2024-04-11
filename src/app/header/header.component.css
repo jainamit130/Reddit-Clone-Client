@@ -26,6 +26,24 @@
     text-decoration: none;
 }
 
+.login{
+    margin-left: 1300px;
+    max-width: fit-content;
+    background-color: hsl(16.04deg 100% 42.55%);
+    border-color: transparent;
+    color: #ffffff;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 12px;
+    text-decoration: none;
+}
+
+.login:hover{
+    background-color: hsl(16.4deg 100% 29.41%);
+    color: #ffffff;
+}
+
 .outOfFocus {
     filter: blur(5px); /* Adjust the blur value as needed */
     pointer-events: none; /* Prevents mouse interaction with the elements */

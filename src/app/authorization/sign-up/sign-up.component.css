@@ -11,12 +11,6 @@
     z-index: 1;
 }
 
-.top-right-activities{
-    display: flex;
-    justify-content: space-between;
-    left: 1450px;
-}
-
 .settings{
     margin-right: 10px;
 }

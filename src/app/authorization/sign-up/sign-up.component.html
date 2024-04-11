@@ -1,10 +1,5 @@
 <div appDetectOutsideClick (clickOutside)="clickedOutsideForm()">
-  <div class="top-right-activities">
-    <app-settings-menu
-      (logInSignUpClicked)="toggleSignInForm(); $event.stopPropagation()"
-    ></app-settings-menu>
-  </div>
-  <div *ngIf="signOn" class="signUpForm">
+  <div class="signUpForm">
     <span class="loginText">Sign Up</span>
     <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
       <br />
