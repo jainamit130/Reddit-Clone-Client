@@ -1,18 +1,14 @@
 <div appDetectOutsideClick (clickOutside)="clickedOutsideForm()">
   <div class="top-right-activities">
-    <div (click)="toggleSignInForm(true)" class="login">
-      <a title="Log in to reddit">Log In </a>
-    </div>
     <app-settings-menu
-      (logInSignUpClicked)="toggleSignInForm(false); $event.stopPropagation()"
+      (logInSignUpClicked)="toggleSignInForm(); $event.stopPropagation()"
     ></app-settings-menu>
   </div>
   <div *ngIf="signOn" class="signUpForm">
-    <span *ngIf="!login" class="loginText">Sign Up</span>
-    <span *ngIf="login" class="loginText">Log In</span>
+    <span class="loginText">Sign Up</span>
     <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
       <br />
-      <div *ngIf="!login">
+      <div>
         <label for="Email">Email</label><br />
         <input
           class="field"
@@ -64,31 +60,12 @@
         ><br />Invalid password</span
       >
       <br /><br />
-      <input *ngIf="!login" class="loginButton" type="submit" value="Sign Up" />
-      <input
-        *ngIf="login"
-        class="loginButton"
-        type="submit"
-        value="Log In"
-      /><br />
-      <div *ngIf="login">
-        <span style="margin-left: 5px"
-          >New to Reddit?
-          <a
-            (click)="signingUp(); $event.stopPropagation()"
-            style="margin-left: 6px"
-            class="loginSignup"
-            >Sign Up</a
-          >
-        </span>
-      </div>
-      <div *ngIf="!login">
+      <input class="loginButton" type="submit" value="Sign Up" />
+      <br />
+      <div>
         <span style="margin-left: 5px"
           >Existing User?
-          <a
-            (click)="loggingIn(); $event.stopPropagation()"
-            style="margin-left: 6px"
-            class="loginSignup"
+          <a routerLink="/login" style="margin-left: 6px" class="loginSignup"
             >Log In</a
           >
         </span>

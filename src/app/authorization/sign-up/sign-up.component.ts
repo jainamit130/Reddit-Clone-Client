@@ -16,7 +16,6 @@ import { AuthService } from '../shared/auth.service';
 export class SignUpComponent implements OnInit {
   @Output() clickedOutside = new EventEmitter<void>();
   signOn: boolean=false;
-  login: boolean =false;
   signUpForm!: FormGroup;
   signUpRequestPayload!: SignUpRequestPayload
   constructor (private authService:AuthService) {
@@ -36,23 +35,13 @@ export class SignUpComponent implements OnInit {
 
   clickedOutsideForm(){
     this.signOn=false;
-    this.login=false;
     this.signUpForm.reset();
     this.signUpForm.markAsPristine();
     this.signUpForm.markAsUntouched();
   }
 
-  toggleSignInForm(isLogin: boolean) {
+  toggleSignInForm() {
     this.signOn=!this.signOn;
-    this.login=isLogin;
-  }
-
-  loggingIn() {
-    this.login=true;
-  }
-  
-  signingUp() {
-    this.login=false;
   }
 
   signUp() {
