@@ -1,0 +1,37 @@
+.community {
+    margin-top: 10px;
+    font-weight: 20px;
+    font-size: small;
+  }
+
+  
+
+  .commentContainer{
+    margin-left: 10px;
+    border-radius: 50px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    width: fit-content;
+    height: 33px;
+    background-color: #bbbbbb;
+  }
+  
+  .commentContainer:hover{
+    background-color: #797979;
+  }
+  
+  .comment{
+    width: 50px;
+    height: 25px;
+  }
+  
+  .commentsCount{
+    margin-right: 20px;
+    font-size: small;
+  }
+  
+  .voteCommentContainer{
+    display: flex;
+    align-items: center;
+  }

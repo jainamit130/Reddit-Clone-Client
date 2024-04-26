@@ -1,0 +1,54 @@
+<div class="createCommunityContainer">
+  <form [formGroup]="communityForm" (ngSubmit)="createCommunity()">
+    <div class="createCommunityHeader">
+      <h3>Create Community</h3>
+      <button class="createCommunityButton" type="submit">Create</button>
+    </div>
+    <label class="titleLabel">Provide a Community Name</label>
+    <input
+      placeholder="title"
+      class="title"
+      [formControlName]="'communityName'"
+    />
+    <span
+      *ngIf="
+        !communityForm.get('communityName')?.valid &&
+        communityForm.get('communityName')?.touched
+      "
+      >Invalid title</span
+    >
+    <br /><br />
+    <label>Provide a Community description</label>
+    <div
+      [ngClass]="{
+        InvalidDescription:
+          !communityForm.get('description')?.valid &&
+          communityForm.get('description')?.touched
+      }"
+      [ngClass]="{
+        tinymceContainer: !communityForm.get('description')?.touched
+      }"
+    >
+      <editor
+        apiKey="5n5jdjo2aatn8r1zom7letmjo1mus47rhedeosgw9cgpn9w2"
+        [formControlName]="'description'"
+        [init]="{
+          height: 400,
+          menubar: false,
+          plugins: ['autocorrect'],
+          toolbar:
+            'undo redo spellcheckdialog  | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | align lineheight checklist bullist numlist | indent outdent | removeformat typography'
+        }"
+      >
+      </editor>
+    </div>
+    <span
+      *ngIf="
+        !communityForm.get('description')?.valid &&
+        communityForm.get('description')?.touched
+      "
+      >Invalid description</span
+    >
+    <br />
+  </form>
+</div>

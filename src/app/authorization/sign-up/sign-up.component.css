@@ -1,5 +1,5 @@
 .signUpForm{
-    margin-top: 70px;
+    margin-top: 1px;
     right: 550px;
     width: 500px;
     height: 550px;
@@ -9,6 +9,9 @@
     padding-bottom: 500px;
     position: absolute;
     z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .settings{

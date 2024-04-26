@@ -1,0 +1,24 @@
+<div class="commentComponent">
+  <form
+    class="commentInputForm"
+    [formGroup]="commentForm"
+    (ngSubmit)="createComment()"
+  >
+    <input
+      class="commentInput"
+      title="Add a comment"
+      placeholder="Add a comment"
+      [formControlName]="'commentDescription'"
+    />
+    <button class="commentButton" type="submit">Comment</button>
+  </form>
+  <div class="commentSection">
+    <div class="individualComment" *ngFor="let comment of comments$">
+      <span class="commentUser">{{ comment.username }}</span>
+      <div class="commentText">
+        {{ comment.comment }}
+      </div>
+      <div class="headerLine"></div>
+    </div>
+  </div>
+</div>

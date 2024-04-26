@@ -1,0 +1,38 @@
+    .communityColumn{
+        overflow-y: scroll;
+        height:100vh;
+    }
+
+    .communityTile{
+        width: 290px;
+        justify-self: left;
+        padding: 8px 8px 8px 8px;
+        padding-left: 15px;
+    }
+
+    .createCommunityButton{
+        display: flex;
+        align-items: center;
+        height: 60px;
+    }
+
+    .add-symbol{
+        padding-bottom: 9px;
+        font-size: 55px;
+        font-weight: lighter;
+        color: #2a3c42;
+        margin-right: 5px; 
+    }
+
+    .communityTile:hover{
+        background-color: rgb(209, 209, 209);
+    }
+
+    .communityLine{
+        display: flex;
+    }
+
+    .vertical-headerLine {
+        border-left: 1px solid rgb(161, 161, 161);
+        height: 100vh; 
+    }

@@ -1,54 +1,62 @@
-<div appDetectOutsideClick (clickOutside)="clickedOutsideForm()">
-  <div class="logInForm">
-    <span class="loginText">Log In</span>
-    <form [formGroup]="logInForm" (ngSubmit)="login()">
-      <br /><br />
-      <label for="Username">Username</label><br />
-      <input
-        class="field"
-        placeholder="Username"
-        type="text"
-        id="userName"
-        name="userName"
-        [formControlName]="'userName'"
-      />
-      <span
-        *ngIf="
-          !logInForm.get('userName')?.valid &&
-          logInForm.get('userName')?.touched
-        "
-        ><br />Invalid username</span
-      >
-      <br /><br />
-      <label for="Password">Password</label><br />
-      <input
-        class="field"
-        placeholder="Password"
-        type="text"
-        id="password"
-        name="Password"
-        [formControlName]="'password'"
-      />
-      <span
-        *ngIf="
-          !logInForm.get('password')?.valid &&
-          logInForm.get('password')?.touched
-        "
-        ><br />Invalid password</span
-      >
-      <br /><br />
-      <input class="loginButton" type="submit" value="Log In" /><br />
-      <div>
-        <span style="margin-left: 5px"
-          >New to Reddit?
-          <a
-            style="margin-left: 6px"
-            class="loginSignup"
-            (click)="navigateToSignup()"
-            >Sign Up</a
-          >
-        </span>
-      </div>
-    </form>
-  </div>
+<div class="logInForm">
+  <span class="loginText">Log In</span>
+  <form [formGroup]="logInForm" (ngSubmit)="login()">
+    <br /><br />
+    <label for="Username">Username</label><br />
+    <input
+      class="field"
+      placeholder="Username"
+      type="text"
+      id="userName"
+      name="userName"
+      [formControlName]="'userName'"
+    />
+    <span
+      *ngIf="
+        !logInForm.get('userName')?.valid && logInForm.get('userName')?.touched
+      "
+      ><br />Invalid username</span
+    >
+    <br /><br />
+    <label for="Password">Password</label><br />
+    <input
+      class="field"
+      placeholder="Password"
+      type="text"
+      id="password"
+      name="Password"
+      [formControlName]="'password'"
+    />
+    <span
+      *ngIf="
+        !logInForm.get('password')?.valid && logInForm.get('password')?.touched
+      "
+      ><br />Invalid password</span
+    >
+    <br /><br />
+    <input class="loginButton" type="submit" value="Log In" /><br />
+    <div>
+      <span style="margin-left: 5px"
+        >New to Reddit?
+        <a
+          style="margin-left: 6px"
+          class="loginSignup"
+          (click)="navigateToSignup()"
+          >Sign Up</a
+        >
+      </span>
+    </div>
+    <br /><br />
+    <div class="login-result" *ngIf="loginError">
+      <span class="login-failed-text">Invalid username or password</span>
+    </div>
+    <div
+      class="login-result"
+      *ngIf="this.registerationSuccessMessage.length > 0"
+    >
+      <p class="activate-email-text" [ngStyle]="{ color: 'green' }">
+        {{ registerationSuccessMessage }}
+      </p>
+    </div>
+  </form>
 </div>

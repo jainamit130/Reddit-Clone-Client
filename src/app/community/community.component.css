@@ -1,0 +1,28 @@
+.community{
+    display: flex;
+}
+
+.communityAbout{
+    justify-self: right;
+}
+
+.reddit-container {
+    overflow: auto;
+    padding-top: 10px;
+    width: 700px;
+    justify-self: center;
+}
+
+.reddit-post {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  max-width: 700px;
+  justify-content: center;
+  align-items: center;
+  max-height: fit-content;
+}
+
+.reddit-post:hover{
+  background-color: #c7c7c7;
+}

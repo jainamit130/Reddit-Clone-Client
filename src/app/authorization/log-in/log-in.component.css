@@ -1,12 +1,13 @@
-.logInForm{
-    margin-top: 70px;
-    right: 550px;
+.logInForm {
     width: 500px;
     height: 550px;
     border-radius: 10px;
     padding-top: 20px;
     padding-left: 45px;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .loginText{
@@ -45,4 +46,20 @@
     cursor: pointer; 
     color: blue; 
     text-decoration: underline;
+}
+
+.login-result{
+    background-color: rgb(255, 255, 255);
+    font-weight: 100px;
+}
+
+.login-failed-text,.activate-email-text {
+    text-align: left;
+    margin-top: 5px;
+    font-weight: bold;  
+    color: red;  
+}
+
+.activate-email-text{
+    padding-right: 20px;    
 }

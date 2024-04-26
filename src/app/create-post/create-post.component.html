@@ -1,0 +1,40 @@
+<div class="createPostContainer">
+  <form [formGroup]="createNewPost" (ngSubmit)="createPost()">
+    <div class="createCommunityHeader">
+      <h3>Create Post</h3>
+      <button class="createCommunityButton">Create</button>
+    </div>
+    <select
+      class="form-control communityOptions"
+      [formControlName]="'communityName'"
+    >
+      <option value="" selected disabled style="color: black">
+        Select Community
+      </option>
+      <option
+        style="color: black"
+        *ngFor="let community of communities$"
+        [value]="community.communityName"
+      >
+        {{ community.communityName }}
+      </option>
+    </select>
+    <label class="titleLabel">Provide a title</label>
+    <input placeholder="title" class="title" [formControlName]="'postName'" />
+    <label>Provide a description</label>
+    <div class="tinymce-container">
+      <editor
+        apiKey="5n5jdjo2aatn8r1zom7letmjo1mus47rhedeosgw9cgpn9w2"
+        [formControlName]="'description'"
+        [init]="{
+          height: 400,
+          menubar: false,
+          plugins: ['autocorrect'],
+          toolbar:
+            'undo redo spellcheckdialog  | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | align lineheight checklist bullist numlist | indent outdent | removeformat typography'
+        }"
+      >
+      </editor>
+    </div>
+  </form>
+</div>

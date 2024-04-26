@@ -1,6 +1,6 @@
-<div class="redditOpen">
-  <div>
-    <a>
+<div class="header">
+  <div class="redditHeader">
+    <div>
       <img
         src="assets\reddit_logo.png"
         title="Go to reddit home"
@@ -13,14 +13,24 @@
         alt="reddit_text"
         class="reddit-text"
       />
-    </a>
-  </div>
-  <div>
-    <div (click)="navigateToLogin(); $event.stopPropagation()" class="login">
-      <a title="Log in to reddit">Log In</a>
     </div>
-    <div (click)="navigateToSignup(); $event.stopPropagation()" class="login">
-      <a title="Sign up to reddit">Sign Up</a>
+    <div *ngIf="isLoggedIn" class="top-right-settings">
+      <div class="create-button" (click)="navigateToCreate()">
+        <span class="add-symbol">+</span>
+        <span class="createText">Create</span>
+      </div>
+      <user-profile-settings-menu
+        (loggedOut)="logout()"
+      ></user-profile-settings-menu>
+    </div>
+    <div *ngIf="!isLoggedIn" class="top-right-settings">
+      <div (click)="navigateToLogin()" class="login">
+        <a title="Log in to reddit">Log In</a>
+      </div>
+      <div (click)="navigateToSignup()" class="signup">
+        <a title="Sign up to reddit">Sign Up</a>
+      </div>
     </div>
   </div>
+  <div class="headerLine"></div>
 </div>

@@ -1,34 +1,81 @@
-.redditOpen {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top:0;
-    left: 0;
-    height:100vh;
-    width: 100vw;
-    padding-bottom: 680px;
+.header {
+    background-color: rgb(255, 255, 255);
+    position: fixed; /* Keeps the header fixed at the top of the viewport */
+    top: 0;
+    height: 70px;
+    width: 100%; /* Makes the header span the full width of the viewport */
+    z-index: 999; /* Ensures the header stays on top of other content */
+  }
+
+.redditHeader {
+    margin-top: 10px;
+    justify-content: center;
+    position: relative;
 }
+
 .reddit-icon-svg{
+    position: relative;
     max-width: 60px;
     max-height: 60px;
     padding: 2px 8px 8px 0;
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .reddit-text{  
-    margin-top: -5px;
+    margin-bottom: 10px;
     max-width: 75px;
     max-height: 75px;      
     font-weight: 700;   
 }
+
 .logo{
     text-decoration: none;
 }
 
-.login{
-    margin-left: 1300px;
-    max-width: fit-content;
+.top-right-settings{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top:0;
+    right: 0;
+}
+
+.create-button{
+    margin-right: 10px;
+    padding: 8px 11px 8px 8px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    height: 50px;
+    border-radius: 500px;
+    max-width: fit-content;   
+    position: relative;
+}
+
+.create-button:hover{
+    background-color: #d4d4d4;
+}
+
+.add-symbol{
+    padding-bottom: 9px;
+    font-size: 55px;
+    font-weight: lighter;
+    color: #2a3c42;
+    margin-right: 5px; 
+}
+
+.createText{
+    font-size: medium;
+    font-weight: 600;
+    color: #2a3c42;
+}
+
+.signup , .login{  
+    margin-right: 10px;
+    width: 70px;
+    text-align: center;
+    width: max-content;
     background-color: hsl(16.04deg 100% 42.55%);
     border-color: transparent;
     color: #ffffff;
@@ -39,12 +86,13 @@
     text-decoration: none;
 }
 
-.login:hover{
+.signup:hover,.login:hover{
     background-color: hsl(16.4deg 100% 29.41%);
     color: #ffffff;
 }
 
-.outOfFocus {
-    filter: blur(5px); /* Adjust the blur value as needed */
-    pointer-events: none; /* Prevents mouse interaction with the elements */
+.headerLine{
+    position: fixed;
+    width: 300vh;
+    border-bottom: Solid 2px #b6b6b6;
   }

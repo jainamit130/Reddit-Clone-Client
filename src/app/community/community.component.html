@@ -1,0 +1,17 @@
+<div class="community">
+  <div>
+    <h1>{{ community.communityName }}</h1>
+    <div class="reddit-container">
+      <div *ngFor="let post of community.posts">
+        <div class="reddit-post">
+          <app-post-tile [post]="post"></app-post-tile>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="communityAbout">
+    {{ community.numberOfPosts }}
+    {{ community.numberOfMembers }}
+    <p [innerHtml]="community.description"></p>
+  </div>
+</div>

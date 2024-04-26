@@ -18,10 +18,13 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "@tinymce/tinymce-angular": "^7.0.0",
     "bootstrap": "^5.3.3",
+    "date-fns": "^3.6.0",
     "ngx-toastr": "^18.0.0",
     "ngx-webstorage": "^13.0.1",
     "rxjs": "~7.8.0",
+    "tinymce": "^7.0.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },

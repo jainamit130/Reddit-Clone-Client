@@ -1,0 +1,20 @@
+<div class="homeContainer">
+  <body>
+    <div class="communityContainer">
+      <app-communities></app-communities>
+    </div>
+  </body>
+  <body>
+    <div class="reddit-container">
+      <div (click)="navigateToPost(post)" *ngFor="let post of posts$">
+        <div class="reddit-post">
+          <app-post-tile
+            [post]="post"
+            (updatePost)="updatePost(post)"
+          ></app-post-tile>
+        </div>
+        <div class="headerLine"></div>
+      </div>
+    </div>
+  </body>
+</div>

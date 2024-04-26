@@ -1,0 +1,19 @@
+<div>
+  <div class="community">
+    <span>{{ post.communityName }}</span>
+  </div>
+  <h4>{{ post.postName }}</h4>
+  <p class="postDescription" [innerHtml]="trucatedDescription"></p>
+</div>
+<div class="voteCommentContainer">
+  <app-vote
+    [voteCount]="post.votes"
+    [postId]="post.postId"
+    [currentVote]="post.currentVote"
+    (voteCompleted)="update(post)"
+  ></app-vote>
+  <div class="commentContainer">
+    <img src="assets\comment.svg" class="comment" />
+    <span class="commentsCount">{{ post.comments }}</span>
+  </div>
+</div>

@@ -1,0 +1,144 @@
+.communityContainer{
+  background-color: #ffffff;
+  padding: 10px 10px 10px 10px;
+  position: fixed;
+  left:0;
+  justify-self: left;
+}
+
+@media screen and (max-width: 1330px) {
+  .communityContainer {
+      display: none; /* Hide the section */
+  }
+}
+
+.reddit-container {
+  padding-top: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  margin: 0 auto;
+}
+
+.reddit-post {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    max-width: 700px;
+    justify-content: center;
+    align-items: center;
+    max-height: fit-content;
+  }
+  
+  .reddit-post:hover{
+    background-color: #c7c7c7;
+  }
+  
+  .post-details {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.8em;
+  }
+  
+  .post-details span {
+    display: inline-block;
+  }
+  
+  .community {
+    margin-top: 10px;
+    font-weight: 20px;
+    font-size: small;
+  }
+  
+  .voteContainer{
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: 33px;
+    background-color: #afafaf;
+  }
+  
+  .upvote{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: #666;
+    padding: 5px 5px 5px 5px;
+    border-radius: 999px;
+    max-height: 30px;
+  }
+  
+  .upvote:hover{
+    background-color: #797979;
+  }
+  
+  .downvote{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    transform: rotate(180deg);
+    padding: 5px 5px 5px 5px;
+    border-radius: 999px;
+    max-height: 30px;
+  }
+  
+  .downvote:hover{
+    background-color: #797979;
+  }
+  
+  
+  .votesCount{
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  
+  .commentContainer{
+    margin-left: 10px;
+    border-radius: 50px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    width: fit-content;
+    height: 33px;
+    background-color: #bbbbbb;
+  }
+  
+  .commentContainer:hover{
+    background-color: #797979;
+  }
+  
+  .comment{
+    width: 50px;
+    height: 25px;
+  }
+  
+  .commentsCount{
+    margin-right: 20px;
+    font-size: small;
+  }
+  
+  .voteCommentContainer{
+    display: flex;
+    align-items: center;
+  }
+  
+  .post-link {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .post-link:hover {
+    text-decoration: underline;
+  }
+  
+  .headerLine{
+    margin: 10px;
+    margin-top: 5px;
+    border-bottom: Solid 1px #b6b6b6;
+  }

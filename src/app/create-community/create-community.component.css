@@ -1,0 +1,63 @@
+.createCommunityContainer{
+    justify-content: center;
+    margin-left: 300px;
+    width: 900px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.createCommunityHeader{
+    display: flex;
+    justify-self: center;
+}
+
+.createCommunityButton{
+    margin-left: auto;
+    width: 70px;
+    text-align: center;
+    width: max-content;
+    background-color: hsl(16.04deg 100% 42.55%);
+    border-color: transparent;
+    color: #ffffff;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 12px;
+    text-decoration: none; 
+}
+
+.createCommunityButton:hover{
+    background-color: hsl(16.4deg 100% 29.41%);
+    color: #ffffff;
+}
+
+.titleLabel{
+    margin-top: 20px;
+}
+
+.title{
+    width: 900px;
+    height: 50px;
+    border-radius: 10px;
+    border: solid 2px rgb(153, 153, 153);
+}
+
+.title:hover{
+    border: solid 2px rgb(90, 90, 90);
+}
+
+.InvalidDescription{
+    border: solid 1px red
+}
+
+.tinymceContainer{
+    border: solid 1px rgb(153, 153, 153);
+}
+
+.InvalidDescription,.tinymceContainer {
+    border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+.InvalidDescription:hover,.tinymceContainer:hover{
+    border: solid 2px rgb(90, 90, 90);
+}

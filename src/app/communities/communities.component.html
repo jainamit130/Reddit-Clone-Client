@@ -1,0 +1,23 @@
+<div class="communityLine">
+  <div class="communityColumn">
+    <h5
+      style="margin-left: 10px; margin-right: 20px; padding: 12px 5px 5px 5px"
+    >
+      Communities
+    </h5>
+    <h6 class="communityTile createCommunityButton" (click)="createCommunity()">
+      <span class="add-symbol">+</span> Create Community
+    </h6>
+    <div
+      class="communityTile"
+      *ngFor="let community of communities$"
+      (click)="openCommunity(community.communityId)"
+    >
+      <h6 style="margin-bottom: -1px">{{ community.communityName }}</h6>
+      <span>{{ community.numberOfPosts }} posts</span>
+      <br />
+      <span>{{ community.numberOfMembers }} members</span>
+    </div>
+  </div>
+  <div class="vertical-headerLine"></div>
+</div>

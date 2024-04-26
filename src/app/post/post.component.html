@@ -1,0 +1,25 @@
+<div class="communityContainer">
+  <app-communities></app-communities>
+</div>
+<div class="reddit-container">
+  <div class="reddit-post">
+    <div class="community">
+      <span>{{ post.communityName }}</span>
+    </div>
+    <h4>{{ post.postName }}</h4>
+    <p [innerHTML]="sanitizedDescription"></p>
+    <div class="voteCommentContainer">
+      <app-vote
+        [voteCount]="post.votes"
+        [postId]="post.postId"
+        [currentVote]="post.currentVote"
+      ></app-vote>
+      <div class="commentContainer">
+        <img src="assets\comment.svg" class="comment" />
+        <span class="commentsCount">{{ post.comments }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="headerLine"></div>
+  <app-comment [postId]="post.postId" (commented)="updatePost()"></app-comment>
+</div>

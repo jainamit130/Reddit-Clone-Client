@@ -1,0 +1,23 @@
+<div
+  class="voteContainer"
+  [class.upvoted]="currentVote === 'UPVOTE'"
+  [class.downvoted]="currentVote === 'DOWNVOTE'"
+  [class.novote]="currentVote === 'NOVOTE'"
+>
+  <img
+    src="{{
+      currentVote === 'UPVOTE' ? 'assets/voted.svg' : 'assets/vote.svg'
+    }}"
+    (click)="vote('UPVOTE'); $event.stopPropagation()"
+    class="upvote"
+  />
+  <span class="votesCount">{{ voteCount }}</span>
+  <img
+    src="{{
+      currentVote === 'DOWNVOTE' ? 'assets/voted.svg' : 'assets/vote.svg'
+    }}"
+    (click)="vote('DOWNVOTE'); $event.stopPropagation()"
+    class="downvote"
+    [class.voted]="currentVote != 'NOVOTE'"
+  />
+</div>
