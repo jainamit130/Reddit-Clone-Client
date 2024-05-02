@@ -1,25 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { CommunityDto } from '../dto/CommunityDto';
 import { PostService } from '../shared/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { CreateCommunityRequestPayload } from '../dto/RequestPayload/create-community-request-payload';
 import { CreatePostRequestPayload } from '../dto/RequestPayload/create-post-request-payload';
 import { CommunityService } from '../shared/community.service';
+import { CommunitySearchComponent } from '../community-search/community-search.component';
+import { CommunitySearchDto } from '../dto/communitySearchDto';
 
 @Component({
   selector: 'app-create-post',
   standalone: true,
-  imports: [EditorModule,ReactiveFormsModule,CommonModule],
+  imports: [CommunitySearchComponent,EditorModule,ReactiveFormsModule,CommonModule],
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.css'
 })
 export class CreatePostComponent implements OnInit{
   createNewPost!:FormGroup;
   createPostRequest:CreatePostRequestPayload;
-  communities$:Array<CommunityDto> = [];
+  yourCommunities$:Array<CommunitySearchDto> = [];
+  searchQuery: string = '';
+  currentCommunity!:string;
 
   constructor(private router:Router,private postService:PostService,private communityService:CommunityService,private activatedRoute:ActivatedRoute){
     this.createPostRequest = {
@@ -30,13 +32,15 @@ export class CreatePostComponent implements OnInit{
   }  
 
   ngOnInit(): void {
-    this.communityService.currentCommunityData.subscribe(communities => {
-      console.log(communities);
-      if(Array.isArray(communities))
-        this.communities$ =  communities;
-      else if(communities instanceof Object)
-        this.communities$=[communities];
+    this.communityService.currentUserCommunities.subscribe(usercommunities => {
+        usercommunities.map(community => {
+          this.yourCommunities$.push({
+            communityName:community.communityName,
+            numberOfMembers:community.numberOfMembers
+          });
+        });
     });
+    this.updateSelectedCommunity();
     this.createNewPost = new FormGroup({
       communityName: new FormControl('',Validators.required),
       postName: new FormControl('',Validators.required),
@@ -44,8 +48,16 @@ export class CreatePostComponent implements OnInit{
     });
   }
 
+  updateSelectedCommunity(){
+    this.communityService.currentCommunityData.subscribe(community => {
+      if(community)
+        this.currentCommunity=community;
+    });
+  }
+  
   createPost(){
-    this.createPostRequest.communityName=this.createNewPost.get('communityName')?.value;
+    this.updateSelectedCommunity();
+    this.createPostRequest.communityName=this.currentCommunity;
     this.createPostRequest.postName=this.createNewPost.get('postName')?.value;
     this.createPostRequest.description=this.createNewPost.get('description')?.value;
     this.postService.createPost(this.createPostRequest).subscribe(post=>{

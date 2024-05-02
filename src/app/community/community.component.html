@@ -1,17 +1,56 @@
-<div class="community">
-  <div>
-    <h1>{{ community.communityName }}</h1>
-    <div class="reddit-container">
-      <div *ngFor="let post of community.posts">
-        <div class="reddit-post">
-          <app-post-tile [post]="post"></app-post-tile>
+<div class="communitiesContainer">
+  <app-communities></app-communities>
+</div>
+<div class="communityContainer">
+  <div class="communitySection">
+    <div class="communityHeader">
+      <h1 class="communityTitle">{{ community.communityName }}</h1>
+      <button (click)="navigateToCreate()" class="joinLeaveButtons">
+        <span>+</span> Create Post
+      </button>
+      <button
+        class="joinLeaveButtons"
+        *ngIf="joinButton"
+        (click)="joinCommunity()"
+      >
+        Join
+      </button>
+      <button
+        class="joinLeaveButtons"
+        *ngIf="!joinButton"
+        (click)="leaveCommunity()"
+      >
+        Leave
+      </button>
+    </div>
+    <div class="postsAndAbout">
+      <div class="community">
+        <div>
+          <div class="reddit-container">
+            <div *ngFor="let post of community.posts">
+              <div (click)="navigateToPost(post)" class="reddit-post">
+                <app-post-tile [post]="post"></app-post-tile>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="communityAbout">
+        <h5>About</h5>
+        <p [innerHtml]="sanitizedDescription"></p>
+        <div class="metrics">
+          <div class="membersCount">
+            <p style="justify-self: center">{{ community.numberOfMembers }}</p>
+            <p style="justify-self: center">Members</p>
+          </div>
+          <div class="postsCount">
+            <p style="justify-self: center">
+              {{ community.numberOfPosts ? community.numberOfPosts : 0 }}
+            </p>
+            <p style="justify-self: center">Posts</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="communityAbout">
-    {{ community.numberOfPosts }}
-    {{ community.numberOfMembers }}
-    <p [innerHtml]="community.description"></p>
   </div>
 </div>

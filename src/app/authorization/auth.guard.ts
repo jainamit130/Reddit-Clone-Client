@@ -12,8 +12,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   const subscription: Subscription = authService.loggedInStatus.subscribe(isLogin => {
     isAuthenticated = isLogin; 
   });
-
-  console.log(isAuthenticated); 
   
   if (isAuthenticated) {
     subscription.unsubscribe(); 

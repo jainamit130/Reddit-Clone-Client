@@ -48,12 +48,14 @@
     justify-items: center;
     align-items: center;
     height: 50px;
+    border: transparent;
     border-radius: 500px;
     max-width: fit-content;   
     position: relative;
 }
 
 .create-button:hover{
+    border: transparent;
     background-color: #d4d4d4;
 }
 

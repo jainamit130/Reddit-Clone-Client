@@ -5,16 +5,21 @@
     >
       Communities
     </h5>
-    <h6 class="communityTile createCommunityButton" (click)="createCommunity()">
+    <button
+      class="communityTile createCommunityButton"
+      (click)="createCommunity()"
+    >
       <span class="add-symbol">+</span> Create Community
-    </h6>
+    </button>
     <div
       class="communityTile"
       *ngFor="let community of communities$"
       (click)="openCommunity(community.communityId)"
     >
       <h6 style="margin-bottom: -1px">{{ community.communityName }}</h6>
-      <span>{{ community.numberOfPosts }} posts</span>
+      <span
+        >{{ community.numberOfPosts ? community.numberOfPosts : 0 }} posts</span
+      >
       <br />
       <span>{{ community.numberOfMembers }} members</span>
     </div>

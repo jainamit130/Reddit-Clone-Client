@@ -1,0 +1,62 @@
+<div
+  class="communitySearch"
+  appDetectOutsideClick
+  (clickOutside)="closeSearch()"
+>
+  <div
+    class="container-box communityDropDown"
+    (click)="openSearch($event)"
+    *ngIf="!activeSearch"
+  >
+    <div class="selectedCommunityText">
+      {{ selectedCommunity }}
+      <img class="dropDownImage" src="assets\drop-down-arrow.png" />
+    </div>
+  </div>
+  <div *ngIf="activeSearch" class="container-box">
+    <input
+      #searchInput
+      (input)="onSearch()"
+      (click)="openSearch($event)"
+      placeholder="Select a community"
+      [(ngModel)]="inputField"
+      class="communityInput"
+    />
+    <div *ngIf="inputField.length">
+      <img
+        src="assets/cross-button.png"
+        class="clearButton"
+        (click)="clearField(); $event.stopPropagation()"
+      />
+    </div>
+    <header
+      *ngIf="searchContainer"
+      [ngClass]="{ 'container-box-searchContainer': searchContainer }"
+    >
+      <div *ngIf="userCommunities$.length !== 0">Your Communities</div>
+      <div *ngFor="let userCommunity of userCommunities$">
+        <div
+          class="communitySelection"
+          (click)="selectCommunity(userCommunity.communityName)"
+        >
+          {{ userCommunity.communityName }}
+          <div class="membersCount">
+            {{ userCommunity.numberOfMembers }} members
+          </div>
+        </div>
+      </div>
+      <div *ngIf="otherCommunities$.length !== 0">Other Communities</div>
+      <div *ngFor="let otherCommunity of otherCommunities$">
+        <div
+          class="communitySelection"
+          (click)="selectCommunity(otherCommunity.communityName)"
+        >
+          {{ otherCommunity.communityName }}
+          <div class="membersCount">
+            {{ otherCommunity.numberOfMembers }} members
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+</div>

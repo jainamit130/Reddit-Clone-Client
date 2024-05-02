@@ -4,21 +4,10 @@
       <h3>Create Post</h3>
       <button class="createCommunityButton">Create</button>
     </div>
-    <select
-      class="form-control communityOptions"
-      [formControlName]="'communityName'"
-    >
-      <option value="" selected disabled style="color: black">
-        Select Community
-      </option>
-      <option
-        style="color: black"
-        *ngFor="let community of communities$"
-        [value]="community.communityName"
-      >
-        {{ community.communityName }}
-      </option>
-    </select>
+    <app-community-search
+      [userCommunities$]="yourCommunities$"
+    ></app-community-search>
+    <br /><br />
     <label class="titleLabel">Provide a title</label>
     <input placeholder="title" class="title" [formControlName]="'postName'" />
     <label>Provide a description</label>

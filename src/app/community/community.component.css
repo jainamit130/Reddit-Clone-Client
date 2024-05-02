@@ -1,16 +1,95 @@
+
+.communityContainer{
+  display: flex;
+  justify-content: center;
+  margin-left: 200px;
+}
+
+.communitiesContainer{
+  background-color: #ffffff;
+  padding: 10px 10px 10px 10px;
+  position: fixed;
+  left:0;
+  justify-self: left;
+}
+
+@media screen and (max-width: 1590px) {
+  .communitiesContainer {
+      display: none; /* Hide the section */
+  }
+}
+
+.communitySection{
+  justify-content: center;
+}
+
 .community{
     display: flex;
+    justify-content: center;
+  }
+
+.metrics{
+  display: flex;
+  width: 200px;
+  align-items: center;
+}
+
+.membersCount{
+  width: fit-content;
+}
+
+.postsCount{
+  margin-left: 10px;
+  width: fit-content;
+}
+
+.communityHeader{
+  word-wrap: break-word;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  height: 110px;
+  border-radius: 15px;
+  background-color: rgb(218, 218, 218);
+}
+
+.communityTitle{
+  height: 100px;
+  width: 700px;
+  margin-left: 15px;
+  margin-top: 40px;
+}
+
+.postsAndAbout{
+  display: flex;
 }
 
 .communityAbout{
-    justify-self: right;
+  position: sticky;
+  top: 80px;
+  margin-top: 10px;
+  height:100vh;
+  width: 200px;
+  right:0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-left: 50px;
+  justify-self: right;
+}
+
+@media screen and (max-width: 1000px) {
+  .communityAbout {
+      display: none; /* Hide the section */
+  }
 }
 
 .reddit-container {
-    overflow: auto;
-    padding-top: 10px;
-    width: 700px;
-    justify-self: center;
+  word-wrap: break-word;
+  overflow: hidden;
+  padding-top: 10px;
+  width: 700px;
+  justify-self: center;
 }
 
 .reddit-post {
@@ -25,4 +104,21 @@
 
 .reddit-post:hover{
   background-color: #c7c7c7;
+}
+
+.joinLeaveButtons{
+  margin: 5px;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: max-content;
+  border-radius: 300px;
+  border: 1.5px solid rgb(24, 24, 24);
+}
+
+.joinLeaveButtons:hover{
+  border: 2px solid black;
 }

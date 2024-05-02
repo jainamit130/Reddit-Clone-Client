@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CommunityDto } from '../dto/CommunityDto';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CreateCommunityRequestPayload } from '../dto/RequestPayload/create-community-request-payload';
+import { CommunitySearchDto } from '../dto/communitySearchDto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +13,29 @@ export class CommunityService {
   private communityData = new BehaviorSubject<any>(null);
   currentCommunityData = this.communityData.asObservable();
 
+  private userCommunitiesSubject = new BehaviorSubject<Array<CommunityDto>>([]);
+  currentUserCommunities = this.userCommunitiesSubject.asObservable();
+
   constructor(private httpClient:HttpClient) { }
 
-  updateCommunityData(data: any) {
+  updateCommunityData(data: string) {
     this.communityData.next(data);
+  }
+
+  updateUserCommunitiesData(data: CommunityDto[]) {
+    this.userCommunitiesSubject.next(data);
   }
 
   getAllCommunities():Observable<Array<CommunityDto>>{
     return this.httpClient.get<Array<CommunityDto>>('http://localhost:8080/reddit/community/getAllCommunities');
   }
 
-  joinComunity(communityDto:CommunityDto):Observable<CommunityDto>{
-    return this.httpClient.post<CommunityDto>('http://localhost:8080/reddit/community/join',communityDto);
+  joinComunity(communityId:number):Observable<CommunityDto>{
+    return this.httpClient.post<CommunityDto>('http://localhost:8080/reddit/community/join/'+communityId,null);
   }
 
-  leaveCommunity(communityDto:CommunityDto):Observable<CommunityDto>{
-    return this.httpClient.post<CommunityDto>('http://localhost:8080/reddit/community/leave',communityDto);
+  leaveCommunity(communityId:number):Observable<CommunityDto>{
+    return this.httpClient.post<CommunityDto>('http://localhost:8080/reddit/community/leave/'+communityId,null);
   }
 
   getUserCommunities():Observable<Array<CommunityDto>>{
@@ -48,5 +56,9 @@ export class CommunityService {
 
   getCommunityWithPosts(communityId:number):Observable<CommunityDto> {
     return this.httpClient.get<CommunityDto>('http://localhost:8080/reddit/community/getCommunityWithPosts/'+communityId);
+  }
+
+  communitySearch(searchQuery: string):Observable<Array<CommunitySearchDto>> {
+    return this.httpClient.get<Array<CommunitySearchDto>>('http://localhost:8080/reddit/community/communitySearch/'+searchQuery);
   }
 }

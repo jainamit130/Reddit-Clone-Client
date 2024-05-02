@@ -19,12 +19,11 @@ import { CommunityService } from '../shared/community.service';
 })
 export class HomeComponent implements OnInit{
     posts$: Array<PostDto> = [];
-    communities$: Array<CommunityDto> = [];
 
     constructor(private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router){
-      this.postService.getAllPosts().subscribe(post => {
-        this.posts$=post;
-      });
+      // this.postService.getAllPosts().subscribe(post => {
+      //   this.posts$=post;
+      // });
     }
 
     ngOnInit(): void {
@@ -32,9 +31,9 @@ export class HomeComponent implements OnInit{
         this.posts$=post;
       });
       this.communityService.getUserCommunities().subscribe(communities => {
-        this.communities$=communities;
-        this.communityService.updateCommunityData(this.communities$);
+        this.communityService.updateUserCommunitiesData(communities);
       });
+      this.communityService.updateCommunityData("");
     }
 
     updatePost(currentPost:PostDto){

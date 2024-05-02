@@ -53,7 +53,6 @@ export class SignUpComponent implements OnInit {
     this.signUpForm.markAsPristine();
     this.signUpForm.markAsUntouched();
     this.router.navigateByUrl("/login");
-    console.log("checking");
   }
 
 }

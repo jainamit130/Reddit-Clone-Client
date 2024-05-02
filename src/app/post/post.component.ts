@@ -25,7 +25,7 @@ export class PostComponent implements OnInit{
     this.post = JSON.parse(postJson);
 
     this.communityService.getCommunityOfPost(this.post.postId)
-    .subscribe((community) => {this.communityService.updateCommunityData(community);});
+    .subscribe((community) => {this.communityService.updateCommunityData(community.communityName);});
     
     this.sanitizedDescription=this.sanitizer.bypassSecurityTrustHtml(this.post.description);
   }

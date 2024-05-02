@@ -99,7 +99,6 @@ refreshToken() {
   logOut() {
     this.httpClient.post('http://localhost:8080/reddit/auth/logout',this.getLatestRefreshTokenPayload(),{ responseType: 'text' })
     .subscribe(data => {
-      console.log(data);
     }, error => {
       throwError(error);
     });

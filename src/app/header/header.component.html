@@ -15,10 +15,13 @@
       />
     </div>
     <div *ngIf="isLoggedIn" class="top-right-settings">
-      <div class="create-button" (click)="navigateToCreate()">
+      <button
+        class="create-button"
+        (click)="navigateToCreate(); $event.stopPropagation()"
+      >
         <span class="add-symbol">+</span>
         <span class="createText">Create</span>
-      </div>
+      </button>
       <user-profile-settings-menu
         (loggedOut)="logout()"
       ></user-profile-settings-menu>

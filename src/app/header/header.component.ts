@@ -7,7 +7,6 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../authorization/shared/auth.service';
 import { UserProfileSettings } from '../settings-menu/user-profile-settings.component';
 import { CommunityDto } from '../dto/CommunityDto';
-import { CommunityService } from '../shared/community.service';
 
 @Component({
   selector: 'app-header',

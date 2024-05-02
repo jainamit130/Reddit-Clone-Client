@@ -1,0 +1,78 @@
+.communitySearch{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.container-box{
+    position: absolute;
+    width: fit-content;
+    z-index: 10;
+    background-color: white;
+}
+
+.container-box-searchContainer{
+    border-radius: 10px;
+    border: 1px solid rgb(196, 193, 188);
+    border-top: transparent;
+}
+
+.membersCount{
+    font-size: small;
+    color: #797878;
+}
+
+.selectedCommunityText{
+    align-content: center;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.communitySelection{
+    padding:5px;
+    margin: 5px;
+    width: 250px;
+    height: 60px;
+}
+
+.communitySelection:hover{
+    background-color: rgb(206, 206, 206);
+}
+
+.communityDropDown{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    background-color: #d1d1d1;
+    min-width: 80px;
+    max-width: max-content;
+    border-radius: 20px;
+}
+
+.dropDownImage{
+    height: 15px;
+    width: 13px;
+    margin-left: 10px;
+}
+
+.communityInput{
+    overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+    position: relative;
+    height:40px;
+    border-radius: 10px;
+    width: 270px;
+}
+
+.clearButton{
+    top:2%;
+    right:2%;
+    height: 20px;
+    width:20px;
+    margin: 2px;
+    border-radius: 2000px;
+    background: transparent;
+    position: absolute;
+}

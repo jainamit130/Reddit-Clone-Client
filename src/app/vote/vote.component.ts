@@ -46,12 +46,10 @@ export class VoteComponent implements OnInit {
       this.voteDto.voteType=type;
       this.voteService.vote(this.voteDto).subscribe(
         () => {
-          console.log('Vote success!');
           this.updateVoteDetails();
           this.voteCompleted.emit();
         },
         (error) => {
-          console.error('Try voting again!', error);
         }
       );
     } else {
