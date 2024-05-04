@@ -24,6 +24,7 @@
       </button>
       <user-profile-settings-menu
         (loggedOut)="logout()"
+        (openedProfile)="openProfile()"
       ></user-profile-settings-menu>
     </div>
     <div *ngIf="!isLoggedIn" class="top-right-settings">

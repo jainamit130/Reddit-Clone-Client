@@ -46,5 +46,9 @@ export class HeaderComponent implements OnInit{
       window.location.reload();
       this.router.navigateByUrl("/");
     }
+
+    openProfile() {
+      this.router.navigateByUrl("/profile");
+    }
   }
   

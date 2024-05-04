@@ -72,6 +72,8 @@ export class CommunitySearchComponent implements OnInit{
           });
           //remove prefix non matching communities from userCommunities
           this.userCommunities$.filter(userCommunity =>{
+            console.log(userCommunity.communityName.substring(0,this.inputField.length));
+            console.log(this.inputField);
             return userCommunity.communityName.substring(0,this.inputField.length)==this.inputField;
           }); 
         },

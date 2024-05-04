@@ -5,12 +5,14 @@
     >
       Communities
     </h5>
-    <button
-      class="communityTile createCommunityButton"
-      (click)="createCommunity()"
-    >
-      <span class="add-symbol">+</span> Create Community
-    </button>
+    <nav>
+      <button
+        class="communityTile createCommunityButton"
+        (click)="createCommunity()"
+      >
+        <span class="add-symbol">+</span> Create Community
+      </button>
+    </nav>
     <div
       class="communityTile"
       *ngFor="let community of communities$"

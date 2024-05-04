@@ -2,12 +2,13 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { noopInterceptorProvider } from './configuration/noopInterceptorProvider';
+import { noopInterceptorProvider } from './providers/noopInterceptorProvider';
 import { TruncateHtmlTextPipe } from './transform/truncate-html-text.pipe';
+import { routeReuseStrategyProvider } from './providers/routeReuseStrategyProvider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,5 +19,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(ToastrModule.forRoot()),
     noopInterceptorProvider,
     TruncateHtmlTextPipe,
+    routeReuseStrategyProvider
   ]
 };

@@ -5,7 +5,7 @@ export interface PostDto {
     description: string;
     votes:number;
     comments:number;
-    creationDate: string;
+    creationDate: Date;
     communityName: string;
     currentVote:string;
 }

@@ -24,6 +24,7 @@ export class CommentComponent implements OnInit{
       postId: 0, 
       username: '', 
       comment: '',
+      creationDate: new Date,
     };
   }
 

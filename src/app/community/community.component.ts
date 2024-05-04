@@ -18,10 +18,19 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class CommunityComponent implements OnInit{
   @Input() communityId!:number;
   sanitizedDescription!: SafeHtml;
-  community!:CommunityDto;
+  community:CommunityDto;
   userCommunities:Array<CommunityDto> = [];
   joinButton:Boolean=true;
-  constructor(private sanitizer: DomSanitizer,private router:Router,private communityService:CommunityService,private activatedRoute:ActivatedRoute) {}
+  constructor(private sanitizer: DomSanitizer,private router:Router,private communityService:CommunityService,private activatedRoute:ActivatedRoute) {
+    this.community={
+      communityId: 0,
+    communityName: "",
+    description:"",
+    numberOfPosts: 0,
+    numberOfMembers: 0,
+    posts: []
+    }
+  }
 
   ngOnInit(): void {
     

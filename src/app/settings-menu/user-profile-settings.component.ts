@@ -12,6 +12,7 @@ import { AuthService } from '../authorization/shared/auth.service';
 })
 export class UserProfileSettings {
   @Output() loggedOut = new EventEmitter<void>();
+  @Output() openedProfile = new EventEmitter<void>();
   @Output() logInSignUpClicked = new EventEmitter<Event>();
   settingsOn: boolean = false;
   

@@ -2,6 +2,7 @@
 .communityContainer{
   display: flex;
   justify-content: center;
+  height: 100vh;
   margin-left: 200px;
 }
 
@@ -68,7 +69,8 @@
 .communityAbout{
   position: sticky;
   top: 80px;
-  margin-top: 10px;
+  bottom: 0;
+  padding-top: 10px;
   height:100vh;
   width: 200px;
   right:0;
@@ -106,7 +108,7 @@
   background-color: #c7c7c7;
 }
 
-.joinLeaveButtons{
+.joinButton {
   margin: 5px;
   justify-content: center;
   align-content: center;
@@ -119,6 +121,30 @@
   border: 1.5px solid rgb(24, 24, 24);
 }
 
-.joinLeaveButtons:hover{
+.joinedButton{
+  margin: 5px;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  font-weight: 500;
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: max-content;
+  border-radius: 300px;
+  border: 1.5px solid rgb(24, 24, 24);
+}
+
+.joinedButton:hover{
   border: 2px solid black;
+}
+
+.joinButton{
+  font-weight: 500;
+  color: white;
+  background-color: #0045ac;
+}
+
+.joinButton:hover{
+  background-color: #002255;
 }

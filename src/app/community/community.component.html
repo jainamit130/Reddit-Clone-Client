@@ -5,22 +5,18 @@
   <div class="communitySection">
     <div class="communityHeader">
       <h1 class="communityTitle">{{ community.communityName }}</h1>
-      <button (click)="navigateToCreate()" class="joinLeaveButtons">
+      <button (click)="navigateToCreate()" class="joinedButton">
         <span>+</span> Create Post
       </button>
-      <button
-        class="joinLeaveButtons"
-        *ngIf="joinButton"
-        (click)="joinCommunity()"
-      >
+      <button class="joinButton" *ngIf="joinButton" (click)="joinCommunity()">
         Join
       </button>
       <button
-        class="joinLeaveButtons"
+        class="joinedButton"
         *ngIf="!joinButton"
         (click)="leaveCommunity()"
       >
-        Leave
+        Joined
       </button>
     </div>
     <div class="postsAndAbout">

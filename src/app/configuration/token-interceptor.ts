@@ -1,8 +1,8 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, catchError, filter, switchMap, take, throwError } from "rxjs";
-import { AuthService } from "./authorization/shared/auth.service";
-import { LogInResponse } from "./dto/ResponsePayload/log-in-response";
+import { AuthService } from "../authorization/shared/auth.service";
+import { LogInResponse } from "../dto/ResponsePayload/log-in-response";
 
 @Injectable({
     providedIn:'root'

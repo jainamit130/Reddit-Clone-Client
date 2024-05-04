@@ -9,9 +9,13 @@
 </div>
 <div (click)="openSignUpForm($event)">
   <header class="container-box" *ngIf="settingsOn">
-    <div (click)="this.loggedOut.emit()">
+    <div (click)="this.loggedOut.emit()" class="logoutButton">
       <img src="assets\logout.png" class="logout-icon" alt="Log Out" />
       <span class="signup">Log Out</span>
+    </div>
+    <div (click)="this.openedProfile.emit()" class="profileButton">
+      <img src="assets\logout.png" class="logout-icon" alt="Your Profile" />
+      <span class="signup">Your Profile</span>
     </div>
   </header>
 </div>
