@@ -52,9 +52,8 @@ export class CommunityComponent implements OnInit{
     }); 
   }
 
-  navigateToPost(currentPost:PostDto) {
-    const postJson = JSON.stringify(currentPost);
-    this.router.navigate(['/post'],{queryParams:{post:postJson}});
+  navigateToPost(postId:number) {
+    this.router.navigate(['/post'],{queryParams:{postId}});
   }
 
   navigateToCreate() {

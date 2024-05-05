@@ -1,0 +1,21 @@
+<div appDetectOutsideClick (clickOutside)="closeCommentAction()">
+  <div class="commentDetails">
+    <span class="commentUser">{{ comment.username }}</span>
+    <img
+      (click)="openCommentAction(); $event.stopPropagation()"
+      src="assets/three-dots.svg"
+      class="commentDelete"
+    />
+    <div *ngIf="commentAction" class="container-box">
+      <div class="commentActionTile" (click)="deleteComment($event)">
+        Delete Comment
+      </div>
+      <div class="commentActionTile" (click)="editComment($event)">
+        Edit Comment
+      </div>
+    </div>
+  </div>
+  <div class="commentText">
+    {{ comment.comment }}
+  </div>
+</div>

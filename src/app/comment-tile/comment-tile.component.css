@@ -1,0 +1,58 @@
+.commentDetails{
+    margin-bottom: 2px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 620px;
+}
+
+.commentUser{
+    font-weight: bolder;
+    font-size: smaller;
+}
+
+.commentText{
+    font-weight: 450;
+    font-size: 17px;
+}
+
+.commentDelete{
+    position: absolute;
+    right: 0;
+    padding: 8px;
+    border-radius: 10px;
+    max-height: 30px;
+    max-width: 30px;
+}
+
+.commentDelete:hover{
+    background-color: #a8a8a8;
+}
+
+.container-box{
+    border-radius: 10px;
+    border: 1px solid #a8a8a8;
+    position: absolute;
+    margin-top: 20px;
+    right: 0;
+    top:0;
+    min-width: 50px;
+    min-height: 20px;
+    z-index: 10;
+    background-color: white;
+}
+
+.commentActionTile{
+    display: flex;
+    right:0;
+    justify-content: left;
+    padding: 10px;
+    align-items: flex-start;
+    height: 50px;
+    width: 200px;
+    font-size: medium;
+}
+
+.commentActionTile:hover{
+    background-color: #dad5d5;
+}

@@ -17,4 +17,8 @@ export class CommentService {
   comment(commentRequest: CommentDto) {
     return this.httpClient.post('http://localhost:8080/reddit/comments/create',commentRequest)
   }
+
+  getUserCommentsOnPost(postId:number) :Observable<Array<CommentDto>> {
+    return this.httpClient.get<Array<CommentDto>>('http://localhost:8080/reddit/comments/getUserCommentOnPost/'+postId);
+  }
 }

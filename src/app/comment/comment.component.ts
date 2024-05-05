@@ -18,6 +18,7 @@ export class CommentComponent implements OnInit{
   @Output() commented = new EventEmitter<void>();
   commentForm!:FormGroup;
   commentRequest:CommentDto;
+  userCommentsOnPost:Array<CommentDto> = [];
   comments$: Array<CommentDto> = [];
   constructor(private commentService:CommentService,private authService:AuthService,private activatedRoute:ActivatedRoute){
     this.commentRequest = {
@@ -32,6 +33,10 @@ export class CommentComponent implements OnInit{
     this.getAllComments();
     this.commentForm = new FormGroup({
       commentDescription: new FormControl('',Validators.required),
+    });
+
+    this.commentService.getUserCommentsOnPost(this.postId).subscribe(userComments => {
+      this.userCommentsOnPost=userComments;
     });
   }
 

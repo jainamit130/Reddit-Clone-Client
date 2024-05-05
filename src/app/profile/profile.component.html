@@ -1,6 +1,23 @@
-<div *ngFor="let post of userPosts">
-  <app-post-tile [post]="post"></app-post-tile>
-</div>
-<div *ngFor="let comment of userComments">
-  <div>comment</div>
+<!-- <div class="reddit-container">
+  <div (click)="navigateToPost(post.postId)" *ngFor="let post of userPosts">
+    <div class="reddit-post">
+      <app-post-tile
+        [post]="post"
+        (updatePost)="updatePost(post)"
+      ></app-post-tile>
+    </div>
+    <div class="headerLine"></div>
+  </div>
+</div> -->
+
+<div class="reddit-container">
+  <div
+    (click)="navigateToPost(comment.postId)"
+    *ngFor="let comment of userComments"
+  >
+    <div class="reddit-post">
+      <app-comment-tile [comment]="comment"></app-comment-tile>
+    </div>
+    <div class="headerLine"></div>
+  </div>
 </div>

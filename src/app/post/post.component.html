@@ -1,7 +1,7 @@
 <div class="communityContainer">
   <app-communities></app-communities>
 </div>
-<div class="reddit-container">
+<div class="reddit-container" *ngIf="post">
   <div class="reddit-post">
     <div class="community">
       <span>{{ post.communityName }}</span>

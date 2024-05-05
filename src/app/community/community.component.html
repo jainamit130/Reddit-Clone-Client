@@ -24,7 +24,7 @@
         <div>
           <div class="reddit-container">
             <div *ngFor="let post of community.posts">
-              <div (click)="navigateToPost(post)" class="reddit-post">
+              <div (click)="navigateToPost(post.postId)" class="reddit-post">
                 <app-post-tile [post]="post"></app-post-tile>
               </div>
             </div>

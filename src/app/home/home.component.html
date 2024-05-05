@@ -3,7 +3,7 @@
     <app-communities></app-communities>
   </div>
   <div class="reddit-container">
-    <div (click)="navigateToPost(post)" *ngFor="let post of posts$">
+    <div (click)="navigateToPost(post.postId)" *ngFor="let post of posts$">
       <div class="reddit-post">
         <app-post-tile
           [post]="post"
