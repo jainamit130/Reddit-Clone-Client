@@ -30,10 +30,6 @@
     max-height: fit-content;
   }
   
-  .reddit-post:hover{
-    background-color: #c7c7c7;
-  }
-  
   .post-details {
     margin-top: 10px;
     display: flex;
@@ -47,9 +43,21 @@
   }
   
   .community {
+    width: min-content;
+    border-radius: 5px;
     margin-top: 10px;
     font-weight: 20px;
     font-size: small;
+  }
+
+  .community :hover {
+    border-radius: 5px;
+    background-color: #dadada;
+  }
+
+  .communityNameButton {
+    border: transparent;
+    background-color:transparent;
   }
   
   .voteContainer{

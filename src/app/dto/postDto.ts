@@ -7,5 +7,6 @@ export interface PostDto {
     comments:number;
     creationDate: Date;
     communityName: string;
+    communityId: number;
     currentVote:string;
 }

@@ -19,7 +19,7 @@ import { CommunitySearchDto } from '../dto/communitySearchDto';
 export class CreatePostComponent implements OnInit{
   createNewPost!:FormGroup;
   createPostRequest:CreatePostRequestPayload;
-  yourCommunities$:Array<CommunitySearchDto> = [];
+  yourCommunities:Array<CommunitySearchDto> = [];
   searchQuery: string = '';
   currentCommunity!:string;
 
@@ -34,11 +34,12 @@ export class CreatePostComponent implements OnInit{
   ngOnInit(): void {
     this.communityService.currentUserCommunities.subscribe(usercommunities => {
         usercommunities.map(community => {
-          this.yourCommunities$.push({
+          this.yourCommunities.push({
             communityName:community.communityName,
             numberOfMembers:community.numberOfMembers
           });
-        });
+        }
+      );
     });
     this.updateSelectedCommunity();
     this.createNewPost = new FormGroup({

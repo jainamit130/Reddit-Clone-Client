@@ -33,8 +33,13 @@
       *ngIf="searchContainer"
       [ngClass]="{ 'container-box-searchContainer': searchContainer }"
     >
-      <div *ngIf="userCommunities$.length !== 0">Your Communities</div>
-      <div *ngFor="let userCommunity of userCommunities$">
+      <div
+        *ngIf="mySearchedCommunities.length !== 0"
+        class="communitySelectionHeading"
+      >
+        Your Communities
+      </div>
+      <div *ngFor="let userCommunity of mySearchedCommunities">
         <div
           class="communitySelection"
           (click)="selectCommunity(userCommunity.communityName)"
@@ -45,8 +50,13 @@
           </div>
         </div>
       </div>
-      <div *ngIf="otherCommunities$.length !== 0">Other Communities</div>
-      <div *ngFor="let otherCommunity of otherCommunities$">
+      <div
+        *ngIf="otherCommunities.length !== 0"
+        class="communitySelectionHeading"
+      >
+        Other Communities
+      </div>
+      <div *ngFor="let otherCommunity of otherCommunities">
         <div
           class="communitySelection"
           (click)="selectCommunity(otherCommunity.communityName)"

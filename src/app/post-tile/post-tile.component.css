@@ -1,10 +1,15 @@
 .community {
+    width: min-content;
+    border-radius: 5px;
     margin-top: 10px;
     font-weight: 20px;
     font-size: small;
   }
 
-  
+  .community :hover {
+    border-radius: 5px;
+    background-color: #dadada;
+  }
 
   .commentContainer{
     margin-left: 10px;
@@ -15,6 +20,11 @@
     width: fit-content;
     height: 33px;
     background-color: #bbbbbb;
+  }
+
+  .communityNameButton {
+    border: transparent;
+    background-color:transparent;
   }
   
   .commentContainer:hover{

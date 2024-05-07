@@ -16,7 +16,11 @@
     *ngFor="let comment of userComments"
   >
     <div class="reddit-post">
-      <app-comment-tile [comment]="comment"></app-comment-tile>
+      <app-comment-tile
+        (updateComments)="getUserComments()"
+        [comment]="comment"
+        [userComment]="true"
+      ></app-comment-tile>
     </div>
     <div class="headerLine"></div>
   </div>

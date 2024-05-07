@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: 'signup', component: SignUpComponent},
   { path: 'post', component: PostComponent,canActivate:[authGuard]},
   { path: 'submit', component: CreatePostComponent,canActivate:[authGuard]},
-  { path: 'create-community', component: CreateCommunityComponent},
+  { path: 'create-community', component: CreateCommunityComponent,canActivate:[authGuard]},
   { path: 'community', component: CommunityComponent,canActivate:[authGuard]},
   { path: 'profile', component: ProfileComponent,canActivate:[authGuard]},
 ];

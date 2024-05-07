@@ -20,7 +20,7 @@ export class PostComponent {
   post!:PostDto;
   postId!:number;
   sanitizedDescription!: SafeHtml;
-  constructor(private sanitizer: DomSanitizer,private communityService:CommunityService,private postService:PostService,private activatedRoute:ActivatedRoute){
+  constructor(private router: Router,private sanitizer: DomSanitizer,private communityService:CommunityService,private postService:PostService,private activatedRoute:ActivatedRoute){
     this.activatedRoute.queryParams.subscribe(params => {
       this.postId=params['postId'];
       
@@ -41,4 +41,8 @@ export class PostComponent {
     })
   }
   
+  navigateToCommunity(communityId: number) {
+    this.router.navigate(['community'],{queryParams:{id:communityId}})
+  }
+
 }

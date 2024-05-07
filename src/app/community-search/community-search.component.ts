@@ -17,8 +17,9 @@ export class CommunitySearchComponent implements OnInit{
   selectedCommunity:string="";
   inputField:string="";
   activeSearch:boolean=true;
-  @Input() userCommunities$:Array<CommunitySearchDto>=[];
-  otherCommunities$:Array<CommunitySearchDto>=[];
+  @Input() userCommunities:Array<CommunitySearchDto>=[];
+  mySearchedCommunities:Array<CommunitySearchDto>=[];
+  otherCommunities:Array<CommunitySearchDto>=[];
   searchContainer:boolean=false;
 
   constructor(private communityService:CommunityService){}
@@ -39,7 +40,8 @@ export class CommunitySearchComponent implements OnInit{
 
   clearField(){
     this.inputField="";
-    this.otherCommunities$=[];
+    this.mySearchedCommunities=this.userCommunities;
+    this.otherCommunities=[];
     this.focusInput();
   }
 
@@ -57,6 +59,7 @@ export class CommunitySearchComponent implements OnInit{
   }
 
   openSearch(event: MouseEvent) {
+    this.mySearchedCommunities=this.userCommunities;  
     this.activeSearch=true;
     this.searchContainer=true;
     this.focusInput();
@@ -65,24 +68,22 @@ export class CommunitySearchComponent implements OnInit{
 
   onSearch(){
     if (this.inputField.trim() !== '') {
+      this.mySearchedCommunities=this.mySearchedCommunities.filter(userCommunity =>{
+        return userCommunity.communityName.substring(0,this.inputField.length)===this.inputField;
+      }); 
       this.communityService.communitySearch(this.inputField).subscribe(
         (results: CommunitySearchDto[]) => {
-          this.otherCommunities$ = results.filter(community => {
-            return !this.userCommunities$.includes(community);
+          this.otherCommunities = results.filter(community => {
+            return !this.mySearchedCommunities.some(c => c.communityName === community.communityName);
           });
-          //remove prefix non matching communities from userCommunities
-          this.userCommunities$.filter(userCommunity =>{
-            console.log(userCommunity.communityName.substring(0,this.inputField.length));
-            console.log(this.inputField);
-            return userCommunity.communityName.substring(0,this.inputField.length)==this.inputField;
-          }); 
         },
         () => {
           console.error('Error fetching search results');
         }
       );
     } else {
-      this.otherCommunities$ = [];
+      this.mySearchedCommunities=this.userCommunities;
+      this.otherCommunities = [];
     }
   }
 }

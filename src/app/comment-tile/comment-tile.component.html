@@ -1,21 +1,39 @@
 <div appDetectOutsideClick (clickOutside)="closeCommentAction()">
   <div class="commentDetails">
     <span class="commentUser">{{ comment.username }}</span>
-    <img
-      (click)="openCommentAction(); $event.stopPropagation()"
-      src="assets/three-dots.svg"
-      class="commentDelete"
-    />
-    <div *ngIf="commentAction" class="container-box">
-      <div class="commentActionTile" (click)="deleteComment($event)">
-        Delete Comment
-      </div>
-      <div class="commentActionTile" (click)="editComment($event)">
-        Edit Comment
+    <div *ngIf="userComment">
+      <img
+        (click)="openCommentAction(); $event.stopPropagation()"
+        src="assets/three-dots.svg"
+        class="commentDelete"
+      />
+      <div *ngIf="commentAction" class="container-box">
+        <div class="commentActionTile" (click)="deleteComment($event, comment)">
+          Delete Comment
+        </div>
+        <div class="commentActionTile" (click)="toggleEditMode(comment)">
+          Edit Comment
+        </div>
       </div>
     </div>
   </div>
-  <div class="commentText">
+  <div *ngIf="!editMode" class="commentText">
     {{ comment.comment }}
+  </div>
+  <div *ngIf="editMode">
+    <form
+      class="commentInputForm"
+      [formGroup]="updatedCommentFrom"
+      (ngSubmit)="editComment(comment)"
+    >
+      <input
+        class="commentInput"
+        title="Add a comment"
+        placeholder="Add a comment"
+        [formControlName]="'commentDescription'"
+      />
+      <button class="commentButton" (click)="discardEdit()">Cancel</button>
+      <button class="commentButton" type="submit">Save Edits</button>
+    </form>
   </div>
 </div>

@@ -14,11 +14,13 @@
   </form>
   <div class="commentSection">
     <div class="individualComment" *ngFor="let comment of comments$">
-      <span class="commentUser">{{ comment.username }}</span>
-      <div class="commentText">
-        {{ comment.comment }}
+      <div class="reddit-post">
+        <app-comment-tile
+          (updateComments)="updateComments()"
+          [comment]="comment"
+          [userComment]="isUserComment(comment)"
+        ></app-comment-tile>
       </div>
-      <div></div>
       <div class="headerLine"></div>
     </div>
   </div>

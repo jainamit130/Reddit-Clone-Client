@@ -6,6 +6,7 @@
     <div (click)="navigateToPost(post.postId)" *ngFor="let post of posts$">
       <div class="reddit-post">
         <app-post-tile
+          [showCommunityName]="true"
           [post]="post"
           (updatePost)="updatePost(post)"
         ></app-post-tile>

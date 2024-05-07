@@ -3,8 +3,10 @@
 </div>
 <div class="reddit-container" *ngIf="post">
   <div class="reddit-post">
-    <div class="community">
-      <span>{{ post.communityName }}</span>
+    <div class="community" (click)="navigateToCommunity(post.communityId)">
+      <button class="communityNameButton">
+        {{ post.communityName }}
+      </button>
     </div>
     <h4>{{ post.postName }}</h4>
     <p [innerHTML]="sanitizedDescription"></p>
