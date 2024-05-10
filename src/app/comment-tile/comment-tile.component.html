@@ -19,6 +19,13 @@
   </div>
   <div *ngIf="!editMode" class="commentText">
     {{ comment.comment }}
+    <div>
+      <app-vote
+        [voteCount]="comment.votes"
+        [postId]="comment.postId"
+        [currentVote]="comment.currentVote"
+      ></app-vote>
+    </div>
   </div>
   <div *ngIf="editMode">
     <form

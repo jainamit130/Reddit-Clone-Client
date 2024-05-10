@@ -6,12 +6,11 @@ import { CommentDto } from '../dto/commentDto';
 @Injectable({
   providedIn: 'root'
 })
-export class CommentService {
-  
+export class CommentService {  
   constructor(private httpClient:HttpClient) { }
 
-  getAllComments(postId:number):Observable<Array<CommentDto>> {
-    return this.httpClient.get<Array<CommentDto>>('http://localhost:8080/reddit/comments/getPostComments?postId='+postId);
+  getAllComments(postId:number,repliesCount:number):Observable<Array<CommentDto>> {
+    return this.httpClient.get<Array<CommentDto>>('http://localhost:8080/reddit/comments/getPostComments/'+postId+'?repliesCount='+repliesCount);
   }
 
   comment(commentRequest: CommentDto) {
@@ -28,5 +27,9 @@ export class CommentService {
     };
     return this.httpClient.post('http://localhost:8080/reddit/comments/deleteComment/'+commentId,null,options);
 
+  }
+
+  editComment(editedComment: CommentDto) {
+    return this.httpClient.put('http://localhost:8080/reddit/comments/edit',editedComment)
   }
 }

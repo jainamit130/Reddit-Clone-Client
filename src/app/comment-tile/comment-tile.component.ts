@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
 import { CommentService } from '../shared/comment.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { VoteComponent } from '../vote/vote.component';
 
 @Component({
   selector: 'app-comment-tile',
   standalone: true,
-  imports: [CommonModule,DetectOutsideClickDirective,ReactiveFormsModule],
+  imports: [CommonModule,DetectOutsideClickDirective,ReactiveFormsModule,VoteComponent],
   templateUrl: './comment-tile.component.html',
   styleUrl: './comment-tile.component.css'
 })
@@ -18,6 +19,7 @@ export class CommentTileComponent implements OnInit{
     @Input() userComment:boolean = false;
     @Output() updateComments = new EventEmitter<void>();
     @Output() commentEdited = new EventEmitter<CommentDto>();
+    oldComment:string="";
     editMode:boolean=false;
     updatedCommentFrom!:FormGroup;
     commentAction: boolean = false;
@@ -48,21 +50,23 @@ export class CommentTileComponent implements OnInit{
 
     editComment(comment:CommentDto) {
       comment.comment=this.updatedCommentFrom.get('commentDescription')?.value;
-      this.commentService.comment(comment).subscribe(() => {
+      if(this.oldComment===comment.comment){
+        this.discardEdit();
+      } else {
         this.commentEdited.emit(comment);
         this.editMode=false;
-      }, (error) => {
-        console.log("Sorry could not edit comment!")
-      });
+      }
     }
 
     toggleEditMode(comment:CommentDto) {
+      this.oldComment=comment.comment;
       this.updatedCommentFrom.setValue({['commentDescription']:comment.comment})
       this.editMode=true;
       this.closeCommentAction();
     }
 
     discardEdit() {
+      this.oldComment="";
       this.updatedCommentFrom.setValue({['commentDescription']:""});
       this.editMode=false;
     }

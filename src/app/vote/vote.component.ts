@@ -17,6 +17,7 @@ export class VoteComponent implements OnInit {
   @Output() voteCompleted = new EventEmitter<void>();
   @Input() voteCount!:number;
   @Input() postId!:number;
+  @Input() commentId!:number;
   @Input() currentVote!:string;
   @Input() isLoggedIn!:boolean;
   voteDto!: VoteDto;
@@ -28,6 +29,7 @@ export class VoteComponent implements OnInit {
     this.voteDto={
       voteType:this.currentVote,
       postId: this.postId,
+      commentId: this.commentId,
     };
     this.authService.loggedInStatus.subscribe(isLogin=>{
       this.isLoggedIn=isLogin;
