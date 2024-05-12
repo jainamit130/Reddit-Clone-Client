@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommentDto } from '../dto/commentDto';
+import { CommentRequestDto } from '../dto/RequestPayload/commentRequestDto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class CommentService {
     return this.httpClient.get<Array<CommentDto>>('http://localhost:8080/reddit/comments/getPostComments/'+postId+'?repliesCount='+repliesCount);
   }
 
-  comment(commentRequest: CommentDto) {
+  comment(commentRequest: CommentRequestDto) {
     return this.httpClient.post('http://localhost:8080/reddit/comments/create',commentRequest)
   }
 

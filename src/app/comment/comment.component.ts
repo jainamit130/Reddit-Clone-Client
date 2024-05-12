@@ -7,6 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../authorization/shared/auth.service';
 import { CommentTileComponent } from '../comment-tile/comment-tile.component';
 import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
+import { CommentRequestDto } from '../dto/RequestPayload/commentRequestDto';
 
 @Component({
   selector: 'app-comment',
@@ -20,11 +21,11 @@ export class CommentComponent implements OnInit{
   @Input() postId!:number;
   @Output() commented = new EventEmitter<void>();
   commentForm!:FormGroup;
-  commentRequest:CommentDto;
+  commentRequest:CommentRequestDto;
   userCommentsOnPost:Array<CommentDto> = [];
   comments$: Array<CommentDto> = [];
   constructor(private commentService:CommentService,private authService:AuthService,private activatedRoute:ActivatedRoute){
-    this.commentRequest=CommentDto.createDefault();
+    this.commentRequest=CommentRequestDto.createDefault();
   }
 
   ngOnInit(): void {
