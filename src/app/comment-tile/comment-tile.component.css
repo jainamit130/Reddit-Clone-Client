@@ -4,7 +4,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 620px;
+    justify-content: stretch;
 }
 
 .commentUser{
@@ -24,7 +24,7 @@
     padding: 8px;
     border-radius: 10px;
     max-height: 30px;
-    max-width: 30px;
+    justify-content: stretch;
 }
 
 .commentInput{
@@ -63,4 +63,23 @@
 
 .commentActionTile:hover{
     background-color: #dad5d5;
+}
+
+.replyButton{
+    margin: 4px;
+    font-size: medium;
+    border: transparent;
+    border-radius: 8px;
+    background:transparent;
+}
+
+.replyButton:hover{
+    background-color: rgb(204, 204, 204);
+}
+
+.replyIcon{
+    margin: 4px;
+    color: rgb(141, 141, 141);
+    width: 18px;
+    height: 18px;
 }

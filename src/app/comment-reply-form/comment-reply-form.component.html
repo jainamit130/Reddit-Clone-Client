@@ -1,0 +1,16 @@
+<form [formGroup]="commentForm" (ngSubmit)="createComment()">
+  <div class="commentInputGroup">
+    <input
+      appDetectOutsideClick
+      (clickOutside)="checkCommentInvalid()"
+      class="commentInput"
+      title="Add a comment"
+      placeholder="Add a comment"
+      [formControlName]="'commentDescription'"
+    />
+    <button class="commentButton" type="submit">Comment</button>
+  </div>
+  <span style="display: flex; color: red" *ngIf="commentInvalid">
+    The field is required and cannot be empty
+  </span>
+</form>

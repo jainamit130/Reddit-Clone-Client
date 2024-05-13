@@ -30,6 +30,13 @@ export class CommentService {
 
   }
 
+  getComment(commentId:number, postId:number):Observable<CommentDto>{
+    const options = { 
+      params: new HttpParams().set('postId', postId) 
+    };
+    return this.httpClient.get<CommentDto>('http://localhost:8080/reddit/comments/getComment/'+commentId,options);
+  }
+
   editComment(editedComment: CommentDto) {
     return this.httpClient.put('http://localhost:8080/reddit/comments/edit',editedComment)
   }
