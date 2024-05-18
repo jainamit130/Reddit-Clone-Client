@@ -14,6 +14,7 @@ import { AuthService } from '../authorization/shared/auth.service';
   styleUrl: './vote.component.css'
 })
 export class VoteComponent implements OnInit {
+  @Input() isForComment : boolean = false;
   @Output() voteCompleted = new EventEmitter<void>();
   @Input() voteCount!:number;
   @Input() postId!:number;

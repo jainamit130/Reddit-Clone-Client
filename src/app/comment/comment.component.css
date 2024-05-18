@@ -1,3 +1,7 @@
+.commentComponent{
+    position: relative;
+}
+
 .commentSection{
     width: max-content;
 }

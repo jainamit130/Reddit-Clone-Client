@@ -26,7 +26,6 @@ export class PostComponent {
       
       this.postService.getPost(this.postId).subscribe(post => {
         this.post=post;
-        console.log(post.communityName)
         this.sanitizedDescription=this.sanitizer.bypassSecurityTrustHtml(this.post.description);
       });
       this.communityService.getCommunityOfPost(this.postId)

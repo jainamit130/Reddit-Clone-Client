@@ -13,12 +13,16 @@ import { CommentParameter } from '../dto/CommentParameter';
 
 export class CommentReplyFormComponent implements OnInit{
   @Output() commented = new EventEmitter<CommentParameter>();
+  
   @Input() parentCommentId!:number|null;
+  @Input() postId!:number|null;
+
   commentForm!:FormGroup;
   commentInvalid:boolean=false;
   commentParameter:CommentParameter = {
     commentDescription:"",
     parentId:null,
+    postId:null,
   }
 
   ngOnInit(): void {
@@ -37,6 +41,7 @@ export class CommentReplyFormComponent implements OnInit{
   createComment() {
     this.commentParameter.commentDescription = this.commentForm.get('commentDescription')?.value;
     this.commentParameter.parentId = this.parentCommentId;
+    this.commentParameter.postId = this.postId;
     if(this.commentForm.get('commentDescription')?.invalid){
       this.commentInvalid=true;
     } else {

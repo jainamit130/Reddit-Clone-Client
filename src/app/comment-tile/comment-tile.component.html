@@ -1,56 +1,93 @@
-<div appDetectOutsideClick (clickOutside)="closeCommentAction()">
-  <div class="commentDetails">
-    <span class="commentUser">{{ comment.username }}</span>
-    <div *ngIf="userComment">
-      <img
-        (click)="openCommentAction(); $event.stopPropagation()"
-        src="assets/three-dots.svg"
-        class="commentDelete"
-      />
-      <div *ngIf="commentAction" class="container-box">
-        <div class="commentActionTile" (click)="deleteComment($event, comment)">
-          Delete Comment
-        </div>
-        <div class="commentActionTile" (click)="toggleEditMode(comment)">
-          Edit Comment
+<div class="collapse">
+  <img
+    *ngIf="!comment.isCollapsed && comment.repliesCount > 0"
+    class="collapseIcon"
+    (click)="toggleCollapse()"
+    src="assets/collapse.png"
+  />
+  <img
+    *ngIf="comment.isCollapsed && comment.repliesCount > 0"
+    class="collapseIcon"
+    (click)="toggleCollapse()"
+    src="assets/reveal.png"
+  />
+  <div class="headerLine"></div>
+  <div appDetectOutsideClick (clickOutside)="closeCommentAction()">
+    <div class="commentDetails">
+      <span class="commentUser">{{ comment.username }}</span>
+      <div *ngIf="userComment && !comment.isDeleted">
+        <img
+          (click)="openCommentAction(); $event.stopPropagation()"
+          src="assets/three-dots.svg"
+          class="commentDelete"
+        />
+        <div *ngIf="commentAction" class="container-box">
+          <div
+            class="commentActionTile"
+            (click)="deleteComment($event, comment)"
+          >
+            Delete Comment
+          </div>
+          <div class="commentActionTile" (click)="toggleEditMode(comment)">
+            Edit Comment
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div *ngIf="!editMode" class="commentText">
-    {{ comment.comment }}
-    <div style="display: flex">
-      <app-vote
-        [voteCount]="comment.votes"
-        [postId]="comment.postId"
-        [commentId]="comment.commentId"
-        [currentVote]="comment.currentVote"
-        (voteCompleted)="updateCommentVote(comment.commentId)"
-      ></app-vote>
-      <button class="replyButton" (click)="toggleReplyMode()">
-        <img src="assets/comment.svg" class="replyIcon" />Reply
-      </button>
+    <div>
+      <div *ngIf="!editMode" class="commentText">
+        <div *ngIf="!comment.isDeleted">
+          {{ comment.comment }}
+        </div>
+        <div *ngIf="comment.isDeleted" style="font-size: medium">
+          deleted by user
+        </div>
+        <div style="display: flex">
+          <app-vote
+            [isForComment]="true"
+            [voteCount]="comment.votes"
+            [postId]="comment.postId"
+            [commentId]="comment.commentId"
+            [currentVote]="comment.currentVote"
+            (voteCompleted)="
+              updateCommentVote(comment.commentId, comment.postId)
+            "
+          ></app-vote>
+          <button class="replyButton" (click)="toggleReplyMode()">
+            <img src="assets/comment.svg" class="replyIcon" />Reply
+          </button>
+        </div>
+        <div *ngIf="comment.repliesCount - currentExposedReplies > 0">
+          <button
+            class="showReplies"
+            (click)="showReplies(comment.commentId, comment.postId)"
+          >
+            show {{ comment.repliesCount - currentExposedReplies }} more reply
+          </button>
+        </div>
+        <app-comment-reply-form
+          *ngIf="replyMode"
+          (commented)="createComment($event)"
+          [parentCommentId]="comment.commentId"
+          [postId]="comment.postId"
+        ></app-comment-reply-form>
+      </div>
     </div>
-    <app-comment-reply-form
-      *ngIf="replyMode"
-      (commented)="createComment($event)"
-      [parentCommentId]="comment.commentId"
-    ></app-comment-reply-form>
-  </div>
-  <div *ngIf="editMode">
-    <form
-      class="commentInputForm"
-      [formGroup]="updatedCommentFrom"
-      (ngSubmit)="editComment(comment)"
-    >
-      <input
-        class="commentInput"
-        title="Add a comment"
-        placeholder="Add a comment"
-        [formControlName]="'commentDescription'"
-      />
-      <button class="commentButton" (click)="discardEdit()">Cancel</button>
-      <button class="commentButton" type="submit">Save Edits</button>
-    </form>
+    <div *ngIf="editMode">
+      <form
+        class="commentInputForm"
+        [formGroup]="updatedCommentForm"
+        (ngSubmit)="editComment(comment)"
+      >
+        <input
+          class="commentInput"
+          title="Add a comment"
+          placeholder="Add a comment"
+          [formControlName]="'commentDescription'"
+        />
+        <button class="commentButton" (click)="discardEdit()">Cancel</button>
+        <button class="commentButton" type="submit">Save Edits</button>
+      </form>
+    </div>
   </div>
 </div>

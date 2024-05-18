@@ -1,6 +1,7 @@
 <div class="commentComponent">
   <app-comment-reply-form
     (commented)="createComment($event)"
+    [postId]="postId"
   ></app-comment-reply-form>
   <div class="commentSection">
     <div class="individualComment" *ngFor="let comment of comments$">
@@ -8,23 +9,32 @@
         <ng-container
           *ngTemplateOutlet="commentTemplate; context: { $implicit: comment }"
         ></ng-container>
-        <div class="headerLine"></div>
       </div>
     </div>
 
     <ng-template #commentTemplate let-comment>
       <app-comment-tile
+        (collapseToggled)="updateCollapseBool(comment.commentId)"
+        (showMoreReplies)="showMoreReplies($event)"
         (replied)="createComment($event)"
-        (commentEdited)="editComment($event)"
         (updateComments)="updateComments()"
         [comment]="comment"
-        (commentVoted)="updateComment($event)"
+        [currentExposedReplies]="
+          comment.repliesMap ? comment.repliesMap.size : 0
+        "
         [userComment]="isUserComment(comment)"
-      ></app-comment-tile>
-      <div class="reply" *ngFor="let reply of comment.replies">
-        <ng-container
-          *ngTemplateOutlet="commentTemplate; context: { $implicit: reply }"
-        ></ng-container>
+      >
+      </app-comment-tile>
+      <div *ngIf="!comment.isCollapsed">
+        <div class="reply" *ngFor="let reply of comment.repliesMap | keyvalue">
+          <ng-container
+            *ngTemplateOutlet="
+              commentTemplate;
+              context: { $implicit: reply.value }
+            "
+          >
+          </ng-container>
+        </div>
       </div>
     </ng-template>
   </div>

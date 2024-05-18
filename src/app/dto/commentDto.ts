@@ -6,8 +6,12 @@ export interface CommentDto {
     creationDate: Date;
     parentId: number;
     replies: Array<CommentDto>;
+    repliesMap: Map<number, CommentDto>;
+    repliesCount: number;
     currentVote: string;
     votes: number;
+    isDeleted: boolean;
+    isCollapsed: boolean;
 }
 
 export namespace CommentDto {
@@ -19,9 +23,13 @@ export namespace CommentDto {
             comment: '',
             creationDate: new Date(),
             parentId: 0,
-            replies: [],
+            replies:[],
+            repliesMap: new Map<number, CommentDto>(),
+            repliesCount: 0,
             currentVote: '',
-            votes: 0
+            votes: 0,
+            isDeleted: false,
+            isCollapsed: false,
         };
     }
 }

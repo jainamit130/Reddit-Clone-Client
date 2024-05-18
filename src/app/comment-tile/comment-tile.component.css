@@ -1,5 +1,17 @@
+.collapse{
+    display: flex;
+}
+
+.collapseIcon{
+    margin: 2px;
+    margin-right: 10px;
+    height: 15px;
+    width: 15px;
+}
+
 .commentDetails{
     height: min-content;
+    width: 200px;
     margin-bottom: 2px;
     position: relative;
     display: flex;
@@ -82,4 +94,14 @@
     color: rgb(141, 141, 141);
     width: 18px;
     height: 18px;
+}
+
+.showReplies{
+    font-size: medium;
+    background-color: transparent;
+    border: transparent;
+}
+
+.showReplies:hover{
+    text-decoration: underline;
 }

@@ -29,6 +29,7 @@ export class PostTileComponent implements OnChanges {
   }
   
   update(post:PostDto){
+    console.log("broooo");
     this.updatePost.emit(post);
   }
   

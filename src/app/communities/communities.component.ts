@@ -15,10 +15,13 @@ export class CommunitiesComponent implements OnInit{
   communities$:Array<CommunityDto> = [];
   // @Output() shareCommunities= new EventEmitter<Array<CommunityDto>>();
 
-  constructor(private communityService:CommunityService,private router:Router){}
+  constructor(private communityService:CommunityService,private router:Router){
+    this.communityService.getAllCommunities().subscribe(community => {
+      this.communities$=community;
+    });
+  }
   
   ngOnInit(): void {
-    
     this.communityService.getAllCommunities().subscribe(community => {
       this.communities$=community;
     });
