@@ -34,10 +34,12 @@ export class PostComponent {
     );
   }
 
-  updatePost(){
-    this.postService.getPost(this.post.postId).subscribe(updatedPost=> {
-        this.post = updatedPost;
-    })
+  updatePost(isForComment:boolean){
+    if(!isForComment){
+      this.postService.getPost(this.post.postId).subscribe(updatedPost=> {
+          this.post = updatedPost;
+      });
+    }
   }
   
   navigateToCommunity(communityId: number) {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommentDto } from '../dto/commentDto';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -50,7 +50,7 @@ export class CommentTileComponent implements OnInit{
     }
 
     openCommentAction(){
-      this.commentAction=true;
+      this.commentAction=!this.commentAction;
     }
 
     closeCommentAction(){
@@ -95,7 +95,7 @@ export class CommentTileComponent implements OnInit{
 
     updateCommentVote(commentId: number,postId:number) {
       this.commentService.getComment(commentId,postId).subscribe(updatedReply => {
-          this.comment.currentVote=updatedReply.currentVote;
+        this.comment.currentVote=updatedReply.currentVote;
           this.comment.votes=updatedReply.votes;
       });
   }
@@ -106,6 +106,7 @@ export class CommentTileComponent implements OnInit{
 
     createComment(commentParameter: CommentParameter) {
       this.replied.emit(commentParameter);
+      this.toggleCollapse();
       this.replyMode=false;
     }
 

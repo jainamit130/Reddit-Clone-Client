@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommentService } from '../shared/comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommentDto } from '../dto/commentDto';
@@ -90,7 +90,7 @@ export class CommentComponent implements OnInit{
     
     else {
       this.commentService.comment(this.commentRequest).subscribe((createdComment) => {
-        this.updateReplies([createdComment],createdComment.parentId);
+        this.updateReplies([createdComment],createdComment.parentId,false);
         this.commented.emit();
       });
     }
@@ -107,7 +107,7 @@ export class CommentComponent implements OnInit{
 
   showMoreReplies(commentPostId:CommentPostId){
     this.commentService.showMoreReplies(commentPostId.commentId,commentPostId.postId).subscribe((replies) => {
-      this.updateReplies(replies,commentPostId.commentId);
+      this.updateReplies(replies,commentPostId.commentId,true);
     });
   }
 
@@ -131,37 +131,40 @@ export class CommentComponent implements OnInit{
   
     return updateHelper(this.comments$);
   }
-
-  updateReplies(updatedReply: Array<CommentDto>, parentId: number) {
+  
+  updateReplies(updatedReply: Array<CommentDto>, parentId: number, showRepliesFlow:boolean) {
     let flag = 0;
 
-    const updateHelper = (comment: CommentDto) => {
-        if (comment.commentId === parentId) {
-            for (const reply of updatedReply) {
-                if (!comment.repliesMap) {
-                    comment.repliesMap = new Map<number, CommentDto>();
+    const updateHelper = (comments: CommentDto[]) => {
+        for (const comment of comments) {
+            if (comment.commentId === parentId) {
+                for (const reply of updatedReply) {
+                    if (!comment.repliesMap) {
+                        comment.repliesMap = new Map<number, CommentDto>();
+                    }
+                    comment.replies.push(reply);
+                    if(!showRepliesFlow)
+                      comment.repliesCount+=1
+                    comment.isCollapsed=false;
+                    comment.repliesMap.set(reply.commentId, reply);
                 }
-                comment.repliesMap.set(reply.commentId, reply);
+                flag = 1;
+                
+                return;
             }
-            flag = 1;
-            return comment;
-        }
 
-        for (const [key, reply] of comment.replies.entries()) {
-            updateHelper(reply);
+            if (comment.repliesMap && comment.repliesMap.size > 0) {
+                updateHelper(Array.from(comment.repliesMap.values()));
+            }
+
             if (flag) {
-                break;
+                return;
             }
         }
-        return comment;
-    }
+    };
 
-    for (const topComment of this.comments$) {
-        updateHelper(topComment);
-        if (flag) {
-            break;
-        }
-    }
+    updateHelper(this.comments$);
 }
+
 
 }

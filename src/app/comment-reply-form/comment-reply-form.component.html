@@ -1,17 +1,28 @@
 <form [formGroup]="commentForm" (ngSubmit)="createComment()">
-  <div class="commentInputGroup">
-    <input
-      appDetectOutsideClick
-      (clickOutside)="checkCommentInvalid()"
-      class="commentInput"
-      title="Add a comment"
-      placeholder="Add a comment"
-      [formControlName]="'commentDescription'"
-      id="commentInputId"
-    />
-    <button class="commentButton" type="submit">Comment</button>
+  <div class="commentReplyForm">
+    <div class="commentInputGroup">
+      <textarea
+        (click)="activateCommentMode()"
+        [style.height]="commentMode ? '50px' : '30px'"
+        appDetectOutsideClick
+        (input)="adjustTextareaHeight()"
+        (clickOutside)="checkCommentInvalid()"
+        class="commentInput"
+        title="Add a comment"
+        placeholder="Add a comment"
+        [formControlName]="'commentDescription'"
+        id="commentInputId"
+        #commentTextarea
+      ></textarea>
+    </div>
+    <div class="commentCancelButtons" *ngIf="commentMode">
+      <button class="cancelButton" (click)="deactivateCommentMode()">
+        Cancel
+      </button>
+      <button class="commentButton" type="submit">Comment</button>
+    </div>
+    <span style="display: flex; color: red" *ngIf="commentInvalid">
+      The field is required and cannot be empty
+    </span>
   </div>
-  <span style="display: flex; color: red" *ngIf="commentInvalid">
-    The field is required and cannot be empty
-  </span>
 </form>

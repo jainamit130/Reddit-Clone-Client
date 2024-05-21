@@ -1,9 +1,5 @@
-.commentComponent{
-    position: relative;
-}
-
 .commentSection{
-    width: max-content;
+    width: 700px;
 }
 
 .commentUser{
@@ -25,15 +21,26 @@
     margin: 10px;
 }
 
+.line {
+    position: relative;
+    border-left: 2px solid #9b9b9b;
+    margin-left: 6px; /* Adjust this value as needed */
+  }
+
+  .line:hover {
+    border-color: #4b4b4b;
+  }
+
 .reddit-post {
     margin-bottom: 20px;
     border-radius: 20px;
-    max-width: 700px;
+    width: 100%;
     justify-content: center;
     align-items: center;
     max-height: fit-content;
   }
 
   .reply {
+    width: calc(100%-20px);
     margin-left: 20px; /* Indent replies */
   }

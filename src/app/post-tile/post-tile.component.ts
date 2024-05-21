@@ -28,9 +28,9 @@ export class PostTileComponent implements OnChanges {
     });    
   }
   
-  update(post:PostDto){
-    console.log("broooo");
-    this.updatePost.emit(post);
+  update(post:PostDto,isForComment:boolean){
+    if(!isForComment)
+      this.updatePost.emit(post);
   }
   
   navigateToCommunity(communityId: number) {

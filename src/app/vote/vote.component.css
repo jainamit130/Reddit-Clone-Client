@@ -5,21 +5,19 @@
     align-items: center;
     width: fit-content;
     height: 33px;
-    background-color: #afafaf;
+    background-color: #e0e0e0;
   }
 
   .upvoted{
     background-color: #d93a00;
-    color: white;
   }
 
   .downvoted{
     background-color: #6a5cff;
-    color: white;
   }
 
   .novote{
-    background-color: #afafaf;
+    background-color: #c4c4c4;
   }
   
   .upvote{
@@ -32,8 +30,8 @@
     max-height: 30px;
   }
   
-  .upvote:hover{
-    background-color: #797979;
+  .upvote svg:hover{
+    fill: #d93a00;
   }
   
   .downvote{
@@ -45,11 +43,6 @@
     border-radius: 999px;
     max-height: 30px;
   }
-  
-  .downvote:hover{
-    background-color: #797979;
-  }
-  
   
   .votesCount{
     padding-left: 2px;

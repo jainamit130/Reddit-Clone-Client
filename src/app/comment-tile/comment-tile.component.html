@@ -1,76 +1,15 @@
-<div class="collapse">
-  <img
-    *ngIf="!comment.isCollapsed && comment.repliesCount > 0"
-    class="collapseIcon"
-    (click)="toggleCollapse()"
-    src="assets/collapse.png"
-  />
-  <img
-    *ngIf="comment.isCollapsed && comment.repliesCount > 0"
-    class="collapseIcon"
-    (click)="toggleCollapse()"
-    src="assets/reveal.png"
-  />
-  <div class="headerLine"></div>
-  <div appDetectOutsideClick (clickOutside)="closeCommentAction()">
-    <div class="commentDetails">
-      <span class="commentUser">{{ comment.username }}</span>
-      <div *ngIf="userComment && !comment.isDeleted">
-        <img
-          (click)="openCommentAction(); $event.stopPropagation()"
-          src="assets/three-dots.svg"
-          class="commentDelete"
-        />
-        <div *ngIf="commentAction" class="container-box">
-          <div
-            class="commentActionTile"
-            (click)="deleteComment($event, comment)"
-          >
-            Delete Comment
-          </div>
-          <div class="commentActionTile" (click)="toggleEditMode(comment)">
-            Edit Comment
-          </div>
-        </div>
+<div class="commentTileComponent">
+  <div class="commentDetails">
+    <img src="assets/reddit-profile-outline.svg" class="profilePhtotoOutline" />
+    <span class="commentUser">{{ comment.username }}</span>
+  </div>
+  <div style="position: relative">
+    <div *ngIf="!editMode" class="commentText">
+      <div *ngIf="!comment.isDeleted">
+        {{ comment.comment }}
       </div>
-    </div>
-    <div>
-      <div *ngIf="!editMode" class="commentText">
-        <div *ngIf="!comment.isDeleted">
-          {{ comment.comment }}
-        </div>
-        <div *ngIf="comment.isDeleted" style="font-size: medium">
-          deleted by user
-        </div>
-        <div style="display: flex">
-          <app-vote
-            [isForComment]="true"
-            [voteCount]="comment.votes"
-            [postId]="comment.postId"
-            [commentId]="comment.commentId"
-            [currentVote]="comment.currentVote"
-            (voteCompleted)="
-              updateCommentVote(comment.commentId, comment.postId)
-            "
-          ></app-vote>
-          <button class="replyButton" (click)="toggleReplyMode()">
-            <img src="assets/comment.svg" class="replyIcon" />Reply
-          </button>
-        </div>
-        <div *ngIf="comment.repliesCount - currentExposedReplies > 0">
-          <button
-            class="showReplies"
-            (click)="showReplies(comment.commentId, comment.postId)"
-          >
-            show {{ comment.repliesCount - currentExposedReplies }} more reply
-          </button>
-        </div>
-        <app-comment-reply-form
-          *ngIf="replyMode"
-          (commented)="createComment($event)"
-          [parentCommentId]="comment.commentId"
-          [postId]="comment.postId"
-        ></app-comment-reply-form>
+      <div *ngIf="comment.isDeleted" style="font-size: medium">
+        deleted by user
       </div>
     </div>
     <div *ngIf="editMode">
@@ -85,9 +24,87 @@
           placeholder="Add a comment"
           [formControlName]="'commentDescription'"
         />
-        <button class="commentButton" (click)="discardEdit()">Cancel</button>
-        <button class="commentButton" type="submit">Save Edits</button>
+        <div class="editAction">
+          <button class="cancelButton" (click)="discardEdit()">Cancel</button>
+          <button class="commentButton" type="submit">Save Edits</button>
+        </div>
       </form>
+    </div>
+    <div class="collapsableVoteAndReply">
+      <img
+        *ngIf="!comment.isCollapsed && currentExposedReplies > 0"
+        class="collapseIcon"
+        (click)="toggleCollapse()"
+        src="assets/collapse.png"
+      />
+      <img
+        *ngIf="comment.isCollapsed && comment.repliesCount > 0"
+        class="collapseIcon"
+        (click)="toggleCollapse()"
+        src="assets/reveal.png"
+      />
+      <div
+        [ngClass]="{
+          vote:
+            (comment.isCollapsed && comment.repliesCount > 0) ||
+            (!comment.isCollapsed && currentExposedReplies > 0)
+        }"
+      >
+        <app-vote
+          [isForComment]="true"
+          [voteCount]="comment.votes"
+          [postId]="comment.postId"
+          [commentId]="comment.commentId"
+          [currentVote]="comment.currentVote"
+          (voteCompleted)="updateCommentVote(comment.commentId, comment.postId)"
+        ></app-vote>
+      </div>
+      <div>
+        <button class="replyButton" (click)="toggleReplyMode()">
+          <img src="assets/comment.svg" class="replyIcon" />Reply
+        </button>
+      </div>
+      <div appDetectOutsideClick (clickOutside)="closeCommentAction()">
+        <div
+          *ngIf="userComment && !comment.isDeleted"
+          class="commentUserAction"
+        >
+          <img
+            (click)="openCommentAction(); $event.stopPropagation()"
+            src="assets/three-dots.svg"
+            class="commentDelete"
+          />
+          <div *ngIf="commentAction" class="container-box">
+            <div
+              class="commentActionTile"
+              (click)="deleteComment($event, comment)"
+            >
+              Delete Comment
+            </div>
+            <div class="commentActionTile" (click)="toggleEditMode(comment)">
+              Edit Comment
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <app-comment-reply-form
+        *ngIf="replyMode"
+        [commentMode]="true"
+        (replyModeClosed)="toggleReplyMode()"
+        (commented)="createComment($event)"
+        [parentCommentId]="comment.commentId"
+        [postId]="comment.postId"
+      ></app-comment-reply-form>
+    </div>
+    <div *ngIf="comment.repliesCount - currentExposedReplies > 0 && !replyMode">
+      <button
+        class="showReplies"
+        (click)="showReplies(comment.commentId, comment.postId)"
+      >
+        show {{ comment.repliesCount - currentExposedReplies }} more reply
+      </button>
     </div>
   </div>
 </div>

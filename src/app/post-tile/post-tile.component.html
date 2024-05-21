@@ -12,7 +12,7 @@
     [voteCount]="post.votes"
     [postId]="post.postId"
     [currentVote]="post.currentVote"
-    (voteCompleted)="update(post)"
+    (voteCompleted)="update(post, $event)"
   ></app-vote>
   <div class="commentContainer">
     <img src="assets\comment.svg" class="comment" />

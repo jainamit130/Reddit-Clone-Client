@@ -15,16 +15,20 @@ import { AuthService } from '../authorization/shared/auth.service';
 })
 export class VoteComponent implements OnInit {
   @Input() isForComment : boolean = false;
-  @Output() voteCompleted = new EventEmitter<void>();
   @Input() voteCount!:number;
   @Input() postId!:number;
   @Input() commentId!:number;
   @Input() currentVote!:string;
   @Input() isLoggedIn!:boolean;
-  voteDto!: VoteDto;
 
-  constructor(private authService:AuthService,private postService:PostService,private voteService: VoteService,private router:Router){
-  }
+  @Output() voteCompleted = new EventEmitter<boolean>();
+
+  commentOrPost:string="Post";
+  voteDto!: VoteDto;
+  hoverStateUpvote: boolean = false;
+  hoverStateDownvote: boolean = false;
+
+  constructor(private authService:AuthService,private voteService: VoteService,private router:Router){}
 
   ngOnInit(): void {
     this.voteDto={
@@ -35,13 +39,15 @@ export class VoteComponent implements OnInit {
     this.authService.loggedInStatus.subscribe(isLogin=>{
       this.isLoggedIn=isLogin;
     })
+    this.commentOrPost=this.isForComment?"Comment":"Post";
   }
 
-  private updateVoteDetails() {
-    this.postService.getPost(this.voteDto.postId).subscribe(post => {
-      this.voteCount = post.votes;
-      this.currentVote=post.currentVote;
-    });
+  changeImageOnHoverOverUpvote(isHovered: boolean) {
+    this.hoverStateUpvote = isHovered;
+  }
+
+  changeImageOnHoverOverDownvote(isHovered: boolean) {
+    this.hoverStateDownvote = isHovered;
   }
 
   vote(type:string){
@@ -49,8 +55,7 @@ export class VoteComponent implements OnInit {
       this.voteDto.voteType=type;
       this.voteService.vote(this.voteDto).subscribe(
         () => {
-          this.updateVoteDetails();
-          this.voteCompleted.emit();
+          this.voteCompleted.emit(this.isForComment);
         },
         (error) => {
         }

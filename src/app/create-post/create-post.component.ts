@@ -63,7 +63,7 @@ export class CreatePostComponent implements OnInit{
     this.createPostRequest.description=this.createNewPost.get('description')?.value;
     this.postService.createPost(this.createPostRequest).subscribe(post=>{
       const postJson = JSON.stringify(post);
-      this.router.navigate(['/post'],{queryParams:{post:postJson}});
+      this.router.navigate(['/post'],{queryParams:{postId:post.postId}});
     });
   }
 }

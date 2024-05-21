@@ -26,14 +26,20 @@
       >
       </app-comment-tile>
       <div *ngIf="!comment.isCollapsed">
-        <div class="reply" *ngFor="let reply of comment.repliesMap | keyvalue">
-          <ng-container
-            *ngTemplateOutlet="
-              commentTemplate;
-              context: { $implicit: reply.value }
-            "
+        <div class="line">
+          <!-- <img src="assets/reply-pointer.svg" class="replyPointer" /> -->
+          <div
+            class="reply"
+            *ngFor="let reply of comment.repliesMap | keyvalue"
           >
-          </ng-container>
+            <ng-container
+              *ngTemplateOutlet="
+                commentTemplate;
+                context: { $implicit: reply.value }
+              "
+            >
+            </ng-container>
+          </div>
         </div>
       </div>
     </ng-template>

@@ -19,8 +19,8 @@ export class PostService {
     return this.httpClient.get<PostDto>('http://localhost:8080/reddit/posts/getPost/'+postId);
   }
 
-  createPost(createPostPayload: CreatePostRequestPayload){
-    return this.httpClient.post('http://localhost:8080/reddit/posts/create',createPostPayload);
+  createPost(createPostPayload: CreatePostRequestPayload):Observable<PostDto>{
+    return this.httpClient.post<PostDto>('http://localhost:8080/reddit/posts/create',createPostPayload);
   }
 
 }

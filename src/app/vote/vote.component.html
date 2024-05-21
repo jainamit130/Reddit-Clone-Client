@@ -3,19 +3,63 @@
   [class.upvoted]="currentVote === 'UPVOTE'"
   [class.downvoted]="currentVote === 'DOWNVOTE'"
   [class.novote]="currentVote === 'NOVOTE'"
+  [style.background-color]="isForComment ? 'transparent' : ''"
+  [style.color]="isForComment ? 'black' : 'white'"
 >
   <img
-    src="{{
-      currentVote === 'UPVOTE' ? 'assets/voted.svg' : 'assets/vote.svg'
-    }}"
+    [src]="
+      hoverStateUpvote && currentVote === 'NOVOTE'
+        ? 'assets/upvote-hover.svg'
+        : currentVote === 'UPVOTE'
+        ? isForComment
+          ? 'assets/upVotedComment.svg'
+          : 'assets/votedPost.svg'
+        : currentVote === 'NOVOTE'
+        ? 'assets/voteComment.svg'
+        : 'assets/vote' + commentOrPost + '.svg'
+    "
+    [style.background-color]="
+      hoverStateUpvote && !isForComment
+        ? currentVote === 'UPVOTE'
+          ? '#b63100'
+          : currentVote === 'DOWNVOTE'
+          ? '#3f2efd'
+          : ''
+        : ''
+    "
+    (mouseover)="changeImageOnHoverOverUpvote(true)"
+    (mouseout)="changeImageOnHoverOverUpvote(false)"
     (click)="vote('UPVOTE'); $event.stopPropagation()"
     class="upvote"
   />
-  <span class="votesCount">{{ voteCount }}</span>
+  <span
+    class="votesCount"
+    [style.color]="currentVote === 'NOVOTE' || isForComment ? 'black' : 'white'"
+    >{{ voteCount }}</span
+  >
   <img
-    src="{{
-      currentVote === 'DOWNVOTE' ? 'assets/voted.svg' : 'assets/vote.svg'
-    }}"
+    [src]="
+      hoverStateDownvote && currentVote === 'NOVOTE'
+        ? 'assets/downvote-hover.svg'
+        : currentVote === 'DOWNVOTE'
+        ? isForComment
+          ? 'assets/downVotedComment.svg'
+          : 'assets/votedPost.svg'
+        : currentVote === 'NOVOTE'
+        ? 'assets/voteComment.svg'
+        : 'assets/vote' + commentOrPost + '.svg'
+    "
+    [style.background-color]="
+      hoverStateDownvote && !isForComment
+        ? currentVote === 'UPVOTE'
+          ? '#b63100'
+          : currentVote === 'DOWNVOTE'
+          ? '#3f2efd'
+          : ''
+        : ''
+    "
+    (mouseover)="changeImageOnHoverOverDownvote(true)"
+    (mouseout)="changeImageOnHoverOverDownvote(false)"
     (click)="vote('DOWNVOTE'); $event.stopPropagation()"
     class="downvote"
     [class.voted]="currentVote != 'NOVOTE'"
