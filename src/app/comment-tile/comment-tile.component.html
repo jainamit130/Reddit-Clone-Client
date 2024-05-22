@@ -2,6 +2,7 @@
   <div class="commentDetails">
     <img src="assets/reddit-profile-outline.svg" class="profilePhtotoOutline" />
     <span class="commentUser">{{ comment.username }}</span>
+    <span class="commentDate">{{ comment.creationDate | timeAgo }}</span>
   </div>
   <div style="position: relative">
     <div *ngIf="!editMode" class="commentText">

@@ -1,0 +1,37 @@
+<input
+  type="search"
+  style="background-image: url('assets/search-icon.svg')"
+  (input)="onSearch()"
+  [(ngModel)]="inputField"
+  class="redditSearch"
+  placeholder="Search in Reddit"
+/>
+<div class="searchedContainer" *ngIf="activeSearch">
+  <span style="padding: 15px; font-weight: 600; font-size: medium"
+    >Communities</span
+  >
+  <div *ngFor="let community of searchedCommunities">
+    <div style="display: flex">
+      <button
+        (click)="navigateToCommunity(community.communityId)"
+        class="searchCommunityButton"
+      >
+        <div>
+          <div>
+            {{ community.communityName }}
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: left;
+              font-size: smaller;
+              opacity: 0.7;
+            "
+          >
+            {{ community.numberOfMembers }} members
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

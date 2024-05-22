@@ -93,6 +93,17 @@
     color: #ffffff;
 }
 
+.redditSearch{
+    position: absolute;
+    top:0;
+    margin-top: 8px;
+    left: 50%;
+    right:50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .headerLine{
     position: fixed;
     width: 300vh;

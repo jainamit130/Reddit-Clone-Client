@@ -1,0 +1,39 @@
+  .redditSearch {
+    padding-left: 33px;
+    width: 600px;
+    height: 40px;
+    border-radius: 20px;
+    border: transparent;
+    background-color: #f0f0f0;
+    opacity: 0.8;
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: 9px center;
+  }
+  
+  .redditSearch:hover {
+    background-color: #e4e4e4;
+  }
+  
+  .searchCommunityButton {
+    justify-content: left;
+    align-items: center;
+    padding: 16px;
+    display: flex;
+    background-color: transparent;
+    border: transparent;
+    width: 100%;
+    font-size: medium;
+  }
+  
+  .searchedContainer {
+    z-index: 1;
+    padding-top: 15px;
+    position: absolute;
+    top: 40px; /* Adjust this value based on your layout */
+    background-color: white;
+    width: 600px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5); /* Add box shadow for better visibility */
+  }
+  

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 import { PostDto } from '../dto/postDto';
 import { PostService } from '../shared/post.service';
 import { VoteComponent } from '../vote/vote.component';
-import { TruncateHtmlTextPipe } from '../transform/truncate-html-text.pipe';
+import { TruncateHtmlTextPipe } from '../pipe/transform/truncate-html-text.pipe';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 

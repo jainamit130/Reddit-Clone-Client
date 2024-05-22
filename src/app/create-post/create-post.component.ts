@@ -36,7 +36,8 @@ export class CreatePostComponent implements OnInit{
         usercommunities.map(community => {
           this.yourCommunities.push({
             communityName:community.communityName,
-            numberOfMembers:community.numberOfMembers
+            numberOfMembers:community.numberOfMembers,
+            communityId: community.communityId
           });
         }
       );

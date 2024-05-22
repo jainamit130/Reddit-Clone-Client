@@ -81,6 +81,14 @@
     font-size: smaller;
 }
 
+.commentDate{
+    margin-left: 20px;
+    opacity: 0.5;
+    padding-bottom: 1px;
+    font-size: small;
+    font-weight: 700;
+}
+
 .commentText{
     position: relative;
     left:30px;

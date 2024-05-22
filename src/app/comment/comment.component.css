@@ -41,6 +41,6 @@
   }
 
   .reply {
-    width: calc(100%-20px);
+    width: calc(100% - 20px);
     margin-left: 20px; /* Indent replies */
   }

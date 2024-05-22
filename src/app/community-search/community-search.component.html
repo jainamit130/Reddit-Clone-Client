@@ -16,19 +16,13 @@
   <div *ngIf="activeSearch" class="container-box">
     <input
       #searchInput
+      type="search"
       (input)="onSearch()"
       (click)="openSearch($event)"
       placeholder="Select a community"
       [(ngModel)]="inputField"
       class="communityInput"
     />
-    <div *ngIf="inputField.length">
-      <img
-        src="assets/cross-button.png"
-        class="clearButton"
-        (click)="clearField(); $event.stopPropagation()"
-      />
-    </div>
     <header
       *ngIf="searchContainer"
       [ngClass]="{ 'container-box-searchContainer': searchContainer }"

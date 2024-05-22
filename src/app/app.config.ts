@@ -7,8 +7,9 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { noopInterceptorProvider } from './providers/noopInterceptorProvider';
-import { TruncateHtmlTextPipe } from './transform/truncate-html-text.pipe';
+import { TruncateHtmlTextPipe } from './pipe/transform/truncate-html-text.pipe';
 import { routeReuseStrategyProvider } from './providers/routeReuseStrategyProvider';
+import { TimeAgoPipe } from './pipe/time-ago.pipe';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(ToastrModule.forRoot()),
     noopInterceptorProvider,
     TruncateHtmlTextPipe,
+    TimeAgoPipe,
     routeReuseStrategyProvider
   ]
 };

@@ -11,11 +11,12 @@ import { CommentParameter } from '../dto/CommentParameter';
 import { CommentPostId } from '../dto/CommentPostId';
 import { CommentRequestDto } from '../dto/RequestPayload/commentRequestDto';
 import { AuthService } from '../authorization/shared/auth.service';
+import { TimeAgoPipe } from '../pipe/time-ago.pipe';
 
 @Component({
   selector: 'app-comment-tile',
   standalone: true,
-  imports: [CommentReplyFormComponent,CommonModule,DetectOutsideClickDirective,ReactiveFormsModule,VoteComponent],
+  imports: [TimeAgoPipe,CommentReplyFormComponent,CommonModule,DetectOutsideClickDirective,ReactiveFormsModule,VoteComponent],
   templateUrl: './comment-tile.component.html',
   styleUrl: './comment-tile.component.css'
 })

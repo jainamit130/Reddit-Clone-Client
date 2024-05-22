@@ -16,13 +16,16 @@
       ></textarea>
     </div>
     <div class="commentCancelButtons" *ngIf="commentMode">
+      <span
+        style="display: flex; color: red; position: absolute; left: 0"
+        *ngIf="commentInvalid"
+      >
+        The field is required and cannot be empty
+      </span>
       <button class="cancelButton" (click)="deactivateCommentMode()">
         Cancel
       </button>
       <button class="commentButton" type="submit">Comment</button>
     </div>
-    <span style="display: flex; color: red" *ngIf="commentInvalid">
-      The field is required and cannot be empty
-    </span>
   </div>
 </form>

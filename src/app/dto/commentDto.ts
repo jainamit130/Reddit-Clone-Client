@@ -3,7 +3,7 @@ export interface CommentDto {
     postId: number;
     username: string;
     comment: string;
-    creationDate: Date;
+    creationDate: number;
     parentId: number;
     replies: Array<CommentDto>;
     repliesMap: Map<number, CommentDto>;
@@ -21,7 +21,7 @@ export namespace CommentDto {
             postId: 0,
             username: '',
             comment: '',
-            creationDate: new Date(),
+            creationDate: new Date().getTime(),
             parentId: 0,
             replies:[],
             repliesMap: new Map<number, CommentDto>(),
