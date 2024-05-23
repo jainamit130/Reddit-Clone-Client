@@ -16,8 +16,8 @@ import { Router } from '@angular/router';
 export class PostTileComponent implements OnChanges {
   @Input() post!:PostDto;
   @Input() showCommunityName: boolean=true;
+  @Output() showComments = new EventEmitter<boolean>(false);
   trucatedDescription!:string;
-  @Output() updatePost = new EventEmitter<PostDto>();
   
   constructor(private router:Router,private postService: PostService,private truncateHtmlPipe:TruncateHtmlTextPipe) {}
   
@@ -28,12 +28,20 @@ export class PostTileComponent implements OnChanges {
     });    
   }
   
-  update(post:PostDto,isForComment:boolean){
-    if(!isForComment)
-      this.updatePost.emit(post);
+  updatePost(currentPost:PostDto,isForComment:boolean){
+    if(!isForComment) {
+    this.postService.getPost(currentPost.postId).subscribe(post=> {  
+        this.post.votes = post.votes;
+        this.post.currentVote = post.currentVote;
+    })
+  }
   }
   
   navigateToCommunity(communityId: number) {
     this.router.navigate(['community'],{queryParams:{id:communityId}})
+  }
+
+  openComments(){
+    this.showComments.emit(true);
   }
 }

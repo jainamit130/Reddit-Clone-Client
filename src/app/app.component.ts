@@ -9,11 +9,12 @@ import { HomeComponent } from './home/home.component';
 import { CommunitiesComponent } from './communities/communities.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { CommunitySearchComponent } from './community-search/community-search.component';
+import { SearchResultNavigationComponent } from './search-results/search-result-navigation.ts/search-result-navigation.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CreatePostComponent,CommunitiesComponent,HomeComponent,RouterOutlet,RouterLink,HeaderComponent,CommonModule,SignUpComponent,DetectOutsideClickDirective],
+  imports: [SearchResultNavigationComponent,CreatePostComponent,CommunitiesComponent,HomeComponent,RouterOutlet,RouterLink,HeaderComponent,CommonModule,SignUpComponent,DetectOutsideClickDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

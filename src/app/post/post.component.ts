@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostDto } from '../dto/postDto';
 import { CommentComponent } from '../comment/comment.component';
@@ -20,6 +20,10 @@ export class PostComponent {
   post!:PostDto;
   postId!:number;
   sanitizedDescription!: SafeHtml;
+  openComments:boolean=false;
+
+  @ViewChild('comments') myElementRef!: ElementRef;
+
   constructor(private router: Router,private sanitizer: DomSanitizer,private communityService:CommunityService,private postService:PostService,private activatedRoute:ActivatedRoute){
     this.activatedRoute.queryParams.subscribe(params => {
       this.postId=params['postId'];
@@ -28,10 +32,18 @@ export class PostComponent {
         this.post=post;
         this.sanitizedDescription=this.sanitizer.bypassSecurityTrustHtml(this.post.description);
       });
+      if(params['openComments'])
+        this.openComments=true;
       this.communityService.getCommunityOfPost(this.postId)
       .subscribe((community) => {this.communityService.updateCommunityData(community.communityName);});      
     }
     );
+  }
+
+  checkScrollToComments(){
+      if (this.openComments && this.myElementRef) {
+        this.scrollToComments(this.myElementRef.nativeElement);
+      }
   }
 
   updatePost(isForComment:boolean){
@@ -46,4 +58,7 @@ export class PostComponent {
     this.router.navigate(['community'],{queryParams:{id:communityId}})
   }
 
+  scrollToComments(el: HTMLElement) {
+    el.scrollIntoView();
+  }
 }

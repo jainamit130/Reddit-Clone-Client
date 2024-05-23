@@ -7,7 +7,6 @@ import { VoteComponent } from '../vote/vote.component';
 import { PostTileComponent } from '../post-tile/post-tile.component';
 import { AuthService } from '../authorization/shared/auth.service';
 import { CommunitiesComponent } from '../communities/communities.component';
-import { CommunityDto } from '../dto/CommunityDto';
 import { CommunityService } from '../shared/community.service';
 
 @Component({
@@ -19,12 +18,8 @@ import { CommunityService } from '../shared/community.service';
 })
 export class HomeComponent implements OnInit{
     posts$: Array<PostDto> = [];
-
-    constructor(private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router){
-      // this.postService.getAllPosts().subscribe(post => {
-      //   this.posts$=post;
-      // });
-    }
+    openComments: number=1;
+    constructor(private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
 
     ngOnInit(): void {
       this.postService.getAllPosts().subscribe(post => {
@@ -36,13 +31,8 @@ export class HomeComponent implements OnInit{
       this.communityService.updateCommunityData("");
     }
 
-    updatePost(currentPost:PostDto){
-      this.postService.getPost(currentPost.postId).subscribe(post=> {
-        const index = this.posts$.findIndex(postItem => postItem.postId === currentPost.postId);
-         if (index !== -1) {
-          this.posts$[index] = post;
-        }
-      })
+    isCommentsClicked(postId:number){
+      this.router.navigate(['/post'],{queryParams:{postId:postId,openComments:1}});
     }
 
     navigateToPost(postId:number) {

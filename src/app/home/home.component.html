@@ -8,7 +8,7 @@
         <app-post-tile
           [showCommunityName]="true"
           [post]="post"
-          (updatePost)="updatePost(post)"
+          (showComments)="isCommentsClicked(post.postId)"
         ></app-post-tile>
       </div>
       <div class="headerLine"></div>

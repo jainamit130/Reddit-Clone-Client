@@ -17,15 +17,18 @@
         [currentVote]="post.currentVote"
         (voteCompleted)="updatePost($event)"
       ></app-vote>
-      <div class="commentContainer">
+      <div class="commentContainer" (click)="scrollToComments(comments)">
         <img src="assets\comment.svg" class="comment" />
         <span class="commentsCount">{{ post.comments }}</span>
       </div>
     </div>
   </div>
   <div class="headerLine"></div>
-  <app-comment
-    [postId]="post.postId"
-    (commented)="updatePost(false)"
-  ></app-comment>
+  <div #comments>
+    <app-comment
+      (commentsRendered)="checkScrollToComments()"
+      [postId]="post.postId"
+      (commented)="updatePost(false)"
+    ></app-comment>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommentService } from '../shared/comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommentDto } from '../dto/commentDto';
@@ -18,22 +18,27 @@ import { CommentPostId } from '../dto/CommentPostId';
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.css'
 })
-export class CommentComponent implements OnInit{
+export class CommentComponent implements OnInit,AfterViewInit{
   @Input() postId!:number;
 
   @Output() commented = new EventEmitter<void>();
+  @Output() commentsRendered = new EventEmitter<void>();
 
   commentRequest:CommentRequestDto;
   userCommentsOnPost:Array<CommentDto> = [];
   comments$: Array<CommentDto> = [];
 
-  constructor(private commentService:CommentService,private authService:AuthService,private activatedRoute:ActivatedRoute){
+  constructor(private cdr:ChangeDetectorRef,private commentService:CommentService,private authService:AuthService,private activatedRoute:ActivatedRoute){
     this.commentRequest=CommentRequestDto.createDefault();
   }
 
   ngOnInit(): void {
     this.getAllComments();
     this.updateUserCommentsOnPost();
+  }
+
+  ngAfterViewInit(): void {
+    this.commentsRendered.emit();
   }
 
   updateUserCommentsOnPost(){
@@ -51,6 +56,7 @@ export class CommentComponent implements OnInit{
       for(let commentItem of comment){
         this.comments$.push(this.replyArrayToMap(commentItem));
       }
+      this.checkIfAllDataLoaded();
     });
   }
 
@@ -166,5 +172,10 @@ export class CommentComponent implements OnInit{
     updateHelper(this.comments$);
 }
 
-
+checkIfAllDataLoaded() {
+  if (this.comments$.length > 0) {
+    this.cdr.detectChanges();
+    this.commentsRendered.emit();
+  }
+}
 }
