@@ -24,7 +24,6 @@ export class PostService {
   }
 
   searchPost(searchQuery:string){
-    console.log(searchQuery);
     const options = {
       params: new HttpParams().set('q', searchQuery) 
     }

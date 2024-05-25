@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { CommunityDto } from '../dto/CommunityDto';
 import { PostTileComponent } from '../post-tile/post-tile.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostDto } from '../dto/postDto';
 import { CommunitiesComponent } from '../communities/communities.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 

@@ -12,7 +12,6 @@ import { PostSearchResultComponent } from './search-results/post-search-result/p
 import { CommentSearchResultComponent } from './search-results/comment-search-result/comment-search-result.component';
 import { PeopleSearchResultComponent } from './search-results/people-search-result/people-search-result.component';
 import { CommunitySearchResultComponent } from './search-results/community-search-result/community-search-result.component';
-import { CommunitySearchComponent } from './community-search/community-search.component';
 import { SearchResultNavigationComponent } from './search-results/search-result-navigation.ts/search-result-navigation.component';
 
 export const routes: Routes = [

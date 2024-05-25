@@ -6,6 +6,11 @@
     font-size: small;
   }
 
+  .postName{
+    font-size: 23px;
+    font-weight: 500;
+  }
+
   .community :hover {
     border-radius: 5px;
     background-color: #dadada;

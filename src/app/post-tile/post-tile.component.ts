@@ -17,6 +17,7 @@ export class PostTileComponent implements OnChanges {
   @Input() post!:PostDto;
   @Input() showCommunityName: boolean=true;
   @Output() showComments = new EventEmitter<boolean>(false);
+  
   trucatedDescription!:string;
   
   constructor(private router:Router,private postService: PostService,private truncateHtmlPipe:TruncateHtmlTextPipe) {}

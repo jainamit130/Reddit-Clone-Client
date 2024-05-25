@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-search-result-navigation',
@@ -8,8 +10,19 @@ import { Router, RouterOutlet } from '@angular/router';
   templateUrl: './search-result-navigation.component.html',
   styleUrl: './search-result-navigation.component.css'
 })
-export class SearchResultNavigationComponent implements AfterViewInit{
-  
+export class SearchResultNavigationComponent implements OnInit,AfterViewInit{
+
+  searchQuery:string="";
+
+  routeConfig:any = {
+    'posts': this.navigateToPostSearch,
+    'comments': this.navigateToCommentSearch,
+    'communities':this.navigateToCommunitySearch,
+    'people':this.navigateToPeopleSearch
+  };
+
+  currentRoute:string="";
+
   @ViewChild('comments') commentsButton!: ElementRef;
   @ViewChild('posts') postsButton!: ElementRef;
   @ViewChild('communities') communitiesButton!: ElementRef;
@@ -17,10 +30,23 @@ export class SearchResultNavigationComponent implements AfterViewInit{
 
   buttonRefs: { [key: string]: ElementRef } = {};
 
-  currentRoute:string="posts";
+  constructor(private router:Router,private activatedRoute:ActivatedRoute, private userService:UserService) {}
   
-  constructor(private router:Router) {}
-  
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.searchQuery=params['q'];
+      this.userService.routeStatus.subscribe(route => {
+        this.currentRoute=route;
+        const selectedFunction = (this.routeConfig as any)[this.currentRoute];
+        if (selectedFunction) {
+          selectedFunction(); 
+        } else {
+          console.error('Search not found');
+        }
+      });
+    });
+  }
+
   ngAfterViewInit(): void {
     this.buttonRefs = {
       'comments': this.commentsButton,
@@ -28,10 +54,7 @@ export class SearchResultNavigationComponent implements AfterViewInit{
       'communities': this.communitiesButton,
       'people': this.peopleButton
     };
-
-    const urlSegments = this.router.url.split('/');
-    const lastSegment = urlSegments[urlSegments.length - 1];
-    this.highlightButton(lastSegment);
+    this.highlightButton(this.currentRoute);
   }
 
   getButtonRef(key: string): ElementRef | undefined {
@@ -46,18 +69,23 @@ export class SearchResultNavigationComponent implements AfterViewInit{
   }
 
   navigateToPostSearch() {
-    this.router.navigate(['search/posts'],{queryParams: { q:'welcome'}});
+    this.userService.updateRoute("posts");
+    this.router.navigate(['search/posts'],{queryParams: { q:this.searchQuery}});
   }
 
   navigateToCommentSearch() {
-    this.router.navigate(['search/comments']);
+    this.userService.updateRoute("comments");
+    this.router.navigate(['search/comments'],{queryParams: { q:this.searchQuery}});
   }
 
   navigateToCommunitySearch() {
-    this.router.navigate(['search/communities']);
+    this.userService.updateRoute("communities");
+    this.router.navigate(['search/communities'],{queryParams: { q:this.searchQuery}});
   }
 
   navigateToPeopleSearch() {
-    this.router.navigate(['search/people']);
+    this.userService.updateRoute("people");
+    this.router.navigate(['search/people'],{queryParams: { q:this.searchQuery}});
   }
+
 }

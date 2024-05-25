@@ -1,3 +1,5 @@
+import { PostDto } from "./postDto";
+
 export interface CommentDto {
     commentId: number;
     postId: number;
@@ -6,6 +8,7 @@ export interface CommentDto {
     creationDate: number;
     parentId: number;
     replies: Array<CommentDto>;
+    post:PostDto|null;
     repliesMap: Map<number, CommentDto>;
     repliesCount: number;
     currentVote: string;
@@ -25,6 +28,7 @@ export namespace CommentDto {
             parentId: 0,
             replies:[],
             repliesMap: new Map<number, CommentDto>(),
+            post:null,
             repliesCount: 0,
             currentVote: '',
             votes: 0,

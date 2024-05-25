@@ -1,0 +1,41 @@
+.voteComments{
+    padding: 2px;
+    opacity: 0.9;
+    font-size: smaller;
+    color: rgb(63, 63, 63);
+}
+
+.postTitle{
+    font-size: large;
+    font-weight: 500;
+}
+
+.community {
+    width: min-content;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 20px;
+    font-size: small;
+  }
+
+  .community :hover {
+    border-radius: 5px;
+    background-color: #dadada;
+  }
+
+  .communityNameButton {
+    border: transparent;
+    background-color:transparent;
+  }
+
+  .searchedPost{
+    padding: 10px;
+    padding-top: 5px;
+    width: 650px;
+    border-radius: 10px;
+    margin: 5px;
+  }
+
+  .searchedPost:hover{
+    background-color: rgb(240, 240, 240);
+  }

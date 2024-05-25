@@ -47,4 +47,11 @@ export class CommentService {
     };
     return this.httpClient.get<Array<CommentDto>>('http://localhost:8080/reddit/comments/getMoreReplies/'+commentId,options);
   } 
+
+  searchComment(searchQuery:string){
+    const options = {
+      params: new HttpParams().set('q', searchQuery) 
+    }
+    return this.httpClient.get<Array<CommentDto>>('http://localhost:8080/reddit/search/comments',options);
+  }
 }

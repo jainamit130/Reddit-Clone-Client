@@ -1,38 +1,52 @@
-<input
-  (keydown.enter)="onEnter()"
-  type="search"
-  style="background-image: url('assets/search-icon.svg')"
-  (input)="onSearch()"
-  [(ngModel)]="inputField"
-  class="redditSearch"
-  placeholder="Search in Reddit"
-/>
-<div class="searchedContainer" *ngIf="activeSearch">
-  <span style="padding: 15px; font-weight: 600; font-size: medium"
-    >Communities</span
+<div appDetectOutsideClick (clickOutside)="deactivateSearch()">
+  <input
+    #searchBar
+    (keydown.enter)="onEnter()"
+    type="search"
+    style="background-image: url('assets/search-icon.svg')"
+    (input)="onSearch()"
+    [(ngModel)]="inputField"
+    class="redditSearch"
+    placeholder="Search in Reddit"
+  />
+  <div
+    class="searchedContainer"
+    *ngIf="activatedSearch && inputField.length > 0"
   >
-  <div *ngFor="let community of searchedCommunities">
-    <div style="display: flex">
-      <button
-        (click)="navigateToCommunity(community.communityId)"
-        class="searchCommunityButton"
-      >
-        <div>
+    <span
+      *ngIf="searchedCommunities.length > 0"
+      style="padding: 15px; font-weight: 600; font-size: medium"
+      >Communities</span
+    >
+    <div *ngFor="let community of searchedCommunities">
+      <div style="display: flex">
+        <button
+          (click)="
+            navigateToCommunity(community.communityId); $event.stopPropagation()
+          "
+          class="searchCommunityButton"
+        >
           <div>
-            {{ community.communityName }}
+            <div>
+              {{ community.communityName }}
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: left;
+                font-size: smaller;
+                opacity: 0.7;
+              "
+            >
+              {{ community.numberOfMembers }} members
+            </div>
           </div>
-          <div
-            style="
-              display: flex;
-              justify-content: left;
-              font-size: smaller;
-              opacity: 0.7;
-            "
-          >
-            {{ community.numberOfMembers }} members
-          </div>
-        </div>
-      </button>
+        </button>
+      </div>
+    </div>
+    <div class="searchButton" (click)="onEnter(); $event.stopPropagation()">
+      <img class="searchIcon" src="assets/search-icon.svg" />
+      <span>{{ inputField }}</span>
     </div>
   </div>
 </div>

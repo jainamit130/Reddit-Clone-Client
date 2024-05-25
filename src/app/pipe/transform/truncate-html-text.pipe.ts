@@ -5,14 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TruncateHtmlTextPipe implements PipeTransform {
   transform(html: string, maxLength: number): string {
-    if (!html) {
-      return '';
-    }
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-
-    let plainText = doc.body.textContent || '';
+    let plainText = this.transformHtmlToPlainText(html);
 
     plainText = plainText.trim().substring(0, maxLength);
 
@@ -23,4 +16,23 @@ export class TruncateHtmlTextPipe implements PipeTransform {
 
     return plainText + '...';
   }
+
+  transformHtmlToPlainText(html:string){
+    if (!html) {
+      return '';
+    }
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+     return doc.body.textContent || '';
+  }
+    
+  highlightQueriedText(html: string, query: string): string {
+    let text = this.transformHtmlToPlainText(html);
+    
+    const regex = new RegExp(`(${query})`, 'gi');
+    return text.replace(regex, '<span style="font-size: 50px;"><strong>$1</strong></span>');
+  }
+
 }

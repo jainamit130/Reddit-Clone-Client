@@ -1,1 +1,36 @@
-<p>comment-search-result works!</p>
+<div *ngFor="let comment of searchHighlightedComments">
+  <div class="searchedPost" (click)="navigateToPost(comment.comment.postId)">
+    <div
+      class="community"
+      (click)="navigateToCommunity(comment.comment.post?.communityId)"
+    >
+      <button class="communityNameButton">
+        r/{{ comment.comment.post?.communityName }}
+      </button>
+    </div>
+    <div [innerHTML]="comment.searchHighlightedComment">
+      <span>{{ comment.comment.votes }} votes</span>
+    </div>
+    <div class="voteComments">
+      <span>{{ comment.comment.post?.votes }} votes</span>
+      <span style="padding-right: 5px; padding-left: 5px; align-items: center"
+        >.</span
+      >
+      <span>{{ comment.comment.post?.comments }} comments</span>
+    </div>
+  </div>
+</div>
+<div style="display: flex" *ngIf="searchHighlightedComments.length === 0">
+  <img src="assets/no-results.svg" class="no-results-icon" />
+  <div>
+    <h5 style="font-size: 20px">
+      Hm... we couldn’t find any results for "{{ searchQuery }}"
+    </h5>
+    <span style="font-size: 13px"
+      >Double-check your spelling or try different keywords to
+      <span class="adjustSearch" (click)="useInput()">
+        adjust your search
+      </span></span
+    >
+  </div>
+</div>

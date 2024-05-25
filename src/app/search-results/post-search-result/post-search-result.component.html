@@ -1,3 +1,17 @@
-<div *ngFor="let post of searchedPosts">
-  <app-post-tile [post]="post"></app-post-tile>
+<div *ngFor="let post of searchHighlightedPosts">
+  <div class="searchedPost" (click)="navigateToPost(post.post.postId)">
+    <div class="community" (click)="navigateToCommunity(post.post.communityId)">
+      <button class="communityNameButton">
+        r/{{ post.post.communityName }}
+      </button>
+    </div>
+    <div class="postTitle" [innerHTML]="post.searchHighlightedTitle"></div>
+    <div class="voteComments">
+      <span>{{ post.post.votes }} votes</span>
+      <span style="padding-right: 5px; padding-left: 5px; align-items: center"
+        >.</span
+      >
+      <span>{{ post.post.comments }} comments</span>
+    </div>
+  </div>
 </div>

@@ -8,7 +8,6 @@ import { SignUpComponent } from './authorization/sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { CommunitiesComponent } from './communities/communities.component';
 import { CreatePostComponent } from './create-post/create-post.component';
-import { CommunitySearchComponent } from './community-search/community-search.component';
 import { SearchResultNavigationComponent } from './search-results/search-result-navigation.ts/search-result-navigation.component';
 
 @Component({
