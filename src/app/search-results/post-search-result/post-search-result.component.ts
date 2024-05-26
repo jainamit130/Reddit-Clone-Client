@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../shared/post.service';
 import { CommonModule } from '@angular/common';
-import { PostDto } from '../../dto/postDto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostTileComponent } from '../../post-tile/post-tile.component';
 import { searchHighlightedPost } from '../../dto/searchHighlightedPost';
 import { TruncateHtmlTextPipe } from '../../pipe/transform/truncate-html-text.pipe';
+import { NoSearchResultComponent } from '../no-search-result/no-search-result.component';
 
 @Component({
   selector: 'app-post-search-result',
   standalone: true,
-  imports: [CommonModule,PostTileComponent],
+  imports: [CommonModule,PostTileComponent,NoSearchResultComponent],
   templateUrl: './post-search-result.component.html',
   styleUrl: './post-search-result.component.css'
 })
@@ -19,6 +19,8 @@ export class PostSearchResultComponent implements OnInit{
   
   searchHighlightedPosts: Array<searchHighlightedPost> = [];
   searchQuery:string=""; 
+
+  atleast1ResultFound:boolean = true;
   
   constructor(private router:Router,private truncateHtmlPipe:TruncateHtmlTextPipe,private activatedRoute:ActivatedRoute,private postService:PostService) {}
 
@@ -30,6 +32,8 @@ export class PostSearchResultComponent implements OnInit{
           post,
           searchHighlightedTitle: this.truncateHtmlPipe.highlightQueriedText(post.postName, this.searchQuery)
         }));
+        if(this.searchHighlightedPosts.length===0)
+          this.atleast1ResultFound=false;
       });
     });
   }

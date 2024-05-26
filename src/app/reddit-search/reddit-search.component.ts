@@ -15,7 +15,7 @@ import { UserService } from '../shared/user.service';
   templateUrl: './reddit-search.component.html',
   styleUrl: './reddit-search.component.css'
 })
-export class RedditSearchComponent {
+export class RedditSearchComponent implements OnInit{
 
   @ViewChild('searchBar') searchInput!: ElementRef;
 
@@ -23,9 +23,15 @@ export class RedditSearchComponent {
   activatedSearch:boolean=false;
   inputField:string="";
 
-  constructor(private router:Router,private communityService: CommunityService, private userService:UserService) {
-    this.userService.inputFocusListner.subscribe(() => {
+  constructor(private router:Router,private communityService: CommunityService, private userService:UserService) {}
+  
+  ngOnInit(): void {
+    this.userService.inputFocused.subscribe(() => {
       this.searchInput.nativeElement.focus();
+      this.activateSearch();
+    });
+    this.userService.activatedSearchStatus.subscribe(isActivated => {
+      this.activatedSearch=isActivated;
     });
   }
 
@@ -46,11 +52,11 @@ export class RedditSearchComponent {
   }
 
   activateSearch(){
-    this.activatedSearch=true;
+    this.userService.updateActivatedStatus(true);
   }
 
   deactivateSearch(){
-    this.activatedSearch=false;
+    this.userService.updateActivatedStatus(false);
   }
 
   clearSearch(){

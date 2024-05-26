@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CommunityDto } from '../dto/CommunityDto';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -60,5 +60,13 @@ export class CommunityService {
 
   communitySearch(searchQuery: string):Observable<Array<CommunitySearchDto>> {
     return this.httpClient.get<Array<CommunitySearchDto>>('http://localhost:8080/reddit/community/communitySearch/'+searchQuery);
+  }
+
+  
+  searchCommunity(searchQuery:string){
+    const options = {
+      params: new HttpParams().set('q', searchQuery) 
+    }
+    return this.httpClient.get<Array<CommunityDto>>('http://localhost:8080/reddit/search/communities',options);
   }
 }

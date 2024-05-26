@@ -1,0 +1,14 @@
+<div style="display: flex" *ngIf="!atleast1ResultFound">
+  <img src="assets/no-results.svg" class="no-results-icon" />
+  <div>
+    <h5 style="font-size: 20px">
+      Hm... we couldn’t find any results for "{{ searchQuery }}"
+    </h5>
+    <span style="font-size: 13px"
+      >Double-check your spelling or try different keywords to
+      <span class="adjustSearch" (click)="useInput()">
+        adjust your search
+      </span></span
+    >
+  </div>
+</div>

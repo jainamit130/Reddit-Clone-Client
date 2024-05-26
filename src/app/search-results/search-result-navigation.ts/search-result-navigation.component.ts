@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { BehaviorSubject, filter } from 'rxjs';
 import { UserService } from '../../shared/user.service';
 
 @Component({
@@ -12,17 +12,9 @@ import { UserService } from '../../shared/user.service';
 })
 export class SearchResultNavigationComponent implements OnInit,AfterViewInit{
 
-  searchQuery:string="";
-
-  routeConfig:any = {
-    'posts': this.navigateToPostSearch,
-    'comments': this.navigateToCommentSearch,
-    'communities':this.navigateToCommunitySearch,
-    'people':this.navigateToPeopleSearch
-  };
-
-  currentRoute:string="";
-
+  searchQuery: string = "";
+  currentRoute: string = "";
+  
   @ViewChild('comments') commentsButton!: ElementRef;
   @ViewChild('posts') postsButton!: ElementRef;
   @ViewChild('communities') communitiesButton!: ElementRef;
@@ -30,24 +22,18 @@ export class SearchResultNavigationComponent implements OnInit,AfterViewInit{
 
   buttonRefs: { [key: string]: ElementRef } = {};
 
-  constructor(private router:Router,private activatedRoute:ActivatedRoute, private userService:UserService) {}
-  
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) {}
+
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.searchQuery=params['q'];
-      this.userService.routeStatus.subscribe(route => {
-        this.currentRoute=route;
-        const selectedFunction = (this.routeConfig as any)[this.currentRoute];
-        if (selectedFunction) {
-          selectedFunction(); 
-        } else {
-          console.error('Search not found');
-        }
-      });
-    });
+      this.searchQuery = params['q'];
+    })
   }
 
   ngAfterViewInit(): void {
+    this.userService.routeStatus.subscribe(route => {
+      this.currentRoute = route;
+    })
     this.buttonRefs = {
       'comments': this.commentsButton,
       'posts': this.postsButton,
@@ -68,24 +54,8 @@ export class SearchResultNavigationComponent implements OnInit,AfterViewInit{
     }
   }
 
-  navigateToPostSearch() {
-    this.userService.updateRoute("posts");
-    this.router.navigate(['search/posts'],{queryParams: { q:this.searchQuery}});
+  navigateToSearch(searchType: string): void {
+    this.userService.updateRoute(searchType);
+    this.router.navigate(['/search', searchType], { queryParams: { q: this.searchQuery } });
   }
-
-  navigateToCommentSearch() {
-    this.userService.updateRoute("comments");
-    this.router.navigate(['search/comments'],{queryParams: { q:this.searchQuery}});
-  }
-
-  navigateToCommunitySearch() {
-    this.userService.updateRoute("communities");
-    this.router.navigate(['search/communities'],{queryParams: { q:this.searchQuery}});
-  }
-
-  navigateToPeopleSearch() {
-    this.userService.updateRoute("people");
-    this.router.navigate(['search/people'],{queryParams: { q:this.searchQuery}});
-  }
-
 }

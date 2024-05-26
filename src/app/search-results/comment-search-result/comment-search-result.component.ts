@@ -5,11 +5,13 @@ import { TruncateHtmlTextPipe } from '../../pipe/transform/truncate-html-text.pi
 import { searchHighlightedComment } from '../../dto/searchHighlightedComment';
 import { PostService } from '../../shared/post.service';
 import { CommonModule } from '@angular/common';
+import { NoSearchResultComponent } from '../no-search-result/no-search-result.component';
+import { TimeAgoPipe } from '../../pipe/time-ago.pipe';
 
 @Component({
   selector: 'app-comment-search-result',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,NoSearchResultComponent,TimeAgoPipe],
   templateUrl: './comment-search-result.component.html',
   styleUrl: './comment-search-result.component.css'
 })
@@ -18,6 +20,7 @@ export class CommentSearchResultComponent implements OnInit{
   @Output() inputFocused = new EventEmitter<void>();
   searchHighlightedComments: Array<searchHighlightedComment> = [];
   searchQuery:string=""; 
+  atleast1ResultFound:boolean = true;
 
   constructor(private router:Router,private truncateHtmlPipe:TruncateHtmlTextPipe,private activatedRoute:ActivatedRoute,private commentService:CommentService,private postService:PostService) {}
 
@@ -29,7 +32,10 @@ export class CommentSearchResultComponent implements OnInit{
           this.searchHighlightedComments.push({comment,
           searchHighlightedComment: this.truncateHtmlPipe.highlightQueriedText(comment.comment, this.searchQuery)});
         });
-      });
+        if(this.searchHighlightedComments.length===0)
+          this.atleast1ResultFound=false;
+      }
+    );
     });
   }
 
@@ -42,7 +48,4 @@ export class CommentSearchResultComponent implements OnInit{
     this.router.navigate(['/post'],{queryParams:{postId}});
   }
 
-  useInput(){
-    this.inputFocused.emit();
-  }
 }

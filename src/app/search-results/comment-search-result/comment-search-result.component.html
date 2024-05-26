@@ -8,9 +8,29 @@
         r/{{ comment.comment.post?.communityName }}
       </button>
     </div>
-    <div [innerHTML]="comment.searchHighlightedComment">
-      <span>{{ comment.comment.votes }} votes</span>
+    <div class="postTitle">{{ comment.comment.post?.postName }}</div>
+    <div style="margin-left: 20px">
+      <div
+        style="
+          display: flex;
+          align-self: center;
+          justify-content: left;
+          margin: 10px;
+          margin-left: 0px;
+        "
+      >
+        <div class="commentUser">{{ comment.comment.username }}</div>
+        <span class="commentDate">{{
+          comment.comment.creationDate | timeAgo
+        }}</span>
+      </div>
+      <div
+        [innerHTML]="comment.searchHighlightedComment"
+        style="margin-bottom: 10px"
+      ></div>
+      <span class="commentVotes">{{ comment.comment.votes }} votes</span>
     </div>
+    <span class="openThreadButton">Go To Thread</span>
     <div class="voteComments">
       <span>{{ comment.comment.post?.votes }} votes</span>
       <span style="padding-right: 5px; padding-left: 5px; align-items: center"
@@ -20,17 +40,7 @@
     </div>
   </div>
 </div>
-<div style="display: flex" *ngIf="searchHighlightedComments.length === 0">
-  <img src="assets/no-results.svg" class="no-results-icon" />
-  <div>
-    <h5 style="font-size: 20px">
-      Hm... we couldn’t find any results for "{{ searchQuery }}"
-    </h5>
-    <span style="font-size: 13px"
-      >Double-check your spelling or try different keywords to
-      <span class="adjustSearch" (click)="useInput()">
-        adjust your search
-      </span></span
-    >
-  </div>
-</div>
+<app-no-search-result
+  [atleast1ResultFound]="atleast1ResultFound"
+  [searchQuery]="searchQuery"
+></app-no-search-result>

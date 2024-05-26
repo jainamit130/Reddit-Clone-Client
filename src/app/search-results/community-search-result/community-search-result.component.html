@@ -1,1 +1,17 @@
-<p>community-search-result works!</p>
+<div *ngFor="let community of searchHighlightedCommunities">
+  <div
+    class="searchedCommunity"
+    (click)="navigateToCommunity(community.community.communityId)"
+  >
+    <div>{{ community.searchHighlightedCommunity }}</div>
+    <div>{{ community.searchHighlightedCommunityDescription }}</div>
+    <div>
+      <span>{{ community.community.numberOfPosts }}</span>
+      <span>{{ community.community.numberOfMembers }}</span>
+    </div>
+  </div>
+</div>
+<app-no-search-result
+  [atleast1ResultFound]="atleast1ResultFound"
+  [searchQuery]="searchQuery"
+></app-no-search-result>

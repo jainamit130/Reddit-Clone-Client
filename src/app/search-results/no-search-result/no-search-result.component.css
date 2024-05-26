@@ -1,0 +1,11 @@
+.no-results-icon{
+    height: 60px;
+    width: 60px;
+  }
+
+  .adjustSearch{
+    padding: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgb(38, 107, 255);
+  }
