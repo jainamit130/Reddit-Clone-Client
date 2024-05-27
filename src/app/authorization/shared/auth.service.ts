@@ -21,6 +21,7 @@ export class AuthService implements OnDestroy{
   ngOnDestroy(): void {
     this.localStorage.clear('AuthenticationToken');
     this.localStorage.clear('Username');
+    this.localStorage.clear('UserId');
     this.localStorage.clear('RefreshToken');
     this.localStorage.clear('ExpiresAt');
     this.login.next(false);
@@ -38,13 +39,15 @@ export class AuthService implements OnDestroy{
 
   refreshTokenPayload = {
     refreshToken:this.getRefreshToken(),
-    username: this.getUserName()
+    username: this.getUserName(),
+    userId: this.getUserId(),
   }
 
   getLatestRefreshTokenPayload(){
     this.refreshTokenPayload = {
       refreshToken:this.getRefreshToken(),
-      username: this.getUserName()
+      username: this.getUserName(),
+      userId: this.getUserId(),
     }
     return this.refreshTokenPayload;
   }
@@ -61,7 +64,8 @@ export class AuthService implements OnDestroy{
       this.localStorage.store('AuthenticationToken',data.authenticationToken);
       this.localStorage.store('RefreshToken',data.refreshToken),
       this.localStorage.store('ExpiresAt',data.expiresAt),
-      this.localStorage.store('Username',data.userName)
+      this.localStorage.store('Username',data.userName),
+      this.localStorage.store('UserId',data.userId)
       this.login.next(true);
       this.userName.emit(data.userName);
       return true;
@@ -96,6 +100,10 @@ refreshToken() {
     return this.localStorage.retrieve("Username");
   }
 
+  getUserId(): number {
+    return this.localStorage.retrieve("UserId")
+  }
+
   logOut() {
     this.httpClient.post('http://localhost:8080/reddit/auth/logout',this.getLatestRefreshTokenPayload(),{ responseType: 'text' })
     .subscribe(data => {
@@ -107,5 +115,6 @@ refreshToken() {
     this.localStorage.clear('Username');
     this.localStorage.clear('RefreshToken');
     this.localStorage.clear('ExpiresAt');
+    this.localStorage.clear('UserId');
   }
 }

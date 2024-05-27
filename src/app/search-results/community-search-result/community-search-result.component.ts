@@ -28,7 +28,7 @@ export class CommunitySearchResultComponent implements OnInit{
       this.communityService.searchCommunity(this.searchQuery).subscribe(communities => {
         this.searchHighlightedCommunities = communities.map(community => ({
           community,
-          searchHighlightedCommunity: this.truncateHtmlPipe.highlightQueriedText(community.communityName, this.searchQuery),
+          searchHighlightedCommunity: `u/${this.truncateHtmlPipe.highlightQueriedText(community.communityName, this.searchQuery)}`,
           searchHighlightedCommunityDescription: this.truncateHtmlPipe.highlightQueriedText(community.description,this.searchQuery)
         }));
         if(this.searchHighlightedCommunities.length===0)

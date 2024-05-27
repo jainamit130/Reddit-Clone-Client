@@ -1,1 +1,10 @@
-<p>people-search-result works!</p>
+<div *ngFor="let user of searchedUsers">
+  <div class="searchedUserTile" (click)="openProfile(user.userId)">
+    <div class="userName">u/{{ user.userName }}</div>
+    <div class="userDetails">joined {{ user.joinDate | timeAgo }}</div>
+  </div>
+</div>
+<app-no-search-result
+  [atleast1ResultFound]="atleast1ResultFound"
+  [searchQuery]="searchQuery"
+></app-no-search-result>

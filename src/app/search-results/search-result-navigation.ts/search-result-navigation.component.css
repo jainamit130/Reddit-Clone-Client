@@ -1,16 +1,21 @@
-.searchPage{
+.searchPage {
     width: 100%;
-    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; 
+    box-sizing: border-box;
 }
 
-.searchResultsText{
+.searchResultsText {
     margin: 10px;
     font-size: 12px;
     color: #576F76;
     font-weight: 600;
 }
 
-.searchResultPageButton{
+.searchResultPageButton {
     margin: 15px;
     padding-left: 20px;
     padding-right: 20px;
@@ -23,14 +28,28 @@
     border-radius: 999px;
 }
 
-.search-nav-bar{
+.search-nav-bar {
     margin-top: 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
 }
 
-.searchResultsOnTopic{
+.searchResultsOnTopic {
+    margin-left: 100px;
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    flex-direction: column; /* Ensure child elements stack vertically */
+}
+
+/* Optional: Center the entire page content */
+body {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }

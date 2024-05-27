@@ -40,6 +40,45 @@
     max-height: fit-content;
   }
 
+  .headerLine {
+    opacity: 0.6;
+    flex-grow: 1;
+    height: 1px;
+    background-color: rgb(151, 164, 194);
+    margin: 0 10px;
+}
+
+  .threadDiscussion {
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure buttons are within the parent */
+    position: relative; /* Ensure it's positioned correctly */
+    padding: 10px; /* Added padding for spacing */
+}
+
+.singleThreadButton, .openThreadButton {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: small;
+    font-weight: 500;
+    color: rgb(38, 107, 255);
+}
+
+.singleThreadButton {
+    margin-right: auto; /* Align left */
+    cursor: default;
+}
+
+.openThreadButton {
+    margin-left: auto; /* Align right */
+}
+
+.openThreadButton:hover {
+    text-decoration: underline;
+}
+
   .reply {
     width: calc(100% - 20px);
     margin-left: 20px; /* Indent replies */

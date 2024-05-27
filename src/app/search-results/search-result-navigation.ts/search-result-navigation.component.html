@@ -1,34 +1,36 @@
-<div class="search-nav-bar">
-  <span class="searchResultsText">SEARCH RESULTS</span>
-  <button
-    #posts
-    (click)="navigateToSearch('posts')"
-    class="searchResultPageButton"
-  >
-    Posts
-  </button>
-  <button
-    #comments
-    (click)="navigateToSearch('comments')"
-    class="searchResultPageButton"
-  >
-    Comments
-  </button>
-  <button
-    #communities
-    (click)="navigateToSearch('communities')"
-    class="searchResultPageButton"
-  >
-    Communities
-  </button>
-  <button
-    #people
-    (click)="navigateToSearch('people')"
-    class="searchResultPageButton"
-  >
-    People
-  </button>
-</div>
-<div class="searchResultsOnTopic">
-  <router-outlet></router-outlet>
+<div class="searchPage">
+  <div class="search-nav-bar">
+    <span class="searchResultsText">SEARCH RESULTS</span>
+    <button
+      #posts
+      (click)="navigateToSearch('posts')"
+      class="searchResultPageButton"
+    >
+      Posts
+    </button>
+    <button
+      #comments
+      (click)="navigateToSearch('comments')"
+      class="searchResultPageButton"
+    >
+      Comments
+    </button>
+    <button
+      #communities
+      (click)="navigateToSearch('communities')"
+      class="searchResultPageButton"
+    >
+      Communities
+    </button>
+    <button
+      #people
+      (click)="navigateToSearch('people')"
+      class="searchResultPageButton"
+    >
+      People
+    </button>
+  </div>
+  <div class="searchResultsOnTopic">
+    <router-outlet></router-outlet>
+  </div>
 </div>

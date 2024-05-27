@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommentService } from '../shared/comment.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentDto } from '../dto/commentDto';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../authorization/shared/auth.service';
@@ -19,6 +19,9 @@ import { CommentPostId } from '../dto/CommentPostId';
   styleUrl: './comment.component.css'
 })
 export class CommentComponent implements OnInit,AfterViewInit{
+  singleThread:boolean=false;
+  @Input() singleThreadCommentId: number|null = null;
+
   @Input() postId!:number;
 
   @Output() commented = new EventEmitter<void>();
@@ -28,13 +31,31 @@ export class CommentComponent implements OnInit,AfterViewInit{
   userCommentsOnPost:Array<CommentDto> = [];
   comments$: Array<CommentDto> = [];
 
-  constructor(private cdr:ChangeDetectorRef,private commentService:CommentService,private authService:AuthService,private activatedRoute:ActivatedRoute){
+  constructor(private router:Router,private cdr:ChangeDetectorRef,private commentService:CommentService,private authService:AuthService,private activatedRoute:ActivatedRoute){
     this.commentRequest=CommentRequestDto.createDefault();
   }
 
   ngOnInit(): void {
-    this.getAllComments();
-    this.updateUserCommentsOnPost();
+    if(this.singleThreadCommentId) {
+      this.singleThread=true;
+      this.getSingleThread();
+      this.updateUserCommentsOnPost();  
+    } else {
+      this.singleThread=false;
+      this.getAllComments();
+      this.updateUserCommentsOnPost();
+    }
+  }
+
+  getSingleThread() {
+    if(this.singleThreadCommentId) {
+      this.commentService.getSingleThread(this.postId,this.singleThreadCommentId).subscribe(comment => {
+        this.comments$.push(this.replyArrayToMap(comment));
+        this.checkIfAllDataLoaded();
+      });
+    } else {
+      throw new Error("No such thread found!");
+    }
   }
 
   ngAfterViewInit(): void {
@@ -138,7 +159,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
     return updateHelper(this.comments$);
   }
   
-  updateReplies(updatedReply: Array<CommentDto>, parentId: number, showRepliesFlow:boolean) {
+  updateReplies(updatedReply: Array<CommentDto>, parentId: number|null, showRepliesFlow:boolean) {
     let flag = 0;
 
     const updateHelper = (comments: CommentDto[]) => {
@@ -178,4 +199,8 @@ checkIfAllDataLoaded() {
     this.commentsRendered.emit();
   }
 }
+
+  navigateToPost(postId:number) {
+    this.router.navigate(['/post'],{queryParams:{postId}});
+  }
 }

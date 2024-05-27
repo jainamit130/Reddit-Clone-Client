@@ -1,7 +1,19 @@
 <div class="commentTileComponent">
+  <div style="display: flex; opacity: 0.7" *ngIf="searchOrProfile">
+    <div>{{ comment.post?.communityName }}</div>
+    <div style="padding: 5px">{{ comment.post?.postName }}</div>
+  </div>
   <div class="commentDetails">
     <img src="assets/reddit-profile-outline.svg" class="profilePhtotoOutline" />
     <span class="commentUser">{{ comment.username }}</span>
+    <div *ngIf="searchOrProfile">
+      <span class="commentedOrReplied" *ngIf="comment.parentId === null">
+        commented
+      </span>
+      <span class="commentedOrReplied" *ngIf="comment.parentId !== null">
+        replied
+      </span>
+    </div>
     <span class="commentDate">{{ comment.creationDate | timeAgo }}</span>
   </div>
   <div style="position: relative">
@@ -99,13 +111,17 @@
         [postId]="comment.postId"
       ></app-comment-reply-form>
     </div>
-    <div *ngIf="comment.repliesCount - currentExposedReplies > 0 && !replyMode">
-      <button
-        class="showReplies"
-        (click)="showReplies(comment.commentId, comment.postId)"
+    <div *ngIf="!searchOrProfile">
+      <div
+        *ngIf="comment.repliesCount - currentExposedReplies > 0 && !replyMode"
       >
-        show {{ comment.repliesCount - currentExposedReplies }} more reply
-      </button>
+        <button
+          class="showReplies"
+          (click)="showReplies(comment.commentId, comment.postId)"
+        >
+          show {{ comment.repliesCount - currentExposedReplies }} more reply
+        </button>
+      </div>
     </div>
   </div>
 </div>

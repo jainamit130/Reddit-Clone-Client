@@ -2,4 +2,16 @@
     padding-top: 70px; 
   }
 
-  
+  .communitiesContainer{
+    background-color: #ffffff;
+    padding: 10px 10px 10px 10px;
+    position: fixed;
+    left:0;
+    justify-self: left;
+  }
+
+  @media screen and (max-width: 1590px) {
+    .communitiesContainer {
+        display: none; /* Hide the section */
+    }
+  }

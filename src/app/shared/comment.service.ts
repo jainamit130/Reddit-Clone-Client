@@ -7,7 +7,7 @@ import { CommentRequestDto } from '../dto/RequestPayload/commentRequestDto';
 @Injectable({
   providedIn: 'root'
 })
-export class CommentService { 
+export class CommentService {
   constructor(private httpClient:HttpClient) { }
 
   getAllComments(postId:number,repliesCount:number):Observable<Array<CommentDto>> {
@@ -54,4 +54,12 @@ export class CommentService {
     }
     return this.httpClient.get<Array<CommentDto>>('http://localhost:8080/reddit/search/comments',options);
   }
+
+  getSingleThread(postId: number, singleThreadCommentId: number) {
+    const options = { 
+      params: new HttpParams().set('postId', postId)
+                              .set('commentId',singleThreadCommentId), 
+    };
+    return this.httpClient.get<CommentDto>('http://localhost:8080/reddit/comments/singleThread',options);
+  } 
 }

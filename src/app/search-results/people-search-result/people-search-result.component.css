@@ -1,0 +1,21 @@
+.userDetails{
+    margin: 5px;
+    margin-left: 0px;
+    font-size: small;
+    opacity: 0.9;
+    color: rgb(63, 63, 63);
+  }
+
+  .searchedUserTile{
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .searchedUserTile:hover{
+    background-color: rgb(240, 240, 240);
+  }
+
+  .userName{
+    font-size: 20px;
+    font-weight: 640;
+  }

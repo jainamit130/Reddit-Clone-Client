@@ -1,12 +1,31 @@
-<div class="communityContainer">
-  <app-communities></app-communities>
-</div>
 <div class="reddit-container" *ngIf="post">
   <div class="reddit-post">
-    <div class="community" (click)="navigateToCommunity(post.communityId)">
-      <button class="communityNameButton">
-        {{ post.communityName }}
-      </button>
+    <div style="display: flex; align-items: center; margin-bottom: 10px">
+      <img
+        src="assets/community-icon.svg"
+        (click)="navigateToCommunity(post.communityId)"
+        class="comunityIcon"
+      />
+      <div>
+        <div style="display: flex; align-items: center; line-height: 1">
+          <div
+            class="community"
+            (click)="navigateToCommunity(post.communityId)"
+          >
+            <button class="communityNameButton">
+              r/{{ post.communityName }}
+            </button>
+          </div>
+          <span class="separator">.</span>
+          <span class="postDate">{{ post.creationDate | timeAgo }}</span>
+        </div>
+        <div
+          class="postUser"
+          (click)="openProfile(post.userId); $event.stopPropagation()"
+        >
+          u/{{ post.userName }}
+        </div>
+      </div>
     </div>
     <h4>{{ post.postName }}</h4>
     <p [innerHTML]="sanitizedDescription"></p>
@@ -26,6 +45,7 @@
   <div class="headerLine"></div>
   <div #comments>
     <app-comment
+      [singleThreadCommentId]="singleThreadCommentId"
       (commentsRendered)="checkScrollToComments()"
       [postId]="post.postId"
       (commented)="updatePost(false)"

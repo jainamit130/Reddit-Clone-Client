@@ -1,8 +1,17 @@
 <div class="commentComponent">
-  <app-comment-reply-form
-    (commented)="createComment($event)"
-    [postId]="postId"
-  ></app-comment-reply-form>
+  <div *ngIf="!singleThread">
+    <app-comment-reply-form
+      (commented)="createComment($event)"
+      [postId]="postId"
+    ></app-comment-reply-form>
+  </div>
+  <div class="threadDiscussion" *ngIf="singleThread">
+    <span class="singleThreadButton">Single Thread</span>
+    <span class="headerLine"></span>
+    <span class="openThreadButton" (click)="navigateToPost(postId)"
+      >See Full Discussion</span
+    >
+  </div>
   <div class="commentSection">
     <div class="individualComment" *ngFor="let comment of comments$">
       <div class="reddit-post">

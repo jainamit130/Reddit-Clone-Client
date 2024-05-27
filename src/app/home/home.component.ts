@@ -31,6 +31,18 @@ export class HomeComponent implements OnInit{
       this.communityService.updateCommunityData("");
     }
 
+    isCommunityJoined(communityId:number){
+      return this.communityService.isJoined(communityId);
+    }
+
+    joinCommunity(){
+
+    }
+
+    leaveCommunity(communityId:number){
+      this.communityService.removeCommunity(communityId);
+    }
+
     isCommentsClicked(postId:number){
       this.router.navigate(['/post'],{queryParams:{postId:postId,openComments:1}});
     }

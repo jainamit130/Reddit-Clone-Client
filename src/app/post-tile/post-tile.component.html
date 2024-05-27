@@ -1,8 +1,55 @@
 <div>
-  <div (click)="navigateToCommunity(post.communityId)" class="community">
-    <button *ngIf="showCommunityName" class="communityNameButton">
-      {{ post.communityName }}
-    </button>
+  <div
+    style="display: flex; align-items: center; justify-content: space-between"
+  >
+    <div style="display: flex; align-items: center">
+      <img
+        *ngIf="showCommunityName"
+        src="assets/community-icon.svg"
+        (click)="navigateToCommunity(post.communityId)"
+        class="comunityIcon"
+      />
+      <div>
+        <div style="display: flex; align-items: center">
+          <div
+            class="community"
+            (click)="navigateToCommunity(post.communityId)"
+          >
+            <button *ngIf="showCommunityName" class="communityNameButton">
+              r/{{ post.communityName }}
+            </button>
+            <div *ngIf="!showCommunityName">
+              <button
+                (click)="openProfile(post.userId)"
+                class="communityNameButton"
+              >
+                u/{{ post.userName }}
+              </button>
+            </div>
+          </div>
+          <span class="separator">.</span>
+          <span class="postDate">{{ post.creationDate | timeAgo }}</span>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isJoined !== null">
+      <button
+        class="joinedButton"
+        *ngIf="isJoined"
+        (click)="
+          leaveCommunity.emit(post.communityId); $event.stopPropagation()
+        "
+      >
+        Joined
+      </button>
+      <button
+        class="joinButton"
+        *ngIf="!isJoined"
+        (click)="joinCommunity.emit(post.communityId); $event.stopPropagation()"
+      >
+        Join
+      </button>
+    </div>
   </div>
   <h4 class="postName">{{ post.postName }}</h4>
   <p class="postDescription" [innerHtml]="trucatedDescription"></p>

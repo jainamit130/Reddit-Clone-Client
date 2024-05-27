@@ -13,6 +13,7 @@
 }
 
 .reddit-container {
+  position: relative;
   padding-top: 10px;
   justify-content: center;
   align-items: center;
@@ -42,20 +43,54 @@
     display: inline-block;
   }
   
+  .postDate{
+    margin-left: 8px;
+    opacity: 0.7;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .community :hover {
+    background-color: #dadada;
+  }
+
+  .postUser{
+    font-weight: 400;
+    top:0;
+    padding-left: 5px;
+    font-size: small;
+    cursor: pointer;
+  }
+
+  .separator {
+    padding-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .comunityIcon{
+    align-items: center;
+    cursor: pointer;
+    height: 42px;
+    width: 42px;
+  }
+
+  .postUser:hover{
+    color: rgb(43, 99, 221);
+  }
+
   .community {
-    width: min-content;
-    border-radius: 5px;
-    margin-top: 10px;
+    width: max-content;
+    margin-right: 2px;
     font-weight: 20px;
     font-size: small;
   }
 
   .community :hover {
-    border-radius: 5px;
     background-color: #dadada;
   }
 
   .communityNameButton {
+    height: 20px;
     border: transparent;
     background-color:transparent;
   }

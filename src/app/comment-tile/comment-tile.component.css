@@ -85,7 +85,16 @@
     margin-left: 20px;
     opacity: 0.5;
     padding-bottom: 1px;
-    font-size: small;
+    font-size: smaller;
+    font-weight: 700;
+}
+
+.commentedOrReplied{
+    position: relative;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: smaller;
+    opacity: 0.5;
     font-weight: 700;
 }
 

@@ -1,8 +1,19 @@
+/* Ensure the parent container centers its content */
+.parent-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically, if needed */
+  width: 100%; /* Adjust based on your layout */
+  height: 100%; /* Adjust based on your layout */
+}
+
 .reddit-container {
   overflow: auto;
   padding-top: 10px;
   width: 700px;
-  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  margin: auto; /* Center the container */
 }
 
 .reddit-post {
@@ -15,13 +26,13 @@
   max-height: fit-content;
 }
 
-.reddit-post:hover{
+.reddit-post:hover {
   background-color: #c7c7c7;
 }
 
-.headerLine{
-    margin: 10px;
-    margin-top: 5px;
-    vertical-align: auto;
-    border-bottom: Solid 1px #b6b6b6;
-  }
+.headerLine {
+  margin: 10px;
+  margin-top: 5px;
+  vertical-align: auto;
+  border-bottom: solid 1px #b6b6b6;
+}

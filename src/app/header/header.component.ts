@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit{
     }
 
     openProfile() {
-      this.router.navigateByUrl("/profile");
+      this.router.navigate(["/profile"],{queryParams:{id:this.authService.getUserId()}});
     }
   }
   

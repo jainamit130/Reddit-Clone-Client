@@ -1,0 +1,17 @@
+.communityDetails{
+    margin: 5px;
+    margin-left: 0px;
+    font-size: small;
+    opacity: 0.9;
+    color: rgb(63, 63, 63);
+  }
+
+  .searchedCommunity{
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+  .searchedCommunity:hover{
+    background-color: rgb(240, 240, 240);
+  }

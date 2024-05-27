@@ -5,8 +5,9 @@ import { CommentDto } from '../dto/commentDto';
 import { CommonModule } from '@angular/common';
 import { PostTileComponent } from '../post-tile/post-tile.component';
 import { PostService } from '../shared/post.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentTileComponent } from '../comment-tile/comment-tile.component';
+import { AuthService } from '../authorization/shared/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,14 +19,21 @@ import { CommentTileComponent } from '../comment-tile/comment-tile.component';
 export class ProfileComponent implements OnInit{
   userPosts:Array<PostDto> =[];
   userComments:Array<CommentDto> =[];
-  constructor(private userService:UserService,private postService: PostService,private router:Router){}
+  userId!:number;
+  constructor(private userService:UserService,private authService:AuthService,private postService: PostService,private router:Router,private activatedRoute:ActivatedRoute){}
 
   ngOnInit(): void {
-    this.getUserComments();
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.userId = params['id'] as number;
+      this.getUserComments();
+    })
   }
 
   getUserComments(){
-    this.userService.getUserProfile().subscribe(userProfile => {
+    if(!this.userId){
+      this.userId = this.authService.getUserId();
+    }
+    this.userService.getUserProfile(this.userId).subscribe(userProfile => {
       this.userPosts=userProfile.posts;
       this.userComments=userProfile.comments;
     });
@@ -40,7 +48,7 @@ export class ProfileComponent implements OnInit{
     })
   }
 
-  navigateToPost(postId:number) {
-    this.router.navigate(['/post'],{queryParams:{postId}});
+  navigateToPost(postId:number,commentId:number|null) {
+    this.router.navigate(['/post'],{queryParams:{postId,commentId}});
   }
 }

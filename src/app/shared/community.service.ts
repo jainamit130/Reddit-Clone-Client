@@ -18,6 +18,23 @@ export class CommunityService {
 
   constructor(private httpClient:HttpClient) { }
 
+  isJoined(communityId: number): boolean {
+    const communities = this.userCommunitiesSubject.getValue();
+    return communities.some(community => community.communityId === communityId);
+  }
+
+  addCommunity(newCommunity: CommunityDto) {
+    const currentCommunities = this.userCommunitiesSubject.getValue();
+    const updatedCommunities = [...currentCommunities, newCommunity];
+    this.userCommunitiesSubject.next(updatedCommunities);
+  }
+
+  removeCommunity(communityId: number) {
+    const currentCommunities = this.userCommunitiesSubject.getValue();
+    const updatedCommunities = currentCommunities.filter(community => community.communityId !== communityId);
+    this.userCommunitiesSubject.next(updatedCommunities);
+  }
+
   updateCommunityData(data: string) {
     this.communityData.next(data);
   }

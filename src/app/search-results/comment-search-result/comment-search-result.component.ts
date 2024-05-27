@@ -39,13 +39,21 @@ export class CommentSearchResultComponent implements OnInit{
     });
   }
 
+  openProfile(userId:number) {
+    this.router.navigate(["/profile"],{queryParams:{id:userId}});
+  }
+
   navigateToCommunity(communityId: number|undefined) {
     if(communityId)
       this.router.navigate(['community'],{queryParams:{id:communityId}});
   }
 
-  navigateToPost(postId:number) {
+  navigateToPost(postId:number,singleThreadCommentId:number|null) {
+    if(singleThreadCommentId){
+      this.router.navigate(['/post'],{queryParams:{postId,commentId:singleThreadCommentId}});
+  } else {
     this.router.navigate(['/post'],{queryParams:{postId}});
   }
+}
 
 }

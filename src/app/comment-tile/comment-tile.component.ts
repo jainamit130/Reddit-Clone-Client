@@ -21,6 +21,7 @@ import { TimeAgoPipe } from '../pipe/time-ago.pipe';
   styleUrl: './comment-tile.component.css'
 })
 export class CommentTileComponent implements OnInit{
+    @Input() searchOrProfile:boolean=false;
     @Input() comment!:CommentDto;
     @Input() userComment:boolean = false;
     @Input() currentExposedReplies : number = 0;

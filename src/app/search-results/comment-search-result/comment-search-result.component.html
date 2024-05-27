@@ -1,5 +1,8 @@
 <div *ngFor="let comment of searchHighlightedComments">
-  <div class="searchedPost" (click)="navigateToPost(comment.comment.postId)">
+  <div
+    class="searchedPost"
+    (click)="navigateToPost(comment.comment.postId, null)"
+  >
     <div
       class="community"
       (click)="navigateToCommunity(comment.comment.post?.communityId)"
@@ -9,28 +12,39 @@
       </button>
     </div>
     <div class="postTitle">{{ comment.comment.post?.postName }}</div>
-    <div style="margin-left: 20px">
-      <div
-        style="
-          display: flex;
-          align-self: center;
-          justify-content: left;
-          margin: 10px;
-          margin-left: 0px;
-        "
-      >
-        <div class="commentUser">{{ comment.comment.username }}</div>
-        <span class="commentDate">{{
-          comment.comment.creationDate | timeAgo
-        }}</span>
+    <div
+      (click)="
+        navigateToPost(comment.comment.postId, comment.comment.commentId)
+      "
+    >
+      <div style="margin-left: 20px">
+        <div
+          style="
+            display: flex;
+            align-self: center;
+            justify-content: left;
+            margin: 10px;
+            margin-left: 0px;
+          "
+        >
+          <div
+            (click)="openProfile(comment.comment.userId)"
+            class="commentUser"
+          >
+            {{ comment.comment.username }}
+          </div>
+          <span class="commentDate">{{
+            comment.comment.creationDate | timeAgo
+          }}</span>
+        </div>
+        <div
+          [innerHTML]="comment.searchHighlightedComment"
+          style="margin-bottom: 10px"
+        ></div>
+        <span class="commentVotes">{{ comment.comment.votes }} votes</span>
       </div>
-      <div
-        [innerHTML]="comment.searchHighlightedComment"
-        style="margin-bottom: 10px"
-      ></div>
-      <span class="commentVotes">{{ comment.comment.votes }} votes</span>
+      <span class="openThreadButton">Go To Thread</span>
     </div>
-    <span class="openThreadButton">Go To Thread</span>
     <div class="voteComments">
       <span>{{ comment.comment.post?.votes }} votes</span>
       <span style="padding-right: 5px; padding-left: 5px; align-items: center"

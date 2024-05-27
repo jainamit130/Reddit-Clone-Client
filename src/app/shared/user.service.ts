@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { UserProfileDto } from './../dto/UserProfileDto';
+import { userSearch } from '../dto/userSearch';
  
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
   inputFocused = new EventEmitter<any>();
   emitInputFocusEvent() {
     this.inputFocused.emit();
@@ -29,7 +29,14 @@ export class UserService {
 
   constructor(private httpClient:HttpClient) {}
 
-  getUserProfile():Observable<UserProfileDto>{
-    return this.httpClient.get<UserProfileDto>('http://localhost:8080/reddit/user/')
+  getUserProfile(userId:number):Observable<UserProfileDto>{
+    return this.httpClient.get<UserProfileDto>('http://localhost:8080/reddit/user/'+userId)
+  }
+
+  searchPeople(searchQuery: string) {
+    const options = {
+      params: new HttpParams().set('q', searchQuery) 
+    }
+    return this.httpClient.get<Array<userSearch>>('http://localhost:8080/reddit/search/people',options);
   }
 }

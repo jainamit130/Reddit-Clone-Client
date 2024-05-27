@@ -17,6 +17,7 @@
 }
 
 .openThreadButton{
+  width: 89px;
   z-index: 1;
   display: flex;
   padding: 10px;
@@ -24,6 +25,10 @@
   font-size: small;
   font-weight: 500;
   color: rgb(38, 107, 255);
+}
+
+.openThreadButton:hover{
+  text-decoration: underline;
 }
 
 .community {
@@ -45,6 +50,7 @@
   }
 
   .searchedPost{
+    cursor: pointer;
     padding: 10px;
     padding-top: 5px;
     width: 650px;
@@ -56,6 +62,10 @@
     color: rgb(46, 46, 46);
     opacity: 0.9;
     font-size: small;
+  }
+
+  .commentUser:hover{
+    color:rgb(38, 107, 255);
   }
 
   .commentDate{

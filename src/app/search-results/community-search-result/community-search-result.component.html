@@ -3,11 +3,18 @@
     class="searchedCommunity"
     (click)="navigateToCommunity(community.community.communityId)"
   >
-    <div>{{ community.searchHighlightedCommunity }}</div>
-    <div>{{ community.searchHighlightedCommunityDescription }}</div>
+    <div
+      [innerHTML]="community.searchHighlightedCommunity"
+      style="font-size: larger; font-weight: 500"
+    ></div>
+    <div [innerHTML]="community.searchHighlightedCommunityDescription"></div>
     <div>
-      <span>{{ community.community.numberOfPosts }}</span>
-      <span>{{ community.community.numberOfMembers }}</span>
+      <span class="communityDetails"
+        >{{ community.community.numberOfPosts }} posts</span
+      >
+      <span class="communityDetails"
+        >{{ community.community.numberOfMembers }} members</span
+      >
     </div>
   </div>
 </div>
