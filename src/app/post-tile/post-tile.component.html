@@ -36,16 +36,14 @@
       <button
         class="joinedButton"
         *ngIf="isJoined"
-        (click)="
-          leaveCommunity.emit(post.communityId); $event.stopPropagation()
-        "
+        (click)="communityLeft(post.communityId, $event)"
       >
         Joined
       </button>
       <button
         class="joinButton"
         *ngIf="!isJoined"
-        (click)="joinCommunity.emit(post.communityId); $event.stopPropagation()"
+        (click)="communityJoined(post.communityId, $event)"
       >
         Join
       </button>

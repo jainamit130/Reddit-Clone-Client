@@ -1,4 +1,74 @@
-/* Ensure the parent container centers its content */
+.searchPage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; 
+  box-sizing: border-box;
+}
+
+.profile-info {
+  border: 2px solid #576F76;
+  background-color: #61b2ca;
+  border-radius: 10px;
+  padding: 10px;
+  width: 700px;
+  display: flex;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  margin-right: 20px;
+}
+
+.profile-details {
+  display: flex;
+  align-items: last baseline;
+  flex-grow: 1;
+  justify-content: space-between; /* Align items to the start and end */
+}
+
+.parameters {
+  text-align: right; /* Align parameters to the right */
+}
+
+.parameters > div {
+  margin-bottom: 5px;
+}
+
+.profile-icon{
+  height: 150px;
+  width: 95px;
+}
+
+.searchResultsText {
+  margin: 10px;
+  font-size: 15px;
+  color: #576F76;
+  font-weight: 600;
+}
+
+.searchResultPageButton {
+  margin: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 500;
+  border: transparent;
+  font-size: medium;
+  color: #181C1F;
+  border-radius: 999px;
+}
+
+.search-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
 .parent-container {
   display: flex;
   justify-content: center; /* Center horizontally */
@@ -18,7 +88,7 @@
 
 .reddit-post {
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   border-radius: 20px;
   max-width: 700px;
   justify-content: center;
@@ -32,7 +102,7 @@
 
 .headerLine {
   margin: 10px;
-  margin-top: 5px;
+  margin-top: 2px;
   vertical-align: auto;
   border-bottom: solid 1px #b6b6b6;
 }

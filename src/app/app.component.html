@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="communitiesContainer">
+<div class="communitiesContainer" *ngIf="!isLoginPage">
   <app-communities></app-communities>
 </div>
 <div class="content-wrapper">

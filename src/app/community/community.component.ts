@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommunityService } from '../shared/community.service';
 import { CommonModule } from '@angular/common';
 import { CommunityDto } from '../dto/CommunityDto';
@@ -18,7 +18,6 @@ export class CommunityComponent implements OnInit{
   @Input() communityId!:number;
   sanitizedDescription!: SafeHtml;
   community:CommunityDto;
-  userCommunities:Array<CommunityDto> = [];
   joinButton:Boolean=true;
   constructor(private sanitizer: DomSanitizer,private router:Router,private communityService:CommunityService,private activatedRoute:ActivatedRoute) {
     this.community={
@@ -42,8 +41,7 @@ export class CommunityComponent implements OnInit{
     
       this.communityService.getUserCommunities().subscribe(communities => {
         this.communityService.updateUserCommunitiesData(communities);
-        this.userCommunities=communities;
-        if(this.userCommunities.some(community => community.communityId === this.community.communityId))
+        if(communities.some(community => community.communityId === this.community.communityId))
           this.joinButton=false;
         else  
           this.joinButton=true;
@@ -60,10 +58,9 @@ export class CommunityComponent implements OnInit{
   }
 
   joinCommunity() {
-    this.communityService.joinComunity(this.communityId).
+    this.communityService.joinCommunity(this.communityId).
     subscribe(community => {
-      this.userCommunities.push(community);
-      this.communityService.updateUserCommunitiesData(this.userCommunities);
+      this.communityService.addCommunity(community);
       this.joinButton=false;
     });
   } 
@@ -71,8 +68,7 @@ export class CommunityComponent implements OnInit{
   leaveCommunity() {
     this.communityService.leaveCommunity(this.communityId).
     subscribe(community => {
-      this.userCommunities = this.userCommunities.filter(item => item !== community);
-      this.communityService.updateUserCommunitiesData(this.userCommunities);
+      this.communityService.leaveCommunity(community.communityId);
       this.joinButton=true;
     });
   }

@@ -1,22 +1,25 @@
 <div class="commentTileComponent">
-  <div style="display: flex; opacity: 0.7" *ngIf="searchOrProfile">
+  <div
+    style="display: flex; opacity: 0.7; margin-bottom: 8px"
+    *ngIf="searchOrProfile"
+  >
     <div>{{ comment.post?.communityName }}</div>
     <div style="padding: 5px">{{ comment.post?.postName }}</div>
   </div>
   <div class="commentDetails">
     <img src="assets/reddit-profile-outline.svg" class="profilePhtotoOutline" />
-    <span class="commentUser">{{ comment.username }}</span>
+    <div class="commentUser">{{ comment.username }}</div>
     <div *ngIf="searchOrProfile">
-      <span class="commentedOrReplied" *ngIf="comment.parentId === null">
+      <div class="commentedOrReplied" *ngIf="comment.parentId === null">
         commented
-      </span>
-      <span class="commentedOrReplied" *ngIf="comment.parentId !== null">
+      </div>
+      <div class="commentedOrReplied" *ngIf="comment.parentId !== null">
         replied
-      </span>
+      </div>
     </div>
-    <span class="commentDate">{{ comment.creationDate | timeAgo }}</span>
+    <div class="commentDate">{{ comment.creationDate | timeAgo }}</div>
   </div>
-  <div style="position: relative">
+  <div>
     <div *ngIf="!editMode" class="commentText">
       <div *ngIf="!comment.isDeleted">
         {{ comment.comment }}
@@ -27,6 +30,7 @@
     </div>
     <div *ngIf="editMode">
       <form
+        name="comment-Input-Form"
         class="commentInputForm"
         [formGroup]="updatedCommentForm"
         (ngSubmit)="editComment(comment)"

@@ -1,17 +1,21 @@
 <div class="content-wrapper">
   <div class="createPostContainer">
-    <form [formGroup]="createNewPost" (ngSubmit)="createPost()">
+    <form
+      [formGroup]="createNewPost"
+      name="create-New-Post-Form"
+      (ngSubmit)="createPost()"
+    >
       <div class="createCommunityHeader">
         <h3>Create Post</h3>
-        <button class="createCommunityButton">Create</button>
+        <button class="createCommunityButton" type="submit">Create</button>
       </div>
       <app-community-search
         [userCommunities]="yourCommunities"
       ></app-community-search>
       <br /><br />
-      <label class="titleLabel">Provide a title</label>
+      <span class="titleLabel">Provide a title</span>
       <input placeholder="title" class="title" [formControlName]="'postName'" />
-      <label>Provide a description</label>
+      <span>Provide a description</span>
       <div class="tinymce-container">
         <editor
           apiKey="5n5jdjo2aatn8r1zom7letmjo1mus47rhedeosgw9cgpn9w2"

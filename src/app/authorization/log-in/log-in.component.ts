@@ -41,7 +41,8 @@ export class LogInComponent implements OnInit,OnDestroy{
       .subscribe(params => {
         if (params['registered'] !== undefined && params['registered'] === 'true') {
           this.toast.success('Signup Successful');
-          this.registerationSuccessMessage = 'Please Check your inbox for acount activation email!';
+          this.registerationSuccessMessage = 'Please Check your inbox for account activation email!';
+          this.registerationSuccessMessage = 'Please try to login now!';
         }
       });
   }

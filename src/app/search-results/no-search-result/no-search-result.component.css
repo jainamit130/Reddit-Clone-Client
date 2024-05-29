@@ -3,9 +3,9 @@
     width: 60px;
   }
 
-  .adjustSearch{
+  div span.adjustSearch {
     padding: 10px;
     text-decoration: underline;
-    cursor: pointer;
     color: rgb(38, 107, 255);
+    cursor: pointer; /* More specific selector */
   }

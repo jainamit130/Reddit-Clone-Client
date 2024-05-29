@@ -11,12 +11,16 @@ import { AuthService } from '../authorization/shared/auth.service';
   styleUrl: './user-profile-settings.component.css'
 })
 export class UserProfileSettings {
+
+  userName:string="";
   @Output() loggedOut = new EventEmitter<void>();
   @Output() openedProfile = new EventEmitter<void>();
   @Output() logInSignUpClicked = new EventEmitter<Event>();
   settingsOn: boolean = false;
   
-  constructor(private authService :AuthService){}
+  constructor(private authService :AuthService){
+    this.userName=this.authService.getUserName();
+  }
 
   openSignUpForm(event: Event) {
     this.toggleSettingsMenu();

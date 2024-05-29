@@ -1,8 +1,8 @@
 <div class="signUpForm">
   <span class="loginText">Sign Up</span>
-  <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+  <form [formGroup]="signUpForm" name="sign-Up-Form" (ngSubmit)="signUp()">
     <br />
-    <div>
+    <!-- <div>
       <label for="Email">Email</label><br />
       <input
         class="field"
@@ -19,7 +19,7 @@
         ><br />Invalid email</span
       >
       <br /><br />
-    </div>
+    </div> -->
     <label for="Username">Username</label><br />
     <input
       class="field"

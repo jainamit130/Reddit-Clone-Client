@@ -20,8 +20,8 @@ import { CommentPostId } from '../dto/CommentPostId';
 })
 export class CommentComponent implements OnInit,AfterViewInit{
   singleThread:boolean=false;
-  @Input() singleThreadCommentId: number|null = null;
 
+  @Input() singleThreadCommentId: number|null = null;
   @Input() postId!:number;
 
   @Output() commented = new EventEmitter<void>();

@@ -13,15 +13,16 @@ import { CommentSearchResultComponent } from './search-results/comment-search-re
 import { PeopleSearchResultComponent } from './search-results/people-search-result/people-search-result.component';
 import { CommunitySearchResultComponent } from './search-results/community-search-result/community-search-result.component';
 import { SearchResultNavigationComponent } from './search-results/search-result-navigation.ts/search-result-navigation.component';
+import { CommunityService } from './shared/community.service';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LogInComponent },
   { path: 'signup', component: SignUpComponent},
-  { path: 'post', component: PostComponent,canActivate:[authGuard]},
+  { path: 'post', component: PostComponent},
   { path: 'submit', component: CreatePostComponent,canActivate:[authGuard]},
   { path: 'create-community', component: CreateCommunityComponent,canActivate:[authGuard]},
-  { path: 'community', component: CommunityComponent,canActivate:[authGuard]},
+  { path: 'community', component: CommunityComponent},
   { path: 'profile', component: ProfileComponent,canActivate:[authGuard]},
   {
     path: 'search', component: SearchResultNavigationComponent, children: [

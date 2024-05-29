@@ -1,31 +1,67 @@
-<div class="reddit-container">
-  <div
-    (click)="navigateToPost(post.postId, null)"
-    *ngFor="let post of userPosts"
-  >
-    <div class="reddit-post">
-      <app-post-tile
-        [post]="post"
-        (updatePost)="updatePost(post)"
-      ></app-post-tile>
+<div class="searchPage">
+  <div class="profile-info">
+    <div class="profile-image">
+      <img src="assets/profile-icon.webp" class="profile-icon" />
     </div>
-    <div class="headerLine"></div>
+    <div class="profile-details">
+      <div>
+        <h3>{{ userProfile.userName }}</h3>
+        <h5 class="userName">u/{{ userProfile.userName }}</h5>
+      </div>
+      <div class="parameters">
+        <div>{{ userProfile.numberOfPosts }} posts</div>
+        <div>{{ userProfile.numberOfComments }} comments</div>
+        <div>joined {{ userProfile.joinDate | timeAgo }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="search-nav-bar">
+    <span class="searchResultsText">Profile Details</span>
+    <button #posts (click)="showPosts()" class="searchResultPageButton">
+      Posts
+    </button>
+    <button #comments (click)="showComments()" class="searchResultPageButton">
+      Comments
+    </button>
+  </div>
+
+  <div class="content">
+    <div *ngIf="showingPosts">
+      <div class="reddit-container">
+        <div class="headerLine"></div>
+        <div
+          (click)="navigateToPost(post.postId, null)"
+          *ngFor="let post of userProfile.posts"
+        >
+          <div class="reddit-post">
+            <app-post-tile
+              [post]="post"
+              (updatePost)="updatePost(post)"
+            ></app-post-tile>
+          </div>
+          <div class="headerLine"></div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showingComments">
+      <div class="reddit-container">
+        <div class="headerLine"></div>
+        <div
+          (click)="navigateToPost(comment.postId, comment.commentId)"
+          *ngFor="let comment of userProfile.comments"
+        >
+          <div class="reddit-post">
+            <app-comment-tile
+              [searchOrProfile]="true"
+              (updateComments)="getUserComments()"
+              [comment]="comment"
+              [userComment]="true"
+            ></app-comment-tile>
+          </div>
+          <div class="headerLine"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<!-- <div class="reddit-container">
-  <div
-    (click)="navigateToPost(comment.postId, comment.commentId)"
-    *ngFor="let comment of userComments"
-  >
-    <div class="reddit-post">
-      <app-comment-tile
-        [searchOrProfile]="true"
-        (updateComments)="getUserComments()"
-        [comment]="comment"
-        [userComment]="true"
-      ></app-comment-tile>
-    </div>
-    <div class="headerLine"></div>
-  </div>
-</div> -->

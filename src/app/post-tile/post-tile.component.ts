@@ -36,22 +36,34 @@ export class PostTileComponent implements OnChanges {
   
   updatePost(currentPost:PostDto,isForComment:boolean){
     if(!isForComment) {
-    this.postService.getPost(currentPost.postId).subscribe(post=> {  
+      this.postService.getPost(currentPost.postId).subscribe(post=> {  
         this.post.votes = post.votes;
         this.post.currentVote = post.currentVote;
-    })
-  }
+      })
+    }
   }
   
   navigateToCommunity(communityId: number) {
     this.router.navigate(['community'],{queryParams:{id:communityId}})
   }
-
+  
   openComments(){
     this.showComments.emit(true);
   }
-
+  
   openProfile(userId:number) {
     this.router.navigate(["/profile"],{queryParams:{id:userId}});
+  }
+
+  communityJoined(communityId:number,event: MouseEvent) {
+    this.isJoined=true;
+    this.joinCommunity.emit(communityId);
+    event.stopPropagation();
+  }
+
+  communityLeft(communityId:number,event: MouseEvent) {
+    this.isJoined=false;
+    this.leaveCommunity.emit(communityId);
+    event.stopPropagation();
   }
 }

@@ -19,7 +19,7 @@ export class VoteComponent implements OnInit {
   @Input() postId!:number;
   @Input() commentId!:number;
   @Input() currentVote!:string;
-  @Input() isLoggedIn!:boolean;
+  isLoggedIn!:boolean;
 
   @Output() voteCompleted = new EventEmitter<boolean>();
 

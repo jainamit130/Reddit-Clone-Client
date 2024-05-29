@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommentParameter } from '../dto/CommentParameter';
+import { AuthService } from '../authorization/shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comment-reply-form',
@@ -27,6 +29,7 @@ export class CommentReplyFormComponent implements OnInit{
   @Input() postId!:number|null;
   @Input() commentMode: boolean=false;
 
+  isLoggedIn:boolean=false;
   commentForm!:FormGroup;
   commentInvalid:boolean=false;
   commentParameter:CommentParameter = {
@@ -34,6 +37,8 @@ export class CommentReplyFormComponent implements OnInit{
     parentId:null,
     postId:null,
   }
+
+  constructor(private authService:AuthService,private router:Router) {}
 
   ngOnInit(): void {
     this.commentForm = new FormGroup({
@@ -55,16 +60,16 @@ export class CommentReplyFormComponent implements OnInit{
   }
 
   createComment() {
-    this.commentParameter.commentDescription = this.commentForm.get('commentDescription')?.value;
-    this.commentParameter.parentId = this.parentCommentId;
-    this.commentParameter.postId = this.postId;
-    if(this.commentForm.get('commentDescription')?.invalid){
-      this.commentInvalid=true;
-    } else {
-      this.commented.emit(this.commentParameter);
-      this.commentForm.reset();
-      this.commentInvalid=false;
-    }
+      this.commentParameter.commentDescription = this.commentForm.get('commentDescription')?.value;
+      this.commentParameter.parentId = this.parentCommentId;
+      this.commentParameter.postId = this.postId;
+      if(this.commentForm.get('commentDescription')?.invalid){
+        this.commentInvalid=true;
+      } else {
+        this.commented.emit(this.commentParameter);
+        this.commentForm.reset();
+        this.commentInvalid=false;
+      }
   }
 
   activateCommentMode() {

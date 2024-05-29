@@ -3,6 +3,7 @@
     <div (click)="navigateToPost(post.postId)" *ngFor="let post of posts$">
       <div class="reddit-post">
         <app-post-tile
+          (joinCommunity)="joinCommunity(post.communityId)"
           (leaveCommunity)="leaveCommunity(post.communityId)"
           [isJoined]="isCommunityJoined(post.communityId)"
           [showCommunityName]="true"

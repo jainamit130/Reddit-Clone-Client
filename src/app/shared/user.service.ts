@@ -3,6 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { UserProfileDto } from './../dto/UserProfileDto';
 import { userSearch } from '../dto/userSearch';
+import { environment } from '../../environment';
  
 @Injectable({
   providedIn: 'root'
@@ -30,13 +31,13 @@ export class UserService {
   constructor(private httpClient:HttpClient) {}
 
   getUserProfile(userId:number):Observable<UserProfileDto>{
-    return this.httpClient.get<UserProfileDto>('http://localhost:8080/reddit/user/'+userId)
+    return this.httpClient.get<UserProfileDto>(environment.baseUrl+'/reddit/user/'+userId)
   }
 
   searchPeople(searchQuery: string) {
     const options = {
       params: new HttpParams().set('q', searchQuery) 
     }
-    return this.httpClient.get<Array<userSearch>>('http://localhost:8080/reddit/search/people',options);
+    return this.httpClient.get<Array<userSearch>>(environment.baseUrl+'/reddit/search/people',options);
   }
 }

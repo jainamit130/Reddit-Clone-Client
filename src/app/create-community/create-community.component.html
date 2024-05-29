@@ -1,5 +1,9 @@
 <div class="createCommunityContainer">
-  <form [formGroup]="communityForm" (ngSubmit)="createCommunity()">
+  <form
+    [formGroup]="communityForm"
+    name="community-Form"
+    (ngSubmit)="createCommunity()"
+  >
     <div class="createCommunityHeader">
       <h3>Create Community</h3>
       <button class="createCommunityButton" type="submit">Create</button>

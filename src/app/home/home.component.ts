@@ -35,12 +35,18 @@ export class HomeComponent implements OnInit{
       return this.communityService.isJoined(communityId);
     }
 
-    joinCommunity(){
-
-    }
-
-    leaveCommunity(communityId:number){
-      this.communityService.removeCommunity(communityId);
+    joinCommunity(communityId:number) {
+      this.communityService.joinCommunity(communityId).
+      subscribe(community => {
+        this.communityService.addCommunity(community);
+      });
+    } 
+  
+    leaveCommunity(communityId:number) {
+      this.communityService.leaveCommunity(communityId).
+      subscribe(community => {
+        this.communityService.removeCommunity(community.communityId);
+      });
     }
 
     isCommentsClicked(postId:number){

@@ -32,6 +32,7 @@ export class CommentTileComponent implements OnInit{
     @Output() replied = new EventEmitter<CommentParameter>();
     @Output() showMoreReplies = new EventEmitter<CommentPostId>();
 
+    isLoggedIn:boolean=false;
     commentRequest:CommentRequestDto;
     replyInvalid:boolean=false;
     replyMode:boolean=false;
@@ -42,6 +43,9 @@ export class CommentTileComponent implements OnInit{
     commentAction: boolean = false;
 
     ngOnInit(): void {
+      this.authService.loggedInStatus.subscribe(isLogin=>{
+        this.isLoggedIn=isLogin;
+      })
       this.updatedCommentForm = new FormGroup({
         commentDescription: new FormControl('',Validators.required),
       });
@@ -60,6 +64,9 @@ export class CommentTileComponent implements OnInit{
     }
 
     deleteComment(event:MouseEvent,comment:CommentDto) {
+      if(!this.isLoggedIn){
+        this.router.navigateByUrl('/login');
+      } else {
       this.commentService.deleteComment(comment.commentId,comment.postId).subscribe(() => {
         this.comment.comment="deleted";
         this.comment.isDeleted=true;  
@@ -68,8 +75,12 @@ export class CommentTileComponent implements OnInit{
       this.closeCommentAction();
       event.stopPropagation();
     }
+    }
 
     editComment(comment:CommentDto) {
+      if(!this.isLoggedIn){
+        this.router.navigateByUrl('/login');
+      } else {
       comment.comment=this.updatedCommentForm.get('commentDescription')?.value;
       if(this.oldComment===comment.comment){
         this.discardEdit();
@@ -80,6 +91,7 @@ export class CommentTileComponent implements OnInit{
           });
         
       }
+    }
     }
 
     toggleEditMode(comment:CommentDto) {
@@ -103,13 +115,21 @@ export class CommentTileComponent implements OnInit{
   }
 
     toggleReplyMode() {
+      if(!this.isLoggedIn){
+        this.router.navigateByUrl('/login');
+      } else {
       this.replyMode=!this.replyMode;
+      }
     }
 
     createComment(commentParameter: CommentParameter) {
+      if(!this.isLoggedIn){
+        this.router.navigateByUrl('/login');
+      } else {
       this.replied.emit(commentParameter);
       this.toggleCollapse();
       this.replyMode=false;
+      }
     }
 
     showReplies(commentId:number,postId:number) {

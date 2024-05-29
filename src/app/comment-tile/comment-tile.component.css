@@ -1,6 +1,6 @@
 .commentTileComponent{
     width: calc(100% - 20px);
-    margin-top: 10px;
+    margin-top: 2px;
 }
 
 .profilePhtotoOutline{
@@ -67,9 +67,9 @@
 }
 
 .commentDetails{
-    height: min-content;
+    height: 20px;
     width: 100%;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
     position: relative;
     display: flex;
     align-items: center;
@@ -83,25 +83,23 @@
 
 .commentDate{
     margin-left: 20px;
-    opacity: 0.5;
-    padding-bottom: 1px;
+    opacity: 0.6;
     font-size: smaller;
-    font-weight: 700;
+    font-weight: 550;
 }
 
 .commentedOrReplied{
-    position: relative;
     padding-left: 10px;
-    padding-bottom: 5px;
     font-size: smaller;
-    opacity: 0.5;
-    font-weight: 700;
+    opacity: 0.6;
+    font-weight: 550;
 }
 
 .commentText{
     position: relative;
     left:30px;
     width: 100%;
+    margin-bottom: 5px;
     word-wrap: break-word;
     font-weight: 450;
     font-size: 17px;

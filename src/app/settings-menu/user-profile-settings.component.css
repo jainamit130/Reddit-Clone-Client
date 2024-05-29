@@ -11,17 +11,21 @@
 }
 
 .container-box{
+    cursor: pointer;
     position: absolute;
-    width: 210px;
-    margin-top:20px;
-    padding-bottom: 15px;
-    padding-top: 15px;
+    width: 250px;
+    margin-top:22px;
     border-radius: 8px;
     border: 2px solid rgb(196, 193, 188);
     box-decoration-break: slice;
     position: absolute;
     right: 10px;
-    z-index: 10;
+    background-color: white;
+    z-index: 1;
+}
+
+.profileButton,.logoutButton{
+    padding: 10px;
 }
 
 .logoutButton:hover{
@@ -33,11 +37,28 @@
 }
 
 .logout-icon{
-    max-height: 25px;
-    max-width: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 8px;
+    max-height: 40px;
+    max-width: 40px;
+}
+
+.profile-icon{
+    max-height: 40px;
+    max-width: 40px;
+}
+
+.profile-icon,.logout-icon{
     align-items: center;
     margin-right: 20px;
     margin-left: 20px;
+}
+
+.userName{
+    font-size: 15px;
+    color: #474747;
+    opacity: 0.9;
 }
 
 .signup{
