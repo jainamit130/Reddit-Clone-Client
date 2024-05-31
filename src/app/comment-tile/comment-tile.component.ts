@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommentDto } from '../dto/commentDto';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';

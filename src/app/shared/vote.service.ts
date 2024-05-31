@@ -12,6 +12,6 @@ export class VoteService {
   constructor(private httpClient:HttpClient) { }
 
   vote(voteDto:VoteDto): Observable<any>{
-    return this.httpClient.post(environment.baseUrl+'/reddit/vote/',voteDto);
+    return this.httpClient.post(environment.baseUrl+'vote/',voteDto);
   } 
 }

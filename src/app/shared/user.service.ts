@@ -31,13 +31,13 @@ export class UserService {
   constructor(private httpClient:HttpClient) {}
 
   getUserProfile(userId:number):Observable<UserProfileDto>{
-    return this.httpClient.get<UserProfileDto>(environment.baseUrl+'/reddit/user/'+userId)
+    return this.httpClient.get<UserProfileDto>(environment.baseUrl+'user/'+userId)
   }
 
   searchPeople(searchQuery: string) {
     const options = {
       params: new HttpParams().set('q', searchQuery) 
     }
-    return this.httpClient.get<Array<userSearch>>(environment.baseUrl+'/reddit/search/people',options);
+    return this.httpClient.get<Array<userSearch>>(environment.baseUrl+'search/people',options);
   }
 }

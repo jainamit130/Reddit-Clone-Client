@@ -56,11 +56,11 @@ export class AuthService implements OnDestroy{
   
   
   signUp(signUpRequestPayload: SignUpRequestPayload){
-    return this.httpClient.post(environment.baseUrl+'/reddit/auth/signup',signUpRequestPayload, {responseType : 'text'});
+    return this.httpClient.post(environment.baseUrl+'auth/signup',signUpRequestPayload, {responseType : 'text'});
   }
   
   logIn(logInRequestPayload: LogInRequestPayload) {
-    return this.httpClient.post<LogInResponse>(environment.baseUrl+'/reddit/auth/login',logInRequestPayload)
+    return this.httpClient.post<LogInResponse>(environment.baseUrl+'auth/login',logInRequestPayload)
     .pipe(map(data => {
       this.localStorage.store('AuthenticationToken',data.authenticationToken);
       this.localStorage.store('RefreshToken',data.refreshToken),
@@ -82,7 +82,7 @@ export class AuthService implements OnDestroy{
 }
 
 refreshToken() {
-  return this.httpClient.post<LogInResponse>(environment.baseUrl+'/reddit/auth/refreshToken',this.refreshTokenPayload)
+  return this.httpClient.post<LogInResponse>(environment.baseUrl+'auth/refreshToken',this.refreshTokenPayload)
   .pipe(tap(response => {
     this.localStorage.store('AuthenticationToken',response.authenticationToken);
     this.localStorage.store('ExpiresAt',response.expiresAt);
@@ -106,7 +106,7 @@ refreshToken() {
   }
 
   logOut() {
-    this.httpClient.post(environment.baseUrl+'/reddit/auth/logout',this.getLatestRefreshTokenPayload(),{ responseType: 'text' })
+    this.httpClient.post(environment.baseUrl+'auth/logout',this.getLatestRefreshTokenPayload(),{ responseType: 'text' })
     .subscribe(data => {
     }, error => {
       throwError(error);

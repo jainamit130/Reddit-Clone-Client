@@ -21,7 +21,7 @@ export class CommentService {
   }
 
   getAllComments(postId:number,repliesCount:number):Observable<Array<CommentDto>> {
-    return this.httpClient.get<Array<CommentDto>>(environment.baseUrl+'/reddit/comments/getPostComments/'+postId+'?repliesCount='+repliesCount);
+    return this.httpClient.get<Array<CommentDto>>(environment.baseUrl+'comments/getPostComments/'+postId+'?repliesCount='+repliesCount);
   }
 
   comment(commentRequest: CommentRequestDto):Observable<CommentDto> {
@@ -29,7 +29,7 @@ export class CommentService {
       this.router.navigateByUrl('/login');
       return of();
     } 
-    return this.httpClient.post<CommentDto>(environment.baseUrl+'/reddit/comments/create',commentRequest)
+    return this.httpClient.post<CommentDto>(environment.baseUrl+'comments/create',commentRequest)
   }
 
   getUserCommentsOnPost(postId:number) :Observable<Array<CommentDto>> {
@@ -37,7 +37,7 @@ export class CommentService {
       return of([]);
     }
     else{
-      return this.httpClient.get<Array<CommentDto>>(environment.baseUrl+'/reddit/comments/getUserCommentOnPost/'+postId);
+      return this.httpClient.get<Array<CommentDto>>(environment.baseUrl+'comments/getUserCommentOnPost/'+postId);
     }
   }
 
@@ -49,7 +49,7 @@ export class CommentService {
       const options = { 
         params: new HttpParams().set('postId', postId) 
       };
-      return this.httpClient.post(environment.baseUrl+'/reddit/comments/deleteComment/'+commentId,null,options);
+      return this.httpClient.post(environment.baseUrl+'comments/deleteComment/'+commentId,null,options);
     }
 
   }
@@ -58,7 +58,7 @@ export class CommentService {
     const options = { 
       params: new HttpParams().set('postId', postId) 
     };
-    return this.httpClient.get<CommentDto>(environment.baseUrl+'/reddit/comments/getComment/'+commentId,options);
+    return this.httpClient.get<CommentDto>(environment.baseUrl+'comments/getComment/'+commentId,options);
   }
 
   editComment(editedComment: CommentDto):Observable<CommentDto> {
@@ -66,7 +66,7 @@ export class CommentService {
       this.router.navigateByUrl('/login');
       throw new Error("You need to login first");
     } else {
-      return this.httpClient.put<CommentDto>(environment.baseUrl+'/reddit/comments/edit',editedComment)
+      return this.httpClient.put<CommentDto>(environment.baseUrl+'comments/edit',editedComment)
     }
   }
 
@@ -74,14 +74,14 @@ export class CommentService {
     const options = { 
       params: new HttpParams().set('postId', postId) 
     };
-    return this.httpClient.get<Array<CommentDto>>(environment.baseUrl+'/reddit/comments/getMoreReplies/'+commentId,options);
+    return this.httpClient.get<Array<CommentDto>>(environment.baseUrl+'comments/getMoreReplies/'+commentId,options);
   } 
 
   searchComment(searchQuery:string){
     const options = {
       params: new HttpParams().set('q', searchQuery) 
     }
-    return this.httpClient.get<Array<CommentDto>>(environment.baseUrl+'/reddit/search/comments',options);
+    return this.httpClient.get<Array<CommentDto>>(environment.baseUrl+'search/comments',options);
   }
 
   getSingleThread(postId: number, singleThreadCommentId: number) {
@@ -89,6 +89,6 @@ export class CommentService {
       params: new HttpParams().set('postId', postId)
                               .set('commentId',singleThreadCommentId), 
     };
-    return this.httpClient.get<CommentDto>(environment.baseUrl+'/reddit/comments/singleThread',options);
+    return this.httpClient.get<CommentDto>(environment.baseUrl+'comments/singleThread',options);
   } 
 }

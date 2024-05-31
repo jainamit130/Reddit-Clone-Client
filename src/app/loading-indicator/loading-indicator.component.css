@@ -1,0 +1,28 @@
+.loading-line {
+    position: fixed;
+    top: 70px; /* Adjust the top position to align with the bottom of the header */
+    left: 0;
+    width: 0; /* Initial width of the loading line */
+    height: 2px; /* Height of the loading line */
+    background-color: #ff3c00; /* Color of the loading line */
+    z-index: 999; /* Ensures the loading line stays on top of other content */
+    animation: grow 4s infinite alternate, expand 2s infinite alternate; /* Animation for height and width */
+  }
+  
+  @keyframes grow {
+    from {
+      height: 2px; /* Initial height */
+    }
+    to {
+      height: 10px; /* Final height */
+    }
+  }
+  
+  @keyframes expand {
+    from {
+      width: 0; /* Initial width */
+    }
+    to {
+      width: 100%; /* Final width */
+    }
+}

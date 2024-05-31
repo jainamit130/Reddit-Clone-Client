@@ -13,22 +13,22 @@ export class PostService {
   constructor(private httpClient:HttpClient) { }
   
   getAllPosts():Observable<Array<PostDto>> {
-    return this.httpClient.get<Array<PostDto>>(environment.baseUrl+'/reddit/posts/');
+    return this.httpClient.get<Array<PostDto>>(environment.baseUrl+'posts/');
   }
 
   getPost(postId:number):Observable<PostDto> {
-    return this.httpClient.get<PostDto>(environment.baseUrl+'/reddit/posts/getPost/'+postId);
+    return this.httpClient.get<PostDto>(environment.baseUrl+'posts/getPost/'+postId);
   }
 
   createPost(createPostPayload: CreatePostRequestPayload):Observable<PostDto>{
-    return this.httpClient.post<PostDto>(environment.baseUrl+'/reddit/posts/create',createPostPayload);
+    return this.httpClient.post<PostDto>(environment.baseUrl+'posts/create',createPostPayload);
   }
 
   searchPost(searchQuery:string){
     const options = {
       params: new HttpParams().set('q', searchQuery) 
     }
-    return this.httpClient.get<Array<PostDto>>(environment.baseUrl+'/reddit/search/posts',options);
+    return this.httpClient.get<Array<PostDto>>(environment.baseUrl+'search/posts',options);
   }
 
 }

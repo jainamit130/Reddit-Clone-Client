@@ -53,7 +53,7 @@ export class CommunityService {
   }
 
   getAllCommunities():Observable<Array<CommunityDto>>{
-    return this.httpClient.get<Array<CommunityDto>>(environment.baseUrl+'/reddit/community/getAllCommunities');
+    return this.httpClient.get<Array<CommunityDto>>(environment.baseUrl+'community/getAllCommunities');
   }
 
   joinCommunity(communityId: number): Observable<CommunityDto> {
@@ -62,7 +62,7 @@ export class CommunityService {
       return of();
     }
 
-    return this.httpClient.post<CommunityDto>(environment.baseUrl+'/reddit/community/join/' + communityId, null);
+    return this.httpClient.post<CommunityDto>(environment.baseUrl+'community/join/' + communityId, null);
   }
 
   leaveCommunity(communityId: number): Observable<CommunityDto> {
@@ -71,34 +71,34 @@ export class CommunityService {
       return of();
     }
 
-    return this.httpClient.post<CommunityDto>(environment.baseUrl+'/reddit/community/leave/' + communityId, null);
+    return this.httpClient.post<CommunityDto>(environment.baseUrl+'community/leave/' + communityId, null);
   }
 
   getUserCommunities():Observable<Array<CommunityDto>>{
     if (!this.isLoggedIn) {
       return of([]);
     }
-    return this.httpClient.get<Array<CommunityDto>>(environment.baseUrl+'/reddit/community/getUserCommunities');
+    return this.httpClient.get<Array<CommunityDto>>(environment.baseUrl+'community/getUserCommunities');
   }
 
   createCommunity(createCommunityRequest: CreateCommunityRequestPayload):Observable<CommunityDto> {
-    return this.httpClient.post<CommunityDto>(environment.baseUrl+'/reddit/community/create',createCommunityRequest);
+    return this.httpClient.post<CommunityDto>(environment.baseUrl+'community/create',createCommunityRequest);
   }
 
   getCommunity(communityId:number):Observable<CommunityDto> {
-    return this.httpClient.get<CommunityDto>(environment.baseUrl+'/reddit/community/getCommunity/'+communityId);
+    return this.httpClient.get<CommunityDto>(environment.baseUrl+'community/getCommunity/'+communityId);
   }
 
   getCommunityOfPost(postId:number):Observable<CommunityDto> {
-    return this.httpClient.get<CommunityDto>(environment.baseUrl+'/reddit/community/getCommunityOfPost/'+postId);
+    return this.httpClient.get<CommunityDto>(environment.baseUrl+'community/getCommunityOfPost/'+postId);
   }
 
   getCommunityWithPosts(communityId:number):Observable<CommunityDto> {
-    return this.httpClient.get<CommunityDto>(environment.baseUrl+'/reddit/community/getCommunityWithPosts/'+communityId);
+    return this.httpClient.get<CommunityDto>(environment.baseUrl+'community/getCommunityWithPosts/'+communityId);
   }
 
   communitySearch(searchQuery: string):Observable<Array<CommunitySearchDto>> {
-    return this.httpClient.get<Array<CommunitySearchDto>>(environment.baseUrl+'/reddit/community/communitySearch/'+searchQuery);
+    return this.httpClient.get<Array<CommunitySearchDto>>(environment.baseUrl+'community/communitySearch/'+searchQuery);
   }
 
   
@@ -106,6 +106,6 @@ export class CommunityService {
     const options = {
       params: new HttpParams().set('q', searchQuery) 
     }
-    return this.httpClient.get<Array<CommunityDto>>(environment.baseUrl+'/reddit/search/communities',options);
+    return this.httpClient.get<Array<CommunityDto>>(environment.baseUrl+'search/communities',options);
   }
 }

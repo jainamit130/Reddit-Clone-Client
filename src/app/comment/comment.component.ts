@@ -99,6 +99,13 @@ export class CommentComponent implements OnInit,AfterViewInit{
   }
 
   createComment(commentParameter:CommentParameter) {
+    //dummyComment creation for faster user experience
+    let comment = CommentDto.createDefault();
+    comment.comment=commentParameter.commentDescription;
+    comment.username=this.authService.getUserName();
+    comment.userId=this.authService.getUserId();
+    comment.parentId=commentParameter.parentId;
+
     this.commentRequest.comment= commentParameter.commentDescription;
     this.commentRequest.username=this.authService.getUserName();
     this.commentRequest.parentId=commentParameter.parentId;
@@ -110,18 +117,19 @@ export class CommentComponent implements OnInit,AfterViewInit{
 
     if(!commentParameter.parentId){    
       this.commentService.comment(this.commentRequest).subscribe((comment) => {
-        this.comments$.push(comment);
+        // this.comments$.push(comment);
         this.commented.emit();
-      })
+      });
+      this.comments$.push(comment);
     } 
     
     else {
       this.commentService.comment(this.commentRequest).subscribe((createdComment) => {
-        this.updateReplies([createdComment],createdComment.parentId,false);
+        // this.updateReplies([createdComment],createdComment.parentId,false);
         this.commented.emit();
       });
+      this.updateReplies([comment],comment.parentId,false);
     }
-  
   }
 
   isUserComment(comment: CommentDto): boolean {

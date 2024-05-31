@@ -8,11 +8,12 @@ import { AuthService } from '../authorization/shared/auth.service';
 import { UserProfileSettings } from '../settings-menu/user-profile-settings.component';
 import { CommunityDto } from '../dto/CommunityDto';
 import { RedditSearchComponent } from '../reddit-search/reddit-search.component';
+import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RedditSearchComponent,SignUpComponent,UserProfileSettings,CommonModule,DetectOutsideClickDirective,LogInComponent,RouterLink,RouterOutlet],
+  imports: [LoadingIndicatorComponent,RedditSearchComponent,SignUpComponent,UserProfileSettings,CommonModule,DetectOutsideClickDirective,LogInComponent,RouterLink,RouterOutlet],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

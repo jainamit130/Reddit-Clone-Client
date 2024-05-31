@@ -32,8 +32,8 @@ export namespace CommentDto {
             repliesMap: new Map<number, CommentDto>(),
             post:null,
             repliesCount: 0,
-            currentVote: '',
-            votes: 0,
+            currentVote: 'UPVOTE',
+            votes: 1,
             isDeleted: false,
             isCollapsed: false,
         };
