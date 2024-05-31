@@ -5,6 +5,9 @@
       [postId]="postId"
     ></app-comment-reply-form>
   </div>
+  <div class="headerLine1">
+    <div *ngIf="loading" class="loading-line"></div>
+  </div>
   <div class="threadDiscussion" *ngIf="singleThread">
     <span class="singleThreadButton">Single Thread</span>
     <span class="headerLine"></span>
@@ -23,6 +26,7 @@
 
     <ng-template #commentTemplate let-comment>
       <app-comment-tile
+        (loadingClose)="closeLoading()"
         (collapseToggled)="updateCollapseBool(comment.commentId)"
         (showMoreReplies)="showMoreReplies($event)"
         (replied)="createComment($event)"

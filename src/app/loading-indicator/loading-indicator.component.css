@@ -2,27 +2,25 @@
     position: fixed;
     top: 70px; /* Adjust the top position to align with the bottom of the header */
     left: 0;
-    width: 0; /* Initial width of the loading line */
+    width: 20px; /* Initial width of the loading line */
     height: 2px; /* Height of the loading line */
     background-color: #ff3c00; /* Color of the loading line */
     z-index: 999; /* Ensures the loading line stays on top of other content */
-    animation: grow 4s infinite alternate, expand 2s infinite alternate; /* Animation for height and width */
+    animation: move 4s infinite linear; /* Animation for moving from left to right */
   }
   
-  @keyframes grow {
-    from {
-      height: 2px; /* Initial height */
+  @keyframes move {
+    0% {
+      left: 0; /* Start from the left edge */
+      width: 20px; /* Initial width */
     }
-    to {
-      height: 10px; /* Final height */
+    50% {
+      left: calc(100% - 20px); /* Move to the right edge minus the width of the loading bar */
+      width: calc(100% - 20px); /* Expand width */
+    }
+    100% {
+      left: 0; /* Reset back to the left edge */
+      width: 20px; /* Reset width */
     }
   }
   
-  @keyframes expand {
-    from {
-      width: 0; /* Initial width */
-    }
-    to {
-      width: 100%; /* Final width */
-    }
-}

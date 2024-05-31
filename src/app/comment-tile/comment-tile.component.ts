@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommentDto } from '../dto/commentDto';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -12,26 +12,30 @@ import { CommentPostId } from '../dto/CommentPostId';
 import { CommentRequestDto } from '../dto/RequestPayload/commentRequestDto';
 import { AuthService } from '../authorization/shared/auth.service';
 import { TimeAgoPipe } from '../pipe/time-ago.pipe';
+import { LoadingService } from '../configuration/loading.service';
+import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-comment-tile',
   standalone: true,
-  imports: [TimeAgoPipe,CommentReplyFormComponent,CommonModule,DetectOutsideClickDirective,ReactiveFormsModule,VoteComponent],
+  imports: [LoadingIndicatorComponent,TimeAgoPipe,CommentReplyFormComponent,CommonModule,DetectOutsideClickDirective,ReactiveFormsModule,VoteComponent],
   templateUrl: './comment-tile.component.html',
   styleUrl: './comment-tile.component.css'
 })
-export class CommentTileComponent implements OnInit{
+export class CommentTileComponent implements OnInit,AfterViewChecked{
     @Input() searchOrProfile:boolean=false;
     @Input() comment!:CommentDto;
     @Input() userComment:boolean = false;
     @Input() currentExposedReplies : number = 0;
 
+    @Output() loadingClose = new EventEmitter<void>();
     @Output() collapseToggled = new EventEmitter<void>();
     @Output() updateComments = new EventEmitter<void>();
     @Output() commentEdited = new EventEmitter<CommentDto>();
     @Output() replied = new EventEmitter<CommentParameter>();
     @Output() showMoreReplies = new EventEmitter<CommentPostId>();
 
+    loading: boolean = true;
     isLoggedIn:boolean=false;
     commentRequest:CommentRequestDto;
     replyInvalid:boolean=false;
@@ -51,8 +55,12 @@ export class CommentTileComponent implements OnInit{
       });
     }
 
-    constructor(private router:Router,private commentService:CommentService,private authService:AuthService) {
+    constructor(private loadingService: LoadingService,private router:Router,private commentService:CommentService,private authService:AuthService) {
       this.commentRequest=CommentRequestDto.createDefault();
+    }
+
+    ngAfterViewChecked(): void {
+      this.loadingClose.emit();
     }
 
     openCommentAction(){

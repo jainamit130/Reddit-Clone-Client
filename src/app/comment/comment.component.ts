@@ -10,31 +10,33 @@ import { CommentRequestDto } from '../dto/RequestPayload/commentRequestDto';
 import { CommentReplyFormComponent } from '../comment-reply-form/comment-reply-form.component';
 import { CommentParameter } from '../dto/CommentParameter';
 import { CommentPostId } from '../dto/CommentPostId';
+import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [CommentReplyFormComponent,CommonModule,CommentTileComponent,DetectOutsideClickDirective],
+  imports: [LoadingIndicatorComponent,CommentReplyFormComponent,CommonModule,CommentTileComponent,DetectOutsideClickDirective],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.css'
 })
 export class CommentComponent implements OnInit,AfterViewInit{
   singleThread:boolean=false;
-
+  loading:boolean=true;
+  
   @Input() singleThreadCommentId: number|null = null;
   @Input() postId!:number;
-
+  
   @Output() commented = new EventEmitter<void>();
   @Output() commentsRendered = new EventEmitter<void>();
-
+  
   commentRequest:CommentRequestDto;
   userCommentsOnPost:Array<CommentDto> = [];
   comments$: Array<CommentDto> = [];
-
+  
   constructor(private router:Router,private cdr:ChangeDetectorRef,private commentService:CommentService,private authService:AuthService,private activatedRoute:ActivatedRoute){
     this.commentRequest=CommentRequestDto.createDefault();
   }
-
+  
   ngOnInit(): void {
     if(this.singleThreadCommentId) {
       this.singleThread=true;
@@ -46,7 +48,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
       this.updateUserCommentsOnPost();
     }
   }
-
+  
   getSingleThread() {
     if(this.singleThreadCommentId) {
       this.commentService.getSingleThread(this.postId,this.singleThreadCommentId).subscribe(comment => {
@@ -57,11 +59,11 @@ export class CommentComponent implements OnInit,AfterViewInit{
       throw new Error("No such thread found!");
     }
   }
-
+  
   ngAfterViewInit(): void {
     this.commentsRendered.emit();
   }
-
+  
   updateUserCommentsOnPost(){
     this.commentService.getUserCommentsOnPost(this.postId).subscribe(userComments => {
       this.userCommentsOnPost=userComments;
@@ -89,7 +91,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
     if (!comment.repliesMap) {
       comment.repliesMap = new Map<number, CommentDto>();
     }
-
+    
     for (let reply of comment.replies) {
       const convertedReply = this.replyArrayToMap(reply);
       comment.repliesMap.set(reply.commentId, convertedReply);
@@ -97,7 +99,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
   
     return comment;
   }
-
+  
   createComment(commentParameter:CommentParameter) {
     //dummyComment creation for faster user experience
     let comment = CommentDto.createDefault();
@@ -105,7 +107,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
     comment.username=this.authService.getUserName();
     comment.userId=this.authService.getUserId();
     comment.parentId=commentParameter.parentId;
-
+    
     this.commentRequest.comment= commentParameter.commentDescription;
     this.commentRequest.username=this.authService.getUserName();
     this.commentRequest.parentId=commentParameter.parentId;
@@ -145,7 +147,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
       this.updateReplies(replies,commentPostId.commentId,true);
     });
   }
-
+  
   updateCollapseBool(commentId: number) {
     const updateHelper = (comments: CommentDto[]): boolean => {
       for (const comment of comments) {
@@ -153,7 +155,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
           comment.isCollapsed = !comment.isCollapsed; 
           return true; 
         }
-  
+        
         if (comment.repliesMap && comment.repliesMap.size > 0) {
           if (updateHelper(Array.from(comment.repliesMap.values()))) {
             return true; 
@@ -163,24 +165,24 @@ export class CommentComponent implements OnInit,AfterViewInit{
   
       return false; 
     };
-  
+    
     return updateHelper(this.comments$);
   }
   
   updateReplies(updatedReply: Array<CommentDto>, parentId: number|null, showRepliesFlow:boolean) {
     let flag = 0;
-
+    
     const updateHelper = (comments: CommentDto[]) => {
-        for (const comment of comments) {
-            if (comment.commentId === parentId) {
+      for (const comment of comments) {
+        if (comment.commentId === parentId) {
                 for (const reply of updatedReply) {
-                    if (!comment.repliesMap) {
+                  if (!comment.repliesMap) {
                         comment.repliesMap = new Map<number, CommentDto>();
-                    }
-                    comment.replies.push(reply);
-                    if(!showRepliesFlow)
-                      comment.repliesCount+=1
-                    comment.isCollapsed=false;
+                      }
+                      comment.replies.push(reply);
+                      if(!showRepliesFlow)
+                        comment.repliesCount+=1
+                      comment.isCollapsed=false;
                     comment.repliesMap.set(reply.commentId, reply);
                 }
                 flag = 1;
@@ -210,5 +212,8 @@ checkIfAllDataLoaded() {
 
   navigateToPost(postId:number) {
     this.router.navigate(['/post'],{queryParams:{postId}});
+  }
+  closeLoading() {
+    this.loading=false;
   }
 }
