@@ -80,6 +80,9 @@ export class CommentComponent implements OnInit,AfterViewInit{
         this.comments$.push(this.replyArrayToMap(commentItem));
       }
       this.checkIfAllDataLoaded();
+      if(this.comments$.length===0){
+        this.closeLoading();
+      }
     });
   }
 
@@ -100,14 +103,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
     return comment;
   }
   
-  createComment(commentParameter:CommentParameter) {
-    //dummyComment creation for faster user experience
-    let comment = CommentDto.createDefault();
-    comment.comment=commentParameter.commentDescription;
-    comment.username=this.authService.getUserName();
-    comment.userId=this.authService.getUserId();
-    comment.parentId=commentParameter.parentId;
-    
+  createComment(commentParameter:CommentParameter) {  
     this.commentRequest.comment= commentParameter.commentDescription;
     this.commentRequest.username=this.authService.getUserName();
     this.commentRequest.parentId=commentParameter.parentId;
@@ -119,18 +115,16 @@ export class CommentComponent implements OnInit,AfterViewInit{
 
     if(!commentParameter.parentId){    
       this.commentService.comment(this.commentRequest).subscribe((comment) => {
-        // this.comments$.push(comment);
+        this.comments$.push(comment);
         this.commented.emit();
       });
-      this.comments$.push(comment);
     } 
     
     else {
       this.commentService.comment(this.commentRequest).subscribe((createdComment) => {
-        // this.updateReplies([createdComment],createdComment.parentId,false);
+        this.updateReplies([createdComment],createdComment.parentId,false);
         this.commented.emit();
       });
-      this.updateReplies([comment],comment.parentId,false);
     }
   }
 

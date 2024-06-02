@@ -55,5 +55,21 @@
         </div>
       </div>
     </ng-template>
+    <div
+      style="display: flex; align-items: center"
+      *ngIf="comments$.length === 0 && !loading"
+    >
+      <img src="assets/empty-comments.png" class="no-results-icon" />
+      <div>
+        <h3 style="font-size: 20px; font-weight: 500; margin-bottom: 10px">
+          Be the first to comment
+        </h3>
+        <span style="font-size: 18px">Nobody's responded to this post yet.</span
+        ><br />
+        <span style="font-size: 18px"
+          >Add your thoughts and get the conversation going.</span
+        >
+      </div>
+    </div>
   </div>
 </div>
