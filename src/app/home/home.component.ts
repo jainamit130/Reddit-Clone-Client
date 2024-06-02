@@ -8,6 +8,7 @@ import { PostTileComponent } from '../post-tile/post-tile.component';
 import { AuthService } from '../authorization/shared/auth.service';
 import { CommunitiesComponent } from '../communities/communities.component';
 import { CommunityService } from '../shared/community.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-home',
@@ -18,10 +19,20 @@ import { CommunityService } from '../shared/community.service';
 })
 export class HomeComponent implements OnInit{
     posts$: Array<PostDto> = [];
+    recentPosts$: Array<PostDto> = [];
     openComments: number=1;
-    constructor(private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
+    isLoggedIn:boolean=false;
+    constructor(private userService:UserService,private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
 
     ngOnInit(): void {
+      this.authService.loggedInStatus.subscribe(isLogin => {
+        this.isLoggedIn=isLogin;
+        if(this.isLoggedIn){
+          this.userService.getRecentPosts().subscribe(recentPosts => {
+            this.recentPosts$=recentPosts.reverse();
+          })
+        }
+      })
       this.postService.getAllPosts().subscribe(post => {
         this.posts$=post;
       });
@@ -56,4 +67,14 @@ export class HomeComponent implements OnInit{
     navigateToPost(postId:number) {
       this.router.navigate(['/post'],{queryParams:{postId:postId}});
     }
-}
+
+    navigateToCommunity(communityId: number) {
+      this.router.navigate(['community'],{queryParams:{id:communityId}})
+    }
+
+    clearHistory() {
+      this.userService.clearHistory().subscribe(()=>{
+        this.recentPosts$=[];
+      });
+    }
+  }

@@ -14,7 +14,7 @@ import { TimeAgoPipe } from '../pipe/time-ago.pipe';
   templateUrl: './post-tile.component.html',
   styleUrl: './post-tile.component.css'
 })
-export class PostTileComponent implements OnChanges {
+export class PostTileComponent implements OnInit {
   @Input() isJoined: boolean|null=null;
   @Input() post!:PostDto;
   @Input() showCommunityName: boolean=true;
@@ -27,11 +27,13 @@ export class PostTileComponent implements OnChanges {
   
   constructor(private router:Router,private postService: PostService,private truncateHtmlPipe:TruncateHtmlTextPipe) {}
   
-  ngOnChanges(): void {
-    this.postService.getPost(this.post.postId).subscribe(post => {
-      this.post=post;
-      this.trucatedDescription=this.truncateHtmlPipe.transform(this.post.description,200);
-    });    
+  ngOnInit(): void {
+    this.trucatedDescription=this.truncateHtmlPipe.transform(this.post.description,200);
+
+    // this.postService.getPost(this.post.postId).subscribe(post => {
+    //   this.post=post;
+    //   this.trucatedDescription=this.truncateHtmlPipe.transform(this.post.description,200);
+    // });    
   }
   
   updatePost(currentPost:PostDto,isForComment:boolean){

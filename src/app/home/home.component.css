@@ -1,28 +1,89 @@
-  /* home.component.css */
-  .homeContainer{
-    display: flex;
-    justify-content: center;
-  }
-  
-  .communityContainer{
-    background-color: #ffffff;
-    padding: 10px 10px 10px 10px;
-    position: fixed;
-    left:0;
-    justify-self: left;
+.homeContainer {
+  display: flex;
+  background-color: #f1f1f1;
+  width: calc(100% - 280px); /* Adjust width to accommodate left part */
+  margin-left: 280px; /* Set left margin to accommodate left part */
+  position: relative;
 }
 
-@media screen and (max-width: 1330px) {
-  .communityContainer {
+.reddit-container {
+  overflow: auto;
+  padding-top: 10px;
+  width: 700px;
+  margin: 0 auto; /* Centering the Reddit container */
+}
+
+.recentPosts {
+  position: sticky;
+  overflow-y: auto;
+  padding: 20px;
+  padding-left: 0px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  width: 350px;
+  max-height: calc(100vh - 20px);
+  margin-right: 20px; /* Adjust margin as needed */
+  top: 0;
+}
+
+@media screen and (max-width: 1590px) {
+  .recentPosts {
       display: none; /* Hide the section */
   }
 }
 
-  .reddit-container {
-    overflow: auto;
-  padding-top: 10px;
-  width: 700px;
-  justify-self: center;
+.headingRecentPosts{
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+}
+
+.RecentPostsText{
+  color: #666;
+  font-weight: 500;
+  font-size: larger;
+}
+
+.recentPostsList{
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.recentPostsList:hover{
+  cursor: pointer;
+  background-color: #c0c0c0;
+}
+
+.clearButton{
+  font-weight: 500;
+  right:25px;
+  top:0;
+  position: absolute;
+  background-color: transparent;
+  border: transparent;
+  color: #125ba8;
+  font-size: larger;
+  height: 30px;
+  width: 30px;
+  justify-self: right;
+}
+
+.clearButton:hover{
+  text-decoration: underline;
+}
+
+.communityContainer {
+  background-color: #ffffff;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+@media screen and (max-width: 1330px) {
+  .communityContainer {
+    display: none; /* Hide the section */
+  }
 }
 
 .reddit-post {
@@ -35,7 +96,7 @@
   max-height: fit-content;
 }
 
-.reddit-post:hover{
+.reddit-post:hover {
   background-color: #c7c7c7;
 }
 
@@ -62,11 +123,22 @@
   text-decoration: underline;
 }
 
-.headerLine{
+.headerLine {
   margin: 10px;
   margin-top: 5px;
   vertical-align: auto;
-  border-bottom: Solid 1px #b6b6b6;
+  border-bottom: solid 1px #b6b6b6;
 }
-/* Add more styles as needed */
- 
+
+.communityNameText{
+  padding-left: 10px;
+  color: #666;
+  text-decoration: underline;
+}
+
+.comunityIcon{
+  align-items: center;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+}

@@ -3,7 +3,8 @@
   }
 
   .communitiesContainer{
-    background-color: #ffffff;
+    z-index: 1;
+    background-color: #f1f1f1;
     padding: 10px 10px 10px 10px;
     position: fixed;
     left:0;
