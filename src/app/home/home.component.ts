@@ -18,6 +18,7 @@ import { UserService } from '../shared/user.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
+  
     posts$: Array<PostDto> = [];
     recentPosts$: Array<PostDto> = [];
     openComments: number=1;

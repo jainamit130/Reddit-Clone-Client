@@ -6,14 +6,6 @@
   margin-left: 200px;
 }
 
-.communitiesContainer{
-  background-color: #ffffff;
-  padding: 10px 10px 10px 10px;
-  position: fixed;
-  left:0;
-  justify-self: left;
-}
-
 .communitySection{
   justify-content: center;
 }
@@ -56,6 +48,19 @@
   background-color: rgb(218, 218, 218);
 }
 
+@media screen and (max-width: 1200px) {
+  .communityHeader {
+    display: none;
+  }
+
+  .reddit-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+
 .communityTitle{
   height: 100px;
   width: 700px;
@@ -74,7 +79,7 @@
   padding-top: 10px;
   height: auto;
   max-height: 80vh; /* Set your desired max height here */
-  width: 200px;
+  width: 250px;
   right: 0;
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden;
@@ -82,7 +87,7 @@
   justify-self: right;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   .communityAbout {
       display: none; /* Hide the section */
   }

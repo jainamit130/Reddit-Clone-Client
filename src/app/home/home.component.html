@@ -14,14 +14,14 @@
       <div class="headerLine"></div>
     </div>
   </div>
-  <div class="recentPosts" *ngIf="isLoggedIn && posts$.length > 0">
+  <div class="recentPosts" *ngIf="isLoggedIn && recentPosts$.length > 0">
     <div class="headingRecentPosts">
       <div class="RecentPostsText">Recent Posts</div>
       <button class="clearButton" (click)="clearHistory()">Clear</button>
     </div>
     <div class="recentPostsList" *ngFor="let post of recentPosts$">
       <div (click)="navigateToPost(post.postId)">
-        <div style="display: flex">
+        <div style="display: flex; padding: 5px">
           <img
             (click)="navigateToCommunity(post.communityId)"
             class="comunityIcon"
@@ -33,12 +33,14 @@
             >r/{{ post.communityName }}</span
           >
         </div>
-        <div>
-          <span style="font-size: large">{{ post.postName }}</span>
-        </div>
-        <div>
-          <span style="padding: 5px">{{ post.votes }} votes</span>
-          <span style="padding: 5px">{{ post.comments }} comments</span>
+        <div style="padding: 10px">
+          <div>
+            <span style="font-size: large">{{ post.postName }}</span>
+          </div>
+          <div style="padding-top: 10px">
+            <span>{{ post.votes }} votes</span>
+            <span style="padding-left: 10px">{{ post.comments }} comments</span>
+          </div>
         </div>
       </div>
     </div>
