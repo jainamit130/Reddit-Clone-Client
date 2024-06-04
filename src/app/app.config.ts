@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { RouterModule, provideRouter, withRouterConfig } from '@angular/router';
 
 import { routes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,6 +14,7 @@ import { TimeAgoPipe } from './pipe/time-ago.pipe';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
+    importProvidersFrom(RouterModule.forRoot(routes, {useHash: true})),
     importProvidersFrom(HttpClientModule),
     importProvidersFrom(NgxWebstorageModule.forRoot()),
     provideAnimations(),
