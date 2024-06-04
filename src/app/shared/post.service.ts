@@ -80,10 +80,6 @@ export class PostService {
       catchError(error => {
         console.error('Error loading user posts:', error);
         return of([]); 
-      }),
-      switchMap(posts => {
-        this.userPosts.next(posts);
-        return of(posts);
       })
     );
   }

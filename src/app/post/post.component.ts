@@ -41,11 +41,19 @@ export class PostComponent implements OnInit{
     this.activatedRoute.queryParams.subscribe(params => {
       this.postId=Number(params['postId']);
       this.singleThreadCommentId=params['commentId'];
-      this.postService.loadUserPosts().subscribe(userPosts => {
-        if(userPosts.some(userPost => userPost.postId===this.postId)){
-          this.userPost=true;
+      this.postService.userPostsListener.subscribe(posts => {
+        if(posts===null){
+          this.postService.loadUserPosts().subscribe(userPosts => {
+            if(userPosts.some(userPost => userPost.postId===this.postId)){
+              this.userPost=true;
+            }
+          });
+        } else {
+          if(posts.some(userPost => userPost.postId===this.postId)){
+            this.userPost=true;
+          }
         }
-      });
+      })
 
       this.postService.getPost(this.postId).subscribe(post => {
         this.post=post;
