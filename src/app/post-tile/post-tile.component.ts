@@ -6,24 +6,28 @@ import { TruncateHtmlTextPipe } from '../pipe/transform/truncate-html-text.pipe'
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { TimeAgoPipe } from '../pipe/time-ago.pipe';
+import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
 
 @Component({
   selector: 'app-post-tile',
   standalone: true,
-  imports: [VoteComponent,CommonModule,TimeAgoPipe],
+  imports: [DetectOutsideClickDirective,VoteComponent,CommonModule,TimeAgoPipe],
   templateUrl: './post-tile.component.html',
   styleUrl: './post-tile.component.css'
 })
 export class PostTileComponent implements OnInit {
+  @Input() isUserPost: boolean = false;
   @Input() isJoined: boolean|null=null;
   @Input() post!:PostDto;
   @Input() showCommunityName: boolean=true;
 
+  @Output() postEditOpened = new EventEmitter<void>();
   @Output() leaveCommunity = new EventEmitter<number>();
   @Output() joinCommunity = new EventEmitter<number>();
   @Output() showComments = new EventEmitter<boolean>(false);
   
   trucatedDescription!:string;
+  postAction: boolean = false;
   
   constructor(private router:Router,private postService: PostService,private truncateHtmlPipe:TruncateHtmlTextPipe) {}
   
@@ -66,6 +70,19 @@ export class PostTileComponent implements OnInit {
   communityLeft(communityId:number,event: MouseEvent) {
     this.isJoined=false;
     this.leaveCommunity.emit(communityId);
+    event.stopPropagation();
+  }
+
+  openCommentAction(){
+    this.postAction=!this.postAction;
+  }
+
+  closeCommentAction(){
+    this.postAction=false;
+  } 
+
+  postOpenedInEditMode(event:MouseEvent){
+    this.postEditOpened.emit();
     event.stopPropagation();
   }
 }

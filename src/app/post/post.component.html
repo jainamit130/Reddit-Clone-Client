@@ -18,6 +18,23 @@
           </div>
           <span class="separator">.</span>
           <span class="postDate">{{ post.creationDate | timeAgo }}</span>
+          <div appDetectOutsideClick (clickOutside)="closeCommentAction()">
+            <div *ngIf="userPost && !post.isDeleted" class="postUserAction">
+              <img
+                (click)="openCommentAction(); $event.stopPropagation()"
+                src="assets/three-dots.svg"
+                class="postDelete"
+              />
+              <div *ngIf="postAction" class="container-box">
+                <div class="postActionTile" (click)="deletePost($event, post)">
+                  Delete Post
+                </div>
+                <div class="postActionTile" (click)="toggleEditMode(post)">
+                  Edit Post
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div
           class="postUser"
@@ -27,8 +44,36 @@
         </div>
       </div>
     </div>
-    <h4>{{ post.postName }}</h4>
-    <p [innerHTML]="sanitizedDescription"></p>
+    <div *ngIf="!editMode">
+      <h4>{{ post.postName }}</h4>
+      <p [innerHTML]="sanitizedDescription"></p>
+    </div>
+    <div *ngIf="editMode">
+      <form
+        name="post-Input-Form"
+        class="postInputForm"
+        [formGroup]="updatedPostForm"
+        (ngSubmit)="editPost(post)"
+      >
+        <div class="tinymce-container">
+          <editor
+            apiKey="5n5jdjo2aatn8r1zom7letmjo1mus47rhedeosgw9cgpn9w2"
+            [formControlName]="'postDescription'"
+            [init]="{
+              height: 400,
+              menubar: false,
+              toolbar:
+                'undo redo spellcheckdialog  | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | align lineheight checklist bullist numlist | indent outdent | removeformat typography'
+            }"
+          >
+          </editor>
+        </div>
+        <div class="editAction">
+          <button class="cancelButton" (click)="discardEdit()">Cancel</button>
+          <button class="postButton" type="submit">Save Edits</button>
+        </div>
+      </form>
+    </div>
     <div class="voteCommentContainer">
       <app-vote
         [voteCount]="post.votes"

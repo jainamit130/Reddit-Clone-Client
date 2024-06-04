@@ -10,4 +10,6 @@ export interface PostDto {
     communityName: string;
     communityId: number;
     currentVote:string;
+    isDeleted:boolean;
+    isUserPost:boolean;
 }

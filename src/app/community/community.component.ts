@@ -49,8 +49,8 @@ export class CommunityComponent implements OnInit{
     }); 
   }
 
-  navigateToPost(postId:number) {
-    this.router.navigate(['/post'],{queryParams:{postId}});
+  navigateToPost(postId:number,openedInEditMode:boolean) {
+    this.router.navigate(['/post'],{queryParams:{postId:postId,openedInEditMode}});
   }
 
   navigateToCreate() {

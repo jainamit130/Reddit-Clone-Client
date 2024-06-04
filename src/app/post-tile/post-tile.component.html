@@ -32,21 +32,38 @@
         </div>
       </div>
     </div>
-    <div *ngIf="isJoined !== null">
-      <button
-        class="joinedButton"
-        *ngIf="isJoined"
-        (click)="communityLeft(post.communityId, $event)"
-      >
-        Joined
-      </button>
-      <button
-        class="joinButton"
-        *ngIf="!isJoined"
-        (click)="communityJoined(post.communityId, $event)"
-      >
-        Join
-      </button>
+    <div style="display: flex; align-items: center">
+      <div *ngIf="isJoined !== null" style="display: flex">
+        <button
+          class="joinedButton"
+          *ngIf="isJoined"
+          (click)="communityLeft(post.communityId, $event)"
+        >
+          Joined
+        </button>
+        <button
+          class="joinButton"
+          *ngIf="!isJoined"
+          (click)="communityJoined(post.communityId, $event)"
+        >
+          Join
+        </button>
+      </div>
+      <div appDetectOutsideClick (clickOutside)="closeCommentAction()">
+        <div *ngIf="isUserPost && !post.isDeleted" class="postUserAction">
+          <img
+            (click)="openCommentAction(); $event.stopPropagation()"
+            src="assets/three-dots.svg"
+            class="postDelete"
+          />
+          <div *ngIf="postAction" class="container-box">
+            <div class="postActionTile">Delete Post</div>
+            <div class="postActionTile" (click)="postOpenedInEditMode($event)">
+              Edit Post
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <h4 class="postName">{{ post.postName }}</h4>

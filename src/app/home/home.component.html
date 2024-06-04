@@ -1,14 +1,19 @@
 <div class="homeContainer">
   <div class="reddit-container">
-    <div (click)="navigateToPost(post.postId)" *ngFor="let post of posts$">
+    <div
+      (click)="navigateToPost(post.postId, false)"
+      *ngFor="let post of posts$"
+    >
       <div class="reddit-post">
         <app-post-tile
+          [isUserPost]="post.isUserPost"
           (joinCommunity)="joinCommunity(post.communityId)"
           (leaveCommunity)="leaveCommunity(post.communityId)"
           [isJoined]="isCommunityJoined(post.communityId)"
           [showCommunityName]="true"
           [post]="post"
           (showComments)="isCommentsClicked(post.postId)"
+          (postEditOpened)="navigateToPost(post.postId, true)"
         ></app-post-tile>
       </div>
       <div class="headerLine"></div>
@@ -20,7 +25,7 @@
       <button class="clearButton" (click)="clearHistory()">Clear</button>
     </div>
     <div class="recentPostsList" *ngFor="let post of recentPosts$">
-      <div (click)="navigateToPost(post.postId)">
+      <div (click)="navigateToPost(post.postId, false)">
         <div style="display: flex; padding: 5px">
           <img
             (click)="navigateToCommunity(post.communityId)"

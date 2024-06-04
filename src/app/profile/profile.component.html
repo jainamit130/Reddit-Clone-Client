@@ -30,11 +30,13 @@
     <div *ngIf="showingPosts">
       <div class="reddit-container">
         <div
-          (click)="navigateToPost(post.postId, null)"
+          (click)="navigateToPost(post.postId, null, false)"
           *ngFor="let post of userProfile.posts"
         >
           <div class="reddit-post">
             <app-post-tile
+              [isUserPost]="true"
+              (postEditOpened)="navigateToPost(post.postId, null, true)"
               [post]="post"
               (updatePost)="updatePost(post)"
             ></app-post-tile>
@@ -48,7 +50,7 @@
       <div class="reddit-container">
         <div class="headerLine"></div>
         <div
-          (click)="navigateToPost(comment.postId, comment.commentId)"
+          (click)="navigateToPost(comment.postId, comment.commentId, false)"
           *ngFor="let comment of userProfile.comments"
         >
           <div class="reddit-post">

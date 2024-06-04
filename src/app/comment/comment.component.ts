@@ -11,6 +11,7 @@ import { CommentReplyFormComponent } from '../comment-reply-form/comment-reply-f
 import { CommentParameter } from '../dto/CommentParameter';
 import { CommentPostId } from '../dto/CommentPostId';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
+import { PostService } from '../shared/post.service';
 
 @Component({
   selector: 'app-comment',
@@ -33,7 +34,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
   userCommentsOnPost:Array<CommentDto> = [];
   comments$: Array<CommentDto> = [];
   
-  constructor(private router:Router,private cdr:ChangeDetectorRef,private commentService:CommentService,private authService:AuthService,private activatedRoute:ActivatedRoute){
+  constructor(private router:Router,private cdr:ChangeDetectorRef,private postService:PostService,private commentService:CommentService,private authService:AuthService,private activatedRoute:ActivatedRoute){
     this.commentRequest=CommentRequestDto.createDefault();
   }
   

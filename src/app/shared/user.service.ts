@@ -5,7 +5,6 @@ import { UserProfileDto } from './../dto/UserProfileDto';
 import { userSearch } from '../dto/userSearch';
 import { environment } from '../../environment';
 import { PostDto } from '../dto/postDto';
-import { AuthService } from '../authorization/shared/auth.service';
  
 @Injectable({
   providedIn: 'root'

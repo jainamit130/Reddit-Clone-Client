@@ -26,6 +26,17 @@ export class HomeComponent implements OnInit{
     constructor(private userService:UserService,private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
 
     ngOnInit(): void {
+      this.postService.getUserPosts().subscribe(userPosts => {
+        this.postService.updateUserPosts(userPosts);
+        this.postService.getAllPosts().subscribe(posts => {
+          posts.map(post => {
+            if(userPosts.some(userPost => userPost.postId === post.postId)){
+              post.isUserPost=true;
+            }
+          });
+          this.posts$=posts;
+        });
+      })
       this.authService.loggedInStatus.subscribe(isLogin => {
         this.isLoggedIn=isLogin;
         if(this.isLoggedIn){
@@ -34,9 +45,6 @@ export class HomeComponent implements OnInit{
           })
         }
       })
-      this.postService.getAllPosts().subscribe(post => {
-        this.posts$=post;
-      });
       this.communityService.getUserCommunities().subscribe(communities => {
         this.communityService.updateUserCommunitiesData(communities);
       });
@@ -65,8 +73,8 @@ export class HomeComponent implements OnInit{
       this.router.navigate(['/post'],{queryParams:{postId:postId,openComments:1}});
     }
 
-    navigateToPost(postId:number) {
-      this.router.navigate(['/post'],{queryParams:{postId:postId}});
+    navigateToPost(postId:number,openedInEditMode:boolean) {
+      this.router.navigate(['/post'],{queryParams:{postId:postId,openedInEditMode}});
     }
 
     navigateToCommunity(communityId: number) {

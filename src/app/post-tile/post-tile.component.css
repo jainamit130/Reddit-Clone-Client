@@ -116,4 +116,40 @@
   .joinButton:hover {
     background-color: #002255;
   }
+
+  .container-box{
+    border-radius: 10px;
+    border: 1px solid #a8a8a8;
+    position: absolute;
+    margin-top: 30px;
+    right: 0;
+    top:0;
+    min-width: 50px;
+    min-height: 20px;
+    background-color: white;
+  }
   
+  .postUserAction{
+    margin-right: 10px;
+    position: relative;
+    right:0;
+  }
+  
+  .postDelete{
+    padding: 8px;
+    border-radius: 10px;
+    max-height: 30px;
+    justify-content: stretch;
+  }
+  
+  .postActionTile{
+    cursor: pointer;
+    display: flex;
+    right:0;
+    justify-content: left;
+    padding: 10px;
+    align-items: center;
+    height: 50px;
+    width: 200px;
+    font-size: medium;
+  }

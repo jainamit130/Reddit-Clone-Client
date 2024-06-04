@@ -78,10 +78,10 @@ export class ProfileComponent implements OnInit,AfterViewInit {
     });
   }
 
-  navigateToPost(postId: number, commentId: number | null) {
-    this.router.navigate(['/post'], { queryParams: { postId, commentId } });
+  navigateToPost(postId:number,commentId: number | null,openedInEditMode:boolean) {
+    this.router.navigate(['/post'],{queryParams:{postId:postId,commentId,openedInEditMode}});
   }
-
+  
   showPosts() {
     this.showingPosts = true;
     this.showingComments = false;

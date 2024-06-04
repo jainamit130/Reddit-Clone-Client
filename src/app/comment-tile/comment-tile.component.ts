@@ -134,6 +134,7 @@ export class CommentTileComponent implements OnInit,AfterViewChecked{
       if(!this.isLoggedIn){
         this.router.navigateByUrl('/login');
       } else {
+      this.userComment=true;
       this.replied.emit(commentParameter);
       this.toggleCollapse();
       this.replyMode=false;
