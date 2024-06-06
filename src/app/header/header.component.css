@@ -1,10 +1,10 @@
 .header {
     background-color: #f1f1f1;
-    position: fixed; 
+    position: fixed; /* Keeps the header fixed at the top of the viewport */
     top: 0;
     height: 70px;
-    width: 100%; 
-    transition: transform 0.3s ease-in-out;
+    width: 100%; /* Makes the header span the full width of the viewport */
+    z-index: 999; /* Ensures the header stays on top of other content */
   }
 
 .redditHeader {
@@ -105,29 +105,7 @@
 }
 
 .headerLine{
-    position: absolute;
+    position: fixed;
     width: 300vh;
     border-bottom: Solid 2px #b6b6b6;
   }
-
-  @media (max-width: 895px) {
-    .header {
-        transform: scale(0.9); /* Scale down the entire header */
-    }
-    .redditIconAndText{
-        display: none;
-    }
-    .headerLine{
-        width: 100%;
-        margin-top: 60px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header {
-        transform: scale(0.7); /* Scale down the entire header further */
-    }
-    .top-right{
-        display: none;
-    }
-}
