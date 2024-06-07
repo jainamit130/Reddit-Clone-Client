@@ -49,3 +49,9 @@
     width: 15px;
     margin-right: 5px;
   }
+
+  @media screen and (max-width: 1170px) {
+    .redditSearch{
+      width: 300px;
+    }
+  }
