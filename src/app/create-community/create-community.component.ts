@@ -5,11 +5,12 @@ import { CommunityService } from '../shared/community.service';
 import { CreateCommunityRequestPayload } from '../dto/RequestPayload/create-community-request-payload';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
 
 @Component({
   selector: 'app-create-community',
   standalone: true,
-  imports: [EditorModule,ReactiveFormsModule,CommonModule],
+  imports: [EditorModule,ReactiveFormsModule,CommonModule,DetectOutsideClickDirective],
   templateUrl: './create-community.component.html',
   styleUrl: './create-community.component.css'
 })

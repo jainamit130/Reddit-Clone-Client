@@ -1,7 +1,7 @@
 .homeContainer {
   display: flex;
   background-color: #f1f1f1;
-  width: calc(100% - 280px); /* Adjust width to accommodate left part */
+  width: calc(100% - 630px); /* Adjust width to accommodate left part */
   margin-left: 280px; /* Set left margin to accommodate left part */
   position: relative;
 }
@@ -22,8 +22,7 @@
   background-color: #f1f1f1;
   width: 350px;
   max-height: calc(100vh - 20px);
-  margin-right: 20px; /* Adjust margin as needed */
-  top: 0;
+  top: 20px; /* Adjust top value as needed */
 }
 
 @media screen and (max-width: 1590px) {
@@ -34,44 +33,47 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .recentPosts {
-    display: none; /* Hide the recentPosts section */
-  }
+.recentPostsToggle {
+  z-index: 999;
+  margin-top: 200px;
+  height: 60px;
+  width: 10px;
+}
 
+@media screen and (max-width: 1200px) {
   .reddit-container {
     margin: 0 auto; /* Center the Reddit container */
     position: relative;
   }
 }
 
-
-.headingRecentPosts{
+.headingRecentPosts {
   margin-bottom: 16px;
   position: relative;
+  padding: 10px;
   display: flex;
 }
 
-.RecentPostsText{
+.RecentPostsText {
   color: #666;
   font-weight: 500;
   font-size: larger;
 }
 
-.recentPostsList{
+.recentPostsList {
   padding: 10px;
   border-radius: 10px;
 }
 
-.recentPostsList:hover{
+.recentPostsList:hover {
   cursor: pointer;
   background-color: #d4d4d4;
 }
 
-.clearButton{
+.clearButton {
   font-weight: 500;
-  right:25px;
-  top:0;
+  right: 25px;
+  top: 0;
   position: absolute;
   background-color: transparent;
   border: transparent;
@@ -82,16 +84,16 @@
   justify-self: right;
 }
 
-.communityNameText{
+.communityNameText {
   padding: 5px;
   border-radius: 10px;
 }
 
-.communityNameText:hover{
+.communityNameText:hover {
   background-color: #e9e9e9;
 }
 
-.clearButton:hover{
+.clearButton:hover {
   text-decoration: underline;
 }
 
@@ -153,13 +155,13 @@
   border-bottom: solid 1px #b6b6b6;
 }
 
-.communityNameText{
+.communityNameText {
   padding-left: 10px;
   color: #666;
   text-decoration: underline;
 }
 
-.comunityIcon{
+.comunityIcon {
   align-items: center;
   cursor: pointer;
   height: 30px;

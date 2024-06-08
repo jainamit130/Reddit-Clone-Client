@@ -1,36 +1,49 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommunityDto } from '../dto/CommunityDto';
 import { CommunityService } from '../shared/community.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ScreenWidthToggleDirective } from '../directives/screen-width-toggle.directive';
+import { UserService } from '../shared/user.service';
+import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
 
 @Component({
   selector: 'app-communities',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ScreenWidthToggleDirective,DetectOutsideClickDirective],
   templateUrl: './communities.component.html',
   styleUrl: './communities.component.css'
 })
-export class CommunitiesComponent implements OnInit{
-  communities$:Array<CommunityDto> = [];
-  // @Output() shareCommunities= new EventEmitter<Array<CommunityDto>>();
+export class CommunitiesComponent implements OnInit {
+  communities$: CommunityDto[] = [];
+  isVisible = true;
 
-  constructor(private communityService:CommunityService,private router:Router){
-    this.communityService.getAllCommunities().subscribe(community => {
-      this.communities$=community;
-    });
-  }
-  
+  constructor(private communityService: CommunityService, private router: Router,private userService:UserService) {}
+
   ngOnInit(): void {
+      this.userService.isVisibleObserver.subscribe(isVisible => {
+        this.isVisible=isVisible;
+      });
     this.communityService.getAllCommunities().subscribe(community => {
-      this.communities$=community;
+      this.communities$ = community;
     });
   }
-  
-  createCommunity() {
+
+  createCommunity(): void {
     this.router.navigateByUrl('/create-community');
   }
-  
-  openCommunity(communityId:number) {
-    this.router.navigate(['/community'], { queryParams: { id: communityId }, replaceUrl: true });  }
+
+  openCommunity(communityId: number): void {
+    this.router.navigate(['/community'], { queryParams: { id: communityId }, replaceUrl: true });
+  }
+
+  closeVisibility(event: any): void {
+    this.userService.isToggleActiveObserver.subscribe(isToggle => {
+      if (isToggle) {
+        this.userService.updateIsVisible(false);
+      } else {
+        event.stopPropagation();
+      }
+    });
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
+import { AfterContentChecked, Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
 import { PostService } from '../shared/post.service';
 import { PostDto } from '../dto/postDto';
 import { CommonModule } from '@angular/common';
@@ -9,23 +9,63 @@ import { AuthService } from '../authorization/shared/auth.service';
 import { CommunitiesComponent } from '../communities/communities.component';
 import { CommunityService } from '../shared/community.service';
 import { UserService } from '../shared/user.service';
+import { ScreenWidthToggleDirective } from '../directives/screen-width-toggle.directive';
+import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,VoteComponent,PostTileComponent,CommunitiesComponent],
+  imports: [DetectOutsideClickDirective,ScreenWidthToggleDirective,CommonModule,VoteComponent,PostTileComponent,CommunitiesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit,AfterContentChecked{
   
     posts$: Array<PostDto> = [];
     recentPosts$: Array<PostDto> = [];
     openComments: number=1;
     isLoggedIn:boolean=false;
+    recentPostsVisible:boolean=false;
+    isToggleActive:boolean=false;
+    isCommunityToggle:boolean=false;
+    isVisible:boolean=false;
+    isCommunitiesVisible:boolean=false;
+
     constructor(private userService:UserService,private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
 
+    ngAfterContentChecked(): void {
+      if(this.isLoggedIn && this.recentPosts$.length > 0){
+        this.recentPostsVisible=true;
+      } else {
+        this.recentPostsVisible=false;
+      }
+    }
+
+    activateToggle(event: boolean): void {
+      this.userService.updateRecentPostsToggle(event);
+    }
+
     ngOnInit(): void {
+      this.userService.isRecentPostsToggleObserver.subscribe(isActive => {
+        this.isToggleActive=isActive;
+        this.isVisible=!isActive;
+        });
+
+        this.userService.isToggleActiveObserver.subscribe(isActive => {
+          if(isActive){
+            this.isCommunityToggle=true;
+            this.userService.isVisibleObserver.subscribe(isVisible => {
+              if(isVisible){
+                this.isCommunitiesVisible=true;
+              } else {
+                this.isCommunitiesVisible=false;
+              }
+            })
+          } else {
+            this.isCommunityToggle=false;
+            this.isCommunitiesVisible=false;
+          }
+        });
       this.postService.getUserPosts().subscribe(userPosts => {
         this.postService.updateUserPosts(userPosts);
         this.postService.getAllPosts().subscribe(posts => {
@@ -74,7 +114,9 @@ export class HomeComponent implements OnInit{
     }
 
     navigateToPost(postId:number,openedInEditMode:boolean) {
+      if (!((this.isVisible && this.isToggleActive) || (this.isCommunitiesVisible && this.isCommunityToggle))) {
       this.router.navigate(['/post'],{queryParams:{postId:postId,openedInEditMode}});
+      }
     }
 
     navigateToCommunity(communityId: number) {
@@ -85,5 +127,17 @@ export class HomeComponent implements OnInit{
       this.userService.clearHistory().subscribe(()=>{
         this.recentPosts$=[];
       });
+    }
+
+    toggleVisibility(): void {
+      this.isVisible=!this.isVisible;
+    }
+
+    closeVisibility(event: any): void {
+      if (this.isToggleActive) {
+          this.isVisible=false;
+        } else {
+          event.stopPropagation();
+        }
     }
   }

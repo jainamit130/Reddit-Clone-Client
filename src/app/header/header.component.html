@@ -1,46 +1,57 @@
-<div class="header">
-  <div class="redditHeader">
-    <div style="display: flex">
-      <img
-        src="assets\reddit_logo.png"
-        title="Go to reddit home"
-        alt="reddit_logo"
-        (click)="navigateToHome()"
-        class="reddit-icon-svg"
-      />
-      <img
-        src="assets\reddit_text.png"
-        title="Go to reddit home"
-        alt="reddit_text"
-        (click)="navigateToHome()"
-        class="reddit-text"
-      />
-    </div>
-    <div class="redditSearch">
-      <app-reddit-search></app-reddit-search>
-    </div>
-    <div *ngIf="isLoggedIn" class="top-right-settings">
-      <button
-        class="create-button"
-        (click)="navigateToCreate(); $event.stopPropagation()"
-      >
-        <span class="add-symbol">+</span>
-        <span class="createText">Create</span>
-      </button>
-      <user-profile-settings-menu
-        (loggedOut)="logout()"
-        (openedProfile)="openProfile()"
-      ></user-profile-settings-menu>
-    </div>
-    <div *ngIf="!isLoggedIn" class="top-right-settings">
-      <div (click)="navigateToLogin()" class="login">
-        <a title="Log in to reddit">Log In</a>
+<div
+  appScreenWidthToggle
+  [threshold]="toggleThreshold"
+  (activateToggle)="activateToggle($event)"
+>
+  <div class="header">
+    <div class="redditHeader">
+      <div style="display: flex; position: fixed; align-items: center">
+        <div *ngIf="isToggleActive">
+          <div (click)="toggleVisibility(); $event.stopPropagation()">
+            <img class="communityToggle" src="../../assets/three-dots.svg" />
+          </div>
+        </div>
+        <img
+          src="assets\reddit_logo.png"
+          title="Go to reddit home"
+          alt="reddit_logo"
+          (click)="navigateToHome()"
+          class="reddit-icon-svg"
+        />
+        <img
+          src="assets\reddit_text.png"
+          title="Go to reddit home"
+          alt="reddit_text"
+          (click)="navigateToHome()"
+          class="reddit-text"
+        />
       </div>
-      <div (click)="navigateToSignup()" class="signup">
-        <a title="Sign up to reddit">Sign Up</a>
+      <div class="redditSearch">
+        <app-reddit-search></app-reddit-search>
+      </div>
+      <div *ngIf="isLoggedIn" class="top-right-settings">
+        <button
+          class="create-button"
+          (click)="navigateToCreate(); $event.stopPropagation()"
+        >
+          <span class="add-symbol">+</span>
+          <span class="createText">Create</span>
+        </button>
+        <user-profile-settings-menu
+          (loggedOut)="logout()"
+          (openedProfile)="openProfile()"
+        ></user-profile-settings-menu>
+      </div>
+      <div *ngIf="!isLoggedIn" class="top-right-settings">
+        <div (click)="navigateToLogin()" class="login">
+          <a title="Log in to reddit">Log In</a>
+        </div>
+        <div (click)="navigateToSignup()" class="signup">
+          <a title="Sign up to reddit">Sign Up</a>
+        </div>
       </div>
     </div>
+    <div class="headerLine"></div>
   </div>
-  <div class="headerLine"></div>
+  <app-loading-indicator></app-loading-indicator>
 </div>
-<app-loading-indicator></app-loading-indicator>

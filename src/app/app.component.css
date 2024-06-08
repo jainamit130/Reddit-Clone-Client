@@ -6,13 +6,8 @@
     z-index: 1;
     background-color: #f1f1f1;
     padding: 10px 10px 10px 10px;
+    padding-right: 0px;
     position: fixed;
     left:0;
     justify-self: left;
-  }
-
-  @media screen and (max-width: 1590px) {
-    .communitiesContainer {
-        display: none; /* Hide the section */
-    }
   }

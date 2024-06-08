@@ -1,10 +1,10 @@
 .header {
     background-color: #f1f1f1;
-    position: fixed; /* Keeps the header fixed at the top of the viewport */
+    position: fixed;
     top: 0;
     height: 70px;
-    width: 100%; /* Makes the header span the full width of the viewport */
-    z-index: 999; /* Ensures the header stays on top of other content */
+    width: 100%; 
+    z-index: 999; 
   }
 
 .redditHeader {
@@ -14,7 +14,6 @@
 }
 
 .reddit-icon-svg{
-    position: fixed;
     top:10px;
     max-width: 60px;
     max-height: 60px;
@@ -25,10 +24,9 @@
 .reddit-text{  
     left:63px;
     top:25px;
-    position: fixed;
     margin-bottom: 10px;
     max-width: 75px;
-    max-height: 75px;      
+    max-height: 23px;      
     font-weight: 700;   
 }
 
@@ -38,10 +36,10 @@
 
 .top-right-settings{
     display: flex;
-    position: absolute;
+    position: fixed;
     align-items: center;
     justify-content: center;
-    top:0;
+    top:20px;
     right: 0;
 }
 
@@ -55,7 +53,6 @@
     border: transparent;
     border-radius: 500px;
     max-width: fit-content;   
-    position: relative;
 }
 
 .create-button:hover{
@@ -78,8 +75,8 @@
 }
 
 .signup , .login{  
+    align-items: center;
     margin-right: 10px;
-    width: 70px;
     text-align: center;
     width: max-content;
     background-color: hsl(16.04deg 100% 42.55%);
@@ -115,6 +112,13 @@
     border-bottom: Solid 2px #b6b6b6;
   }
 
+  .communityToggle{
+    margin-bottom: 5px;
+    margin-left: 10px;
+    height: 20px;
+    width: 20px;
+}
+
   @media screen and (max-width: 1170px) {
     .reddit-text{
       display: none;
@@ -123,5 +127,22 @@
         top:17px;
         height: 45px;
         width: 45px;
+    }
+    .add-symbol{
+        font-size: 30px;
+    }
+    .createText{
+        font-size: small;
+    }
+    .create-button{
+        
+    }
+    .login{
+        width: 50px;
+        font-size: 9px;
+    }
+    .signup{
+        width: 58px;
+        font-size: 9px;
     }
   }

@@ -14,13 +14,38 @@ export class UserService {
   emitInputFocusEvent() {
     this.inputFocused.emit();
   }
+
+  private isRecentPostsToggleActive = new BehaviorSubject<boolean>(false);
+  isRecentPostsToggleObserver = this.isRecentPostsToggleActive.asObservable();
+
+  private isVisible = new BehaviorSubject<boolean>(true);
+  isVisibleObserver = this.isVisible.asObservable();
+
+  private isToggleActive = new BehaviorSubject<boolean>(false);
+  isToggleActiveObserver = this.isToggleActive.asObservable();
   
   private activatedSearch = new BehaviorSubject<boolean>(false);
   activatedSearchStatus = this.activatedSearch.asObservable();
   
   private currentRoute = new BehaviorSubject<string>("");
   routeStatus = this.currentRoute.asObservable();
-  
+
+  updateIsVisible(event:boolean){
+    this.isVisible.next(event);
+  }
+
+  updateIsToggleActive(event: boolean){
+    this.isToggleActive.next(event);
+    this.isVisible.next(!event);
+  }
+
+  toggleVisibility(){
+    this.isVisible.next(!this.isVisible.getValue());
+  }
+
+  updateRecentPostsToggle(event: boolean){
+    this.isRecentPostsToggleActive.next(event);
+  }
   
   updateActivatedStatus(isActivated:boolean){
     this.activatedSearch.next(isActivated);
@@ -50,4 +75,5 @@ export class UserService {
   clearHistory() {
     return this.httpClient.get(environment.baseUrl+'user/clearHistory');
   }
+  
 }
