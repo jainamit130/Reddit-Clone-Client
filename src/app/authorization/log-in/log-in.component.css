@@ -1,5 +1,6 @@
 .logInForm {
-    width: 500px;
+    width: 90%; /* Set the width to 90% of the viewport */
+    max-width: 500px; /* Limit the maximum width to 500px */
     height: 550px;
     border-radius: 10px;
     padding-top: 20px;
@@ -8,58 +9,65 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
-.loginText{
+/* Adjustments for smaller screens */
+@media screen and (max-width: 600px) {
+    .logInForm {
+        width: 90%;
+        max-width: 90%;
+        padding-left: 5%; /* Adjust left padding for smaller screens */
+    }
+}
+
+.loginText {
     font-size: 30px;
     font-weight: 700;
 }
 
-.loginButton{
+.loginButton {
     font-size: 17px;
     font-weight: 600;
-    width: 400px;
+    width: 80%; /* Set button width to 80% of the parent container */
+    max-width: 400px; /* Limit the maximum width to 400px */
     border-radius: 30px;
     margin-top: 30px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding: 14px 0; /* Adjust vertical padding */
     color: white;
     background-color: #D93A00;
     border-color: transparent;
 }
 
-.loginButton:hover{
-    background-color: #8d2600;
-}
-
-.field{
-    width: 400px;
+.field {
+    width: 80%; /* Set field width to 80% of the parent container */
+    max-width: 400px; /* Limit the maximum width to 400px */
     border-radius: 8px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding: 14px 0; /* Adjust vertical padding */
     border: transparent;
     background-color: #dad9d9;
 }
 
-.loginSignup:hover{
+.loginSignup:hover {
     margin-left: 6px;
-    cursor: pointer; 
-    color: blue; 
+    cursor: pointer;
+    color: blue;
     text-decoration: underline;
 }
 
-.login-result{
-    background-color: rgb(255, 255, 255);
+.login-result {
+    background-color: #fff;
     font-weight: 100px;
 }
 
-.login-failed-text,.activate-email-text {
+.login-failed-text,
+.activate-email-text {
     text-align: left;
     margin-top: 5px;
-    font-weight: bold;  
-    color: red;  
+    font-weight: bold;
+    color: red;
 }
 
-.activate-email-text{
-    padding-right: 20px;    
+.activate-email-text {
+    padding-right: 20px;
 }

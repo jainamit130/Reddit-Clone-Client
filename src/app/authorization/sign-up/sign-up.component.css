@@ -1,75 +1,59 @@
-.signUpForm{
-    margin-top: 1px;
-    right: 550px;
-    width: 500px;
-    height: 550px;
+.signUpForm {
+    width: 90%; /* Set the width to 90% of the viewport */
+    max-width: 500px; /* Limit the maximum width to 500px */
+    height: auto; /* Allow height to adjust based on content */
     border-radius: 10px;
     padding-top: 20px;
     padding-left: 45px;
-    padding-bottom: 500px;
+    padding-bottom: 50px; /* Adjust padding bottom as needed */
     position: absolute;
-    z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
-.settings{
-    margin-right: 10px;
+/* Adjustments for smaller screens */
+@media screen and (max-width: 600px) {
+    .signUpForm {
+        width: 90%;
+        max-width: 90%;
+        padding-left: 5%; /* Adjust left padding for smaller screens */
+    }
 }
 
-.login{
-    margin-right: 30px;
-    background-color: hsl(16.04deg 100% 42.55%);
-    border-color: transparent;
-    color: #ffffff;
-    fill: #0079D3;
-    border-radius: 999px;
-    border: 1px solid;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 8px 12px;
-}
-
-.login:hover{
-    background-color: hsl(16.4deg 100% 29.41%);
-    color: #ffffff;
-}
-
-.loginText{
+.loginText {
     font-size: 30px;
     font-weight: 700;
 }
 
-.loginButton{
+.loginButton {
     font-size: 17px;
     font-weight: 600;
-    width: 400px;
+    width: 80%; /* Set button width to 80% of the parent container */
+    max-width: 400px; /* Limit the maximum width to 400px */
     border-radius: 30px;
     margin-top: 30px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding: 14px 0; /* Adjust vertical padding */
     color: white;
     background-color: #D93A00;
     border-color: transparent;
 }
 
-.loginButton:hover{
-    background-color: #8d2600;
-}
-
-.field{
-    width: 400px;
+.field {
+    width: 80%; /* Set field width to 80% of the parent container */
+    max-width: 400px; /* Limit the maximum width to 400px */
     border-radius: 8px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding: 14px 0; /* Adjust vertical padding */
     border: transparent;
     background-color: #dad9d9;
 }
 
-.loginSignup:hover{
+.loginSignup:hover {
     margin-left: 6px;
-    cursor: pointer; 
-    color: blue; 
+    cursor: pointer;
+    color: blue;
     text-decoration: underline;
 }
+
+/* Additional styles can be adjusted as needed */
