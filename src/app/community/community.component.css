@@ -150,3 +150,24 @@
 .joinButton:hover {
   background-color: #002255;
 }
+
+@media screen and (max-width: 1170px) {
+  .communityHeader {
+    margin-left: 20px;
+    padding: 10px;
+  }
+
+  .communityTitle {
+    width: calc(100% - 100px); /* Adjust width */
+    margin-top: 20px;
+  }
+
+  .reddit-container {
+    width: calc(100% - 100px); /* Adjust width */
+  }
+
+  .communityAbout {
+    width: calc(100% - 100px); /* Adjust width */
+    margin-left: 20px;
+  }
+}

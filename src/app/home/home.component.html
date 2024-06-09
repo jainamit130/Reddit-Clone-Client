@@ -27,7 +27,7 @@
     </div>
   </div>
   <div style="display: flex; position: fixed; right: 0">
-    <div *ngIf="isToggleActive">
+    <div *ngIf="isToggleActive && isLoggedIn">
       <div (click)="toggleVisibility(); $event.stopPropagation()">
         <div *ngIf="!isVisible">
           <img

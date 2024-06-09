@@ -11,3 +11,16 @@
     left:0;
     justify-self: left;
   }
+
+  header {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  :host {
+    display: block;
+    height: 100%;
+  }

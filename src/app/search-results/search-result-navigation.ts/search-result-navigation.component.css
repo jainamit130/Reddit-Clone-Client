@@ -36,7 +36,6 @@
 }
 
 .searchResultsOnTopic {
-    margin-left: 100px;
     display: flex;
     width: 50%;
     justify-content: center;
@@ -53,3 +52,26 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+@media screen and (max-width: 1170px) {
+    .searchResultsText {
+      font-size: 14px;
+      margin-bottom: 10px; /* Added margin to separate from buttons */
+    }
+  
+    .searchResultPageButton {
+      margin: 5px; /* Reduced margin for better fit */
+      padding: 10px;
+      font-size: smaller;
+    }
+  
+    .searchResultsOnTopic {
+      width: 100%;
+      padding: 0 10px;
+    }
+  
+    .searchPage {
+        width: 100%;
+      padding: 10px;
+    }
+  }

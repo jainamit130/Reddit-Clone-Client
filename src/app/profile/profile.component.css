@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px; 
+  padding: 20px;
   box-sizing: border-box;
 }
 
@@ -13,7 +13,7 @@
   background-color: #61b2ca;
   border-radius: 10px;
   padding: 10px;
-  width: 700px;
+  width: 50%;
   display: flex;
   align-items: end;
   margin-bottom: 20px;
@@ -27,18 +27,18 @@
   display: flex;
   align-items: last baseline;
   flex-grow: 1;
-  justify-content: space-between; /* Align items to the start and end */
+  justify-content: space-between;
 }
 
 .parameters {
-  text-align: right; /* Align parameters to the right */
+  text-align: right;
 }
 
 .parameters > div {
   margin-bottom: 5px;
 }
 
-.profile-icon{
+.profile-icon {
   height: 150px;
   width: 95px;
 }
@@ -71,10 +71,10 @@
 
 .parent-container {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically, if needed */
-  width: 100%; /* Adjust based on your layout */
-  height: 100%; /* Adjust based on your layout */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .reddit-container {
@@ -83,14 +83,14 @@
   width: 700px;
   display: flex;
   flex-direction: column;
-  margin: auto; /* Center the container */
+  margin: auto;
 }
 
 .reddit-post {
   padding: 20px;
   margin-bottom: 5px;
   border-radius: 20px;
-  max-width: 700px;
+  width: 700px;
   justify-content: center;
   align-items: center;
   max-height: fit-content;
@@ -105,4 +105,58 @@
   margin-top: 2px;
   vertical-align: auto;
   border-bottom: solid 1px #b6b6b6;
+}
+
+@media screen and (max-width: 767px) {
+  .profile-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-image {
+    margin: 0 0 10px 0;
+  }
+
+  .profile-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .parameters {
+    text-align: center;
+  }
+
+  .profile-icon {
+    height: 100px;
+    width: 60px;
+  }
+
+  .searchResultPageButton {
+    padding: 10px;
+    font-size: small;
+  }
+  
+  .reddit-post {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+
+  .reddit-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1170px) {
+  .profile-info{
+    width: 100%;
+  }
+  .reddit-container {
+    width: 100%;
+  }
+  .reddit-post {
+    width: 100%;
+  }
 }

@@ -4,145 +4,128 @@
     top: 0;
     height: 70px;
     width: 100%; 
-    z-index: 999; 
-  }
-
-.redditHeader {
-    margin-top: 10px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    position: relative;
-}
-
-.reddit-icon-svg{
-    top:10px;
+  }
+  
+  .redditHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .left-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .reddit-icon-svg {
     max-width: 60px;
     max-height: 60px;
-    padding: 2px 8px 8px 0;
-    margin-left: 10px;
-}
-
-.reddit-text{  
-    left:63px;
-    top:25px;
-    margin-bottom: 10px;
-    max-width: 75px;
-    max-height: 23px;      
-    font-weight: 700;   
-}
-
-.logo{
-    text-decoration: none;
-}
-
-.top-right-settings{
-    display: flex;
-    position: fixed;
-    align-items: center;
-    justify-content: center;
-    top:20px;
-    right: 0;
-}
-
-.create-button{
     margin-right: 10px;
-    padding: 8px 11px 8px 8px;
+  }
+  
+  .reddit-text {
+    max-width: 75px;
+    max-height: 23px;
+    font-weight: 700;
+  }
+  
+  .top-right-settings {
     display: flex;
-    justify-items: center;
     align-items: center;
-    height: 50px;
-    border: transparent;
-    border-radius: 500px;
-    max-width: fit-content;   
-}
-
-.create-button:hover{
-    border: transparent;
+    justify-content: flex-end;
+  }
+  
+  .create-button {
+    padding: 8px 11px;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 999px;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+  
+  .create-button:hover {
     background-color: #d4d4d4;
-}
-
-.add-symbol{
-    padding-bottom: 9px;
-    font-size: 55px;
-    font-weight: lighter;
+  }
+  
+  .add-symbol {
+    font-size: 24px;
+    margin-right: 5px;
     color: #2a3c42;
-    margin-right: 5px; 
-}
-
-.createText{
+  }
+  
+  .createText {
     font-size: medium;
     font-weight: 600;
     color: #2a3c42;
-}
-
-.signup , .login{  
-    align-items: center;
-    margin-right: 10px;
-    text-align: center;
-    width: max-content;
-    background-color: hsl(16.04deg 100% 42.55%);
-    border-color: transparent;
-    color: #ffffff;
+  }
+  
+  .signup, .login {
+    margin-left: 10px;
+    padding: 8px 12px;
     border-radius: 999px;
+    background-color: hsl(16.04deg 100% 42.55%);
+    color: #ffffff;
     font-size: 14px;
     font-weight: 600;
-    padding: 10px 12px;
-    text-decoration: none;
-}
-
-.signup:hover,.login:hover{
+    cursor: pointer;
+  }
+  
+  .signup:hover, .login:hover {
     background-color: hsl(16.4deg 100% 29.41%);
-    color: #ffffff;
-}
-
-.redditSearch{
-    position: absolute;
-    top:0;
-    margin-top: 8px;
-    left: 50%;
-    right:50%;
+  }
+  
+  .redditSearch {
+    width: 100%;
+    flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-.headerLine{
-    position: fixed;
-    top:70px;
-    width: 300vh;
-    border-bottom: Solid 2px #b6b6b6;
   }
-
-  .communityToggle{
-    margin-bottom: 5px;
-    margin-left: 10px;
+  
+  .headerLine {
+    position: fixed;
+    top: 70px;
+    width: 100%;
+    border-bottom: 2px solid #b6b6b6;
+  }
+  
+  .communityToggle {
+      margin-right: 8px;
+    margin-left: 2px;
     height: 20px;
     width: 20px;
-}
-
+    cursor: pointer;
+  }
+  
   @media screen and (max-width: 1170px) {
-    .reddit-text{
+    .reddit-text {
       display: none;
     }
-    .reddit-icon-svg{
-        top:17px;
-        height: 45px;
-        width: 45px;
+  
+    .reddit-icon-svg {
+      height: 45px;
+      width: 45px;
     }
-    .add-symbol{
-        font-size: 30px;
+  
+    .add-symbol {
+      font-size: 30px;
     }
-    .createText{
-        font-size: small;
+  
+    .createText {
+      font-size: small;
     }
-    .create-button{
-        
-    }
-    .login{
-        width: 50px;
-        font-size: 9px;
-    }
-    .signup{
-        width: 58px;
-        font-size: 9px;
+  
+    .login, .signup {
+      font-size: 9px;
+      padding: 4px 8px;
     }
   }
+  

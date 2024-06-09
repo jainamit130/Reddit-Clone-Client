@@ -1,4 +1,5 @@
 .commentSection{
+    padding: 5px;
     width: 700px;
 }
 
@@ -122,4 +123,15 @@
     width: 62px;
     margin-right: 20px;
     align-items: center;
+  }
+
+  @media screen and (max-width: 1170px) {
+    .commentComponent{
+        width: 100%;
+    }
+
+    .commentSection{
+        width: 95%;
+    }
+         
   }

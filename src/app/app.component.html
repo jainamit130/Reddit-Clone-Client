@@ -1,9 +1,11 @@
-<app-header
-  [allowedCommunityToggleInCurrentPage]="communityToggle"
-></app-header>
-<div class="communitiesContainer" *ngIf="!isLoginPage">
-  <app-communities></app-communities>
-</div>
-<div class="content-wrapper">
-  <router-outlet></router-outlet>
+<div class="header">
+  <app-header
+    [allowedCommunityToggleInCurrentPage]="communityToggle"
+  ></app-header>
+  <div class="communitiesContainer" *ngIf="!isLoginPage">
+    <app-communities></app-communities>
+  </div>
+  <div class="content-wrapper">
+    <router-outlet></router-outlet>
+  </div>
 </div>
