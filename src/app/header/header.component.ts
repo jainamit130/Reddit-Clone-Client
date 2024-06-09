@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SignUpComponent } from '../authorization/sign-up/sign-up.component';
 import { CommonModule } from '@angular/common';
 import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit{
   community!:CommunityDto; 
   isToggleActive:boolean=false;
   toggleThreshold:number=1400;
+  @Input() allowedCommunityToggleInCurrentPage:boolean=true;
   
   ngOnInit(): void {
     this.userService.isToggleActiveObserver.subscribe(isActive => {

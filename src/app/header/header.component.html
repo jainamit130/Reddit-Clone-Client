@@ -6,7 +6,7 @@
   <div class="header">
     <div class="redditHeader">
       <div style="display: flex; position: fixed; align-items: center">
-        <div *ngIf="isToggleActive">
+        <div *ngIf="isToggleActive && allowedCommunityToggleInCurrentPage">
           <div (click)="toggleVisibility(); $event.stopPropagation()">
             <img class="communityToggle" src="../../assets/three-dots.svg" />
           </div>

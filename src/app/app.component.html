@@ -1,4 +1,6 @@
-<app-header [communityToggleLoginPage]="communityToggle"></app-header>
+<app-header
+  [allowedCommunityToggleInCurrentPage]="communityToggle"
+></app-header>
 <div class="communitiesContainer" *ngIf="!isLoginPage">
   <app-communities></app-communities>
 </div>
