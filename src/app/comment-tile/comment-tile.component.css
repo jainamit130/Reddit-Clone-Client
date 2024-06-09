@@ -11,7 +11,6 @@
 }
 
 .commentButton{
-    position: absolute;
     font-size: 12px;
     font-weight: 600;
     height: fit-content;
@@ -27,7 +26,6 @@
 }
 
 .cancelButton {
-    position: absolute;
     font-size: 12px;
     font-weight: 600;
     margin: 5px;
@@ -52,7 +50,14 @@
 
 .editAction{
     position: absolute;
+    display: flex;
+    align-items: center;
     right:0;
+}
+
+.cancelButton,
+.commentButton {
+  margin-right: 10px; /* Adjust spacing between buttons */
 }
 
 .collapsableVoteAndReply{
@@ -63,7 +68,12 @@
 .collapseIcon {
     height: 15px;
     width: 15px;
+    cursor: pointer;
     border-radius: 999px;
+}
+
+.collapseIcon:hover{
+    background-color: #b9b9b9;
 }
 
 .commentDetails{
@@ -77,8 +87,15 @@
 }
 
 .commentUser{
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
     font-weight: bolder;
     font-size: smaller;
+}
+
+.commentUser:hover{
+    background-color: #a8a8a8;
 }
 
 .commentDate{
@@ -134,7 +151,7 @@
     min-width: 50px;
     min-height: 20px;
     z-index: 10;
-    background-color: white;
+    background-color: #f1f1f1;
 }
 
 .commentActionTile{

@@ -37,10 +37,12 @@
           <span class="add-symbol">+</span>
           <span class="createText">Create</span>
         </button>
-        <user-profile-settings-menu
-          (loggedOut)="logout()"
-          (openedProfile)="openProfile()"
-        ></user-profile-settings-menu>
+        <div class="profile-settings">
+          <user-profile-settings-menu
+            (loggedOut)="logout()"
+            (openedProfile)="openProfile()"
+          ></user-profile-settings-menu>
+        </div>
       </div>
       <div *ngIf="!isLoggedIn" class="top-right-settings">
         <div (click)="navigateToLogin()" class="login">

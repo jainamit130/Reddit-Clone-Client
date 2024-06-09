@@ -1,18 +1,5 @@
-.communityContainer{
-  background-color: #ffffff;
-  padding: 10px 10px 10px 10px;
-  position: fixed;
-  left:0;
-  justify-self: left;
-}
-
-@media screen and (max-width: 1330px) {
-  .communityContainer {
-      display: none; /* Hide the section */
-  }
-}
-
 .reddit-container {
+  background-color: #f1f1f1;
   position: relative;
   padding-top: 10px;
   justify-content: center;
@@ -249,7 +236,7 @@
   min-width: 50px;
   min-height: 20px;
   z-index: 10;
-  background-color: white;
+  background-color: #f1f1f1;
 }
 
 .postUserAction{
@@ -265,6 +252,10 @@
   justify-content: stretch;
 }
 
+.postDelete:hover{
+  background-color: #afafaf;
+}
+
 .postActionTile{
   cursor: pointer;
   display: flex;
@@ -275,6 +266,10 @@
   height: 50px;
   width: 200px;
   font-size: medium;
+}
+
+.postActionTile:hover{
+  background-color: #cacaca;
 }
 
 .tinymce-container {

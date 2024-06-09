@@ -77,6 +77,7 @@ export class CommentTileComponent implements OnInit,AfterViewChecked{
       } else {
       this.commentService.deleteComment(comment.commentId,comment.postId).subscribe(() => {
         this.comment.comment="deleted";
+        this.editMode=false;
         this.comment.isDeleted=true;  
         this.updateComments.emit();
       });
@@ -147,5 +148,9 @@ export class CommentTileComponent implements OnInit,AfterViewChecked{
 
     toggleCollapse() {
       this.collapseToggled.emit();
+    }
+
+    openProfile(userId:number) {
+      this.router.navigate(["/profile"],{queryParams:{id:userId}});
     }
   }

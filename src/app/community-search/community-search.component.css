@@ -7,7 +7,7 @@
     position: absolute;
     width: fit-content;
     z-index: 10;
-    background-color: white;
+    background-color: #f1f1f1
 }
 
 .container-box-searchContainer{

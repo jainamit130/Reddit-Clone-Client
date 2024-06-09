@@ -117,6 +117,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
     if(!commentParameter.parentId){    
       this.commentService.comment(this.commentRequest).subscribe((comment) => {
         this.comments$.push(comment);
+        this.userCommentsOnPost.push(comment);
         this.commented.emit();
       });
     } 
@@ -124,6 +125,7 @@ export class CommentComponent implements OnInit,AfterViewInit{
     else {
       this.commentService.comment(this.commentRequest).subscribe((createdComment) => {
         this.updateReplies([createdComment],createdComment.parentId,false);
+        this.userCommentsOnPost.push(createdComment);
         this.commented.emit();
       });
     }

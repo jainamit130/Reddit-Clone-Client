@@ -3,6 +3,13 @@ input.ng-invalid.ng-touched {
     border: 1px solid red;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+}
+
 input[type="search"]::-webkit-search-cancel-button {
     appearance: none; 
     width: 15px;
@@ -24,4 +31,10 @@ input[type="search"]::-webkit-search-cancel-button {
 
   input:focus{
     outline: none;
+}
+
+@media (pointer: coarse) {
+  *:hover {
+    background-color: inherit !important; 
+  }
 }

@@ -21,6 +21,7 @@
     "@tinymce/tinymce-angular": "^7.0.0",
     "bootstrap": "^5.3.3",
     "date-fns": "^3.6.0",
+    "hammerjs": "^2.0.8",
     "ngx-toastr": "^18.0.0",
     "ngx-webstorage": "^13.0.1",
     "rxjs": "~7.8.0",

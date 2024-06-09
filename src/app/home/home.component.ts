@@ -11,11 +11,12 @@ import { CommunityService } from '../shared/community.service';
 import { UserService } from '../shared/user.service';
 import { ScreenWidthToggleDirective } from '../directives/screen-width-toggle.directive';
 import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
+import { SwipeDirective } from '../directives/swipe.directive';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [DetectOutsideClickDirective,ScreenWidthToggleDirective,CommonModule,VoteComponent,PostTileComponent,CommunitiesComponent],
+  imports: [SwipeDirective,DetectOutsideClickDirective,ScreenWidthToggleDirective,CommonModule,VoteComponent,PostTileComponent,CommunitiesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

@@ -149,6 +149,7 @@ export class PostComponent implements OnInit{
     this.postService.deletePost(post.postId).subscribe(() => {
       this.post.postName="deleted";
       this.post.description="deleted";
+      this.editMode=false;
       this.sanitizedDescription="deleted";
       this.post.isDeleted=true;  
     });

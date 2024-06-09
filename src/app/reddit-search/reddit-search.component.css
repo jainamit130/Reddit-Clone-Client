@@ -1,6 +1,9 @@
 .redditSearch {
+  position: fixed;
+  top:16px;
+  right:40%;
   padding-left: 33px;
-  width: 100%;
+  width: 30%;
   height: 40px;
   border-radius: 20px;
   border: transparent;
@@ -27,11 +30,12 @@
 }
 
 .searchedContainer {
-  z-index: 1;
+  z-index: 1000;
   padding-top: 15px;
-  position: absolute;
-  top: 50px; /* Adjusted to align with search bar */
-  background-color: white;
+  position: fixed;
+  top: 60px; /* Adjusted to align with search bar */
+  right:40%;
+  background-color: #f1f1f1;
   width: 30%;
   border-radius: 8px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -52,29 +56,13 @@
 
 @media screen and (max-width: 1170px) {
   .redditSearch {
-    width: 100%;
+    width: 35%;
   }
   .searchedContainer {
-    width: 30%;
+    width: 35%;
   }
-}
 
-@media screen and (max-width: 767px) {
-  .redditSearch {
-    width: 100%;
-    padding-left: 30px;
-  }
-  .searchedContainer {
-    width: 30%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .redditSearch {
-    width: 100%;
-    padding-left: 30px;
-  }
-  .searchedContainer {
-    width: 30%;
+  .searchresult{
+    font-size: smaller;
   }
 }

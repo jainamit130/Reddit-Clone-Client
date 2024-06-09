@@ -11,6 +11,7 @@
   }
   
   .redditHeader {
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -25,30 +26,35 @@
   }
   
   .reddit-icon-svg {
+    cursor: pointer;
     max-width: 60px;
     max-height: 60px;
     margin-right: 10px;
   }
   
   .reddit-text {
+    cursor: pointer;
     max-width: 75px;
     max-height: 23px;
     font-weight: 700;
   }
   
   .top-right-settings {
+    position: absolute;
+    right:0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
   }
   
   .create-button {
-    padding: 8px 11px;
+    padding-left: 10px;
+    padding-right: 10px;
     display: flex;
     align-items: center;
     border: none;
     border-radius: 999px;
-    background-color: #ffffff;
+    background-color: #f1f1f1;
     cursor: pointer;
   }
   
@@ -57,9 +63,10 @@
   }
   
   .add-symbol {
-    font-size: 24px;
+    font-size: 30px;
     margin-right: 5px;
     color: #2a3c42;
+    margin-bottom: 5px;
   }
   
   .createText {
@@ -84,6 +91,8 @@
   }
   
   .redditSearch {
+    position: fixed;
+    z-index: 1000;
     width: 100%;
     flex: 1;
     display: flex;
@@ -100,9 +109,19 @@
   .communityToggle {
       margin-right: 8px;
     margin-left: 2px;
-    height: 20px;
-    width: 20px;
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    padding: 10px;
     cursor: pointer;
+  }
+
+  .communityToggle:hover{
+    background-color: #d4d4d4;
+  }
+
+  .profile-settings{
+    margin-left: 10px;
   }
   
   @media screen and (max-width: 1170px) {
@@ -111,8 +130,13 @@
     }
   
     .reddit-icon-svg {
-      height: 45px;
-      width: 45px;
+      height: 30px;
+      width: 30px;
+    }
+
+    .redditSearch{
+        width: 35%;
+        left:27%;
     }
   
     .add-symbol {
@@ -120,7 +144,12 @@
     }
   
     .createText {
-      font-size: small;
+        padding: 0px;
+      font-size: smaller;
+    }
+
+    .profile-settings{
+        margin-left: 2px;
     }
   
     .login, .signup {

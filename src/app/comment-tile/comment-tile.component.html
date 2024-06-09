@@ -8,7 +8,9 @@
   </div>
   <div class="commentDetails">
     <img src="assets/reddit-profile-outline.svg" class="profilePhtotoOutline" />
-    <div class="commentUser">{{ comment.username }}</div>
+    <div (click)="openProfile(comment.userId)" class="commentUser">
+      {{ comment.username }}
+    </div>
     <div *ngIf="searchOrProfile">
       <div class="commentedOrReplied" *ngIf="comment.parentId === null">
         commented
