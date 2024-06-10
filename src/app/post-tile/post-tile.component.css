@@ -141,8 +141,13 @@
     max-height: 30px;
     justify-content: stretch;
   }
+
+  .postDelete:hover{
+    background-color: #acacac;
+  }
   
   .postActionTile{
+    background-color: #f1f1f1;
     cursor: pointer;
     display: flex;
     right:0;
@@ -152,4 +157,8 @@
     height: 50px;
     width: 200px;
     font-size: medium;
+  }
+
+  .postActionTile:hover{
+    background-color: #acacac;
   }

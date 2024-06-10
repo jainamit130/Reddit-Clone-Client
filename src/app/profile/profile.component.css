@@ -1,4 +1,5 @@
 .searchPage {
+  background-color: #f1f1f1;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -105,48 +106,6 @@
   margin-top: 2px;
   vertical-align: auto;
   border-bottom: solid 1px #b6b6b6;
-}
-
-@media screen and (max-width: 767px) {
-  .profile-info {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .profile-image {
-    margin: 0 0 10px 0;
-  }
-
-  .profile-details {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .parameters {
-    text-align: center;
-  }
-
-  .profile-icon {
-    height: 100px;
-    width: 60px;
-  }
-
-  .searchResultPageButton {
-    padding: 10px;
-    font-size: small;
-  }
-  
-  .reddit-post {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 5px;
-  }
-
-  .reddit-container {
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 1170px) {
