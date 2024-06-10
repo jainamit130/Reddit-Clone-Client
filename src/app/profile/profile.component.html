@@ -35,7 +35,7 @@
         >
           <div class="reddit-post">
             <app-post-tile
-              [isUserPost]="true"
+              [isUserPost]="isUser"
               (postEditOpened)="navigateToPost(post.postId, null, true)"
               [post]="post"
               (updatePost)="updatePost(post)"
@@ -55,7 +55,7 @@
         >
           <div class="reddit-post">
             <app-comment-tile
-              [searchOrProfile]="true"
+              [searchOrProfile]="isUser"
               (updateComments)="getUserComments()"
               [comment]="comment"
               [userComment]="true"

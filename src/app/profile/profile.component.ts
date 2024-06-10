@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit,AfterViewInit {
   userId!: number;
   showingPosts: boolean = true;
   showingComments: boolean = false;
+  isUser:boolean=false;
 
   constructor(
     private userService: UserService,
@@ -46,6 +47,9 @@ export class ProfileComponent implements OnInit,AfterViewInit {
     this.userService.updateSearchQuery("");
     this.activatedRoute.queryParams.subscribe(params => {
       this.userId = params['id'] as number;
+      if(this.authService.getUserId()===this.userId){
+        this.isUser=true;
+      }
       this.getUserComments();
     });
   }

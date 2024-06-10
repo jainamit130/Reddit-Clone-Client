@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
 import { PostService } from '../shared/post.service';
 import { PostDto } from '../dto/postDto';
 import { CommonModule } from '@angular/common';
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit,AfterContentChecked{
     isVisible:boolean=false;
     isCommunitiesVisible:boolean=false;
 
-    constructor(private userService:UserService,private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
+    constructor(private cdr: ChangeDetectorRef,private userService:UserService,private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
 
     ngAfterContentChecked(): void {
       if(this.isLoggedIn && this.recentPosts$.length > 0){
@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit,AfterContentChecked{
       this.userService.isRecentPostsToggleObserver.subscribe(isActive => {
         this.isToggleActive=isActive;
         this.isVisible=!isActive;
+        this.cdr.detectChanges();
         });
 
         this.userService.isToggleActiveObserver.subscribe(isActive => {
@@ -144,6 +145,6 @@ export class HomeComponent implements OnInit,AfterContentChecked{
     }
 
     openVisibility() {
-        this.recentPostsVisible=true;
+      this.isVisible=true;
     }
   }

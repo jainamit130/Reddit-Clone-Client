@@ -112,12 +112,12 @@
   }
   
   .communityToggle {
-      margin-right: 8px;
-    margin-left: 2px;
-    height: 40px;
-    width: 40px;
+      margin-right: 6px;
+    left:0;
+    height: 30px;
+    width: 30px;
     border-radius: 10px;
-    padding: 10px;
+    padding: 8px;
     cursor: pointer;
   }
 

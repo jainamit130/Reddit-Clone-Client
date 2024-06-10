@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommunityDto } from '../dto/CommunityDto';
 import { CommunityService } from '../shared/community.service';
 import { CommonModule } from '@angular/common';
@@ -14,16 +14,20 @@ import { DetectOutsideClickDirective } from '../directives/detect-outside-click.
   templateUrl: './communities.component.html',
   styleUrl: './communities.component.css'
 })
-export class CommunitiesComponent implements OnInit {
+export class CommunitiesComponent implements OnInit,AfterViewInit {
   communities$: CommunityDto[] = [];
   isVisible = true;
 
-  constructor(private communityService: CommunityService, private router: Router,private userService:UserService) {}
+  constructor(private cdr: ChangeDetectorRef,private communityService: CommunityService, private router: Router,private userService:UserService) {}
+
+  ngAfterViewInit(): void {
+    this.userService.isVisibleObserver.subscribe(isVisible => {
+      this.isVisible=isVisible;
+      this.cdr.detectChanges();
+    });
+  }
 
   ngOnInit(): void {
-      this.userService.isVisibleObserver.subscribe(isVisible => {
-        this.isVisible=isVisible;
-      });
     this.communityService.getAllCommunities().subscribe(community => {
       this.communities$ = community;
     });
