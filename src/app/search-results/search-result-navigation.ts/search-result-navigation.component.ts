@@ -58,8 +58,7 @@ export class SearchResultNavigationComponent implements OnInit,AfterViewInit{
   highlightButton(key: string): void {
     const buttonRef = this.getButtonRef(key);
     if (buttonRef) {
-      buttonRef.nativeElement.style.backgroundColor = '#494848';
-      buttonRef.nativeElement.style.color= "white";
+      buttonRef.nativeElement.style.backgroundColor = '#c7c7c7';
     }
   }
 

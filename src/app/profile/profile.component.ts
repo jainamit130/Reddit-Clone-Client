@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit,AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.postsButton.nativeElement.style.backgroundColor = 'rgb(201, 216, 216)';
+    this.postsButton.nativeElement.style.backgroundColor = '#c7c7c7';
   }
 
   getUserComments() {
@@ -85,14 +85,14 @@ export class ProfileComponent implements OnInit,AfterViewInit {
   showPosts() {
     this.showingPosts = true;
     this.showingComments = false;
-    this.postsButton.nativeElement.style.backgroundColor = 'rgb(201, 216, 216)';
-    this.commentsButton.nativeElement.style.backgroundColor = 'transparent';
+    this.postsButton.nativeElement.style.backgroundColor = '#c7c7c7';
+    this.commentsButton.nativeElement.style.backgroundColor = '#f1f1f1';
   }
 
   showComments() {
     this.showingPosts = false;
     this.showingComments = true;
-    this.commentsButton.nativeElement.style.backgroundColor = 'rgb(201, 216, 216)';
-    this.postsButton.nativeElement.style.backgroundColor = 'transparent';
+    this.commentsButton.nativeElement.style.backgroundColor = '#c7c7c7';
+    this.postsButton.nativeElement.style.backgroundColor = '#f1f1f1';
   }
 }
