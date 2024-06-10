@@ -1,6 +1,6 @@
 import { ApplicationConfig, Injectable, importProvidersFrom } from '@angular/core';
 import { RouterModule, provideRouter, withRouterConfig } from '@angular/router';
-import * as Hammer from 'hammerjs';
+// import * as Hammer from 'hammerjs';
 import { routes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxWebstorageModule } from 'ngx-webstorage';
@@ -12,12 +12,12 @@ import { routeReuseStrategyProvider } from './providers/routeReuseStrategyProvid
 import { TimeAgoPipe } from './pipe/time-ago.pipe';
 import { HAMMER_GESTURE_CONFIG, HammerGestureConfig, HammerModule } from '@angular/platform-browser';
 
-@Injectable()
-export class HammerConfig extends HammerGestureConfig {
-  override overrides = <any> {
-    swipe: { direction: Hammer.DIRECTION_ALL },
-  };
-}
+// @Injectable()
+// export class HammerConfig extends HammerGestureConfig {
+//   override overrides = <any> {
+//     swipe: { direction: Hammer.DIRECTION_ALL },
+//   };
+// }
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,8 +27,8 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(NgxWebstorageModule.forRoot()),
     provideAnimations(),
     importProvidersFrom(ToastrModule.forRoot()),
-    { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig },
-    importProvidersFrom(HammerModule),
+    // { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig },
+    // importProvidersFrom(HammerModule),
     noopInterceptorProvider,
     TruncateHtmlTextPipe,
     TimeAgoPipe,
