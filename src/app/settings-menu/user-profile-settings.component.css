@@ -11,6 +11,7 @@
 }
 
 .container-box{
+    background-color: #f1f1f1;
     cursor: pointer;
     position: absolute;
     width: 250px;
@@ -20,8 +21,7 @@
     box-decoration-break: slice;
     position: absolute;
     right: 10px;
-    background-color: #f1f1f1;
-    z-index: 1;
+    z-index: 2;
 }
 
 .profileButton,.logoutButton{

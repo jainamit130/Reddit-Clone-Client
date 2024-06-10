@@ -1,5 +1,4 @@
 .reddit-container {
-  background-color: #f1f1f1;
   position: relative;
   padding-top: 10px;
   justify-content: center;
@@ -227,6 +226,7 @@
 }
 
 .container-box{
+  background-color: #f1f1f1;
   border-radius: 10px;
   border: 1px solid #a8a8a8;
   position: absolute;
@@ -236,7 +236,6 @@
   min-width: 50px;
   min-height: 20px;
   z-index: 10;
-  background-color: #f1f1f1;
 }
 
 .postUserAction{

@@ -30,13 +30,13 @@
 }
 
 .searchedContainer {
+  background-color: #f1f1f1;
   z-index: 1000;
   padding-top: 15px;
   position: fixed;
-  top: 60px; /* Adjusted to align with search bar */
+  top: 70px; /* Adjusted to align with search bar */
   right:40%;
-  background-color: #f1f1f1;
-  width: 30%;
+  width: 50%;
   border-radius: 8px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }

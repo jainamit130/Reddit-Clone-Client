@@ -1,6 +1,12 @@
-    .communityColumn{
+    .communitiesContainer{
+        position: fixed;
+        left:0;
+        z-index: 1500;
         background-color: #f1f1f1;
-        z-index: 999;
+    }
+    
+    .communityColumn{
+        z-index: 1500;
         margin-top: 20px;
         overflow-y: scroll;
         height:100vh;

@@ -1,40 +1,42 @@
-<div appDetectOutsideClick (clickOutside)="closeVisibility($event)">
-  <div *ngIf="isVisible">
-    <div class="communityLine">
-      <div class="communityColumn">
-        <h5
-          style="
-            margin-left: 10px;
-            margin-right: 20px;
-            padding: 12px 5px 5px 5px;
-          "
-        >
-          Communities
-        </h5>
-        <nav>
-          <button
-            class="communityTile createCommunityButton"
-            (click)="createCommunity()"
+<div class="communitiesContainer">
+  <div appDetectOutsideClick (clickOutside)="closeVisibility($event)">
+    <div *ngIf="isVisible">
+      <div class="communityLine">
+        <div class="communityColumn">
+          <h5
+            style="
+              margin-left: 10px;
+              margin-right: 20px;
+              padding: 12px 5px 5px 5px;
+            "
           >
-            <span class="add-symbol">+</span> Create Community
-          </button>
-        </nav>
-        <div
-          class="communityTile"
-          *ngFor="let community of communities$"
-          (click)="openCommunity(community.communityId)"
-        >
-          <h6 style="margin-bottom: -1px">{{ community.communityName }}</h6>
-          <span
-            >{{
-              community.numberOfPosts ? community.numberOfPosts : 0
-            }}
-            posts</span
-          ><br />
-          <span>{{ community.numberOfMembers }} members</span>
+            Communities
+          </h5>
+          <nav>
+            <button
+              class="communityTile createCommunityButton"
+              (click)="createCommunity()"
+            >
+              <span class="add-symbol">+</span> Create Community
+            </button>
+          </nav>
+          <div
+            class="communityTile"
+            *ngFor="let community of communities$"
+            (click)="openCommunity(community.communityId)"
+          >
+            <h6 style="margin-bottom: -1px">{{ community.communityName }}</h6>
+            <span
+              >{{
+                community.numberOfPosts ? community.numberOfPosts : 0
+              }}
+              posts</span
+            ><br />
+            <span>{{ community.numberOfMembers }} members</span>
+          </div>
         </div>
+        <div class="vertical-headerLine"></div>
       </div>
-      <div class="vertical-headerLine"></div>
     </div>
   </div>
 </div>
