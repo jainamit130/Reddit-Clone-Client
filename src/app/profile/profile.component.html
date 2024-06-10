@@ -55,10 +55,10 @@
         >
           <div class="reddit-post">
             <app-comment-tile
-              [searchOrProfile]="isUser"
+              [searchOrProfile]="true"
               (updateComments)="getUserComments()"
               [comment]="comment"
-              [userComment]="true"
+              [userComment]="isUser"
             ></app-comment-tile>
           </div>
           <div class="headerLine"></div>

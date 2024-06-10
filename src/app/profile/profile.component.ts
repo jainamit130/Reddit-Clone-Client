@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { PostDto } from '../dto/postDto';
 import { CommonModule } from '@angular/common';
@@ -88,6 +88,9 @@ export class ProfileComponent implements OnInit,AfterViewInit {
   }
   
   showPosts() {
+    if(this.authService.getUserId()===this.userId){
+      this.isUser=true;
+    }
     this.showingPosts = true;
     this.showingComments = false;
     this.postsButton.nativeElement.style.backgroundColor = '#c7c7c7';
@@ -95,6 +98,9 @@ export class ProfileComponent implements OnInit,AfterViewInit {
   }
 
   showComments() {
+    if(this.authService.getUserId()===this.userId){
+      this.isUser=true;
+    }
     this.showingPosts = false;
     this.showingComments = true;
     this.commentsButton.nativeElement.style.backgroundColor = '#c7c7c7';
