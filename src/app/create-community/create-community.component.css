@@ -1,7 +1,7 @@
 .createCommunityContainer{
     justify-content: center;
     margin-left: 300px;
-    width: 100%;
+    width: calc(100% - 800px);
     margin: 0 auto;
     padding-top: 20px;
 }

@@ -22,7 +22,6 @@ export class ScreenWidthToggleDirective implements OnInit, OnDestroy {
   }
 
   private checkWidth = (e: MediaQueryListEvent | MediaQueryList): void => {
-    console.log(`Current screen width: ${window.innerWidth}px`);
     if (e.matches) {
       this.activateToggle.emit(true);
     } else {
