@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { BehaviorSubject, filter } from 'rxjs';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { UserService } from '../../shared/user.service';
 
 @Component({
@@ -27,13 +26,22 @@ export class SearchResultNavigationComponent implements OnInit,AfterViewInit{
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
       this.searchQuery = params['q'];
-    })
+    });
+    this.currentRoute= this.extractRouteString(this.router.url);
+  }
+
+  extractRouteString(url: string): string {
+    const searchString = 'search/';
+    const start = url.indexOf(searchString) + searchString.length;
+    const end = url.indexOf('?');
+    
+    if (start !== -1 && end !== -1) {
+      return url.substring(start, end);
+    }
+    return '';
   }
 
   ngAfterViewInit(): void {
-    this.userService.routeStatus.subscribe(route => {
-      this.currentRoute = route;
-    })
     this.buttonRefs = {
       'comments': this.commentsButton,
       'posts': this.postsButton,
@@ -50,12 +58,12 @@ export class SearchResultNavigationComponent implements OnInit,AfterViewInit{
   highlightButton(key: string): void {
     const buttonRef = this.getButtonRef(key);
     if (buttonRef) {
-      buttonRef.nativeElement.style.backgroundColor = 'rgb(201, 216, 216)';
+      buttonRef.nativeElement.style.backgroundColor = '#494848';
+      buttonRef.nativeElement.style.color= "white";
     }
   }
 
   navigateToSearch(searchType: string): void {
-    this.userService.updateRoute(searchType);
     this.router.navigate(['/search', searchType], { queryParams: { q: this.searchQuery } });
   }
 }

@@ -21,7 +21,7 @@ import { SwipeDirective } from '../directives/swipe.directive';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit,AfterContentChecked{
-  
+ 
     posts$: Array<PostDto> = [];
     recentPosts$: Array<PostDto> = [];
     openComments: number=1;
@@ -140,5 +140,9 @@ export class HomeComponent implements OnInit,AfterContentChecked{
         } else {
           event.stopPropagation();
         }
+    }
+
+    openVisibility() {
+        this.recentPostsVisible=true;
     }
   }

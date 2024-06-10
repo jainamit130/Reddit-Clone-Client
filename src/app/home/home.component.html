@@ -26,7 +26,12 @@
       <div class="headerLine"></div>
     </div>
   </div>
-  <div style="display: flex; position: fixed; right: 0">
+  <div
+    style="display: flex; position: fixed; right: 0"
+    appSwipe
+    (swipedLeft)="openVisibility()"
+    (swipedRight)="closeVisibility($event)"
+  >
     <div *ngIf="isToggleActive && isLoggedIn">
       <div (click)="toggleVisibility(); $event.stopPropagation()">
         <div *ngIf="!isVisible">

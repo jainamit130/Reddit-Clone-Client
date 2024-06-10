@@ -73,7 +73,6 @@ export class RedditSearchComponent implements OnInit{
   onEnter() {
     this.deactivateSearch();
     this.searchInput.nativeElement.blur();
-    this.userService.updateRoute("posts");
     this.router.navigate(['search/posts'],{queryParams:{q:this.inputField}});
   }
 }

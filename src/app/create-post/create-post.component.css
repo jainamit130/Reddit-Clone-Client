@@ -1,5 +1,9 @@
 /* Ensure the parent container centers its content */
 .content-wrapper {
+    position: absolute;
+    z-index: 0;
+    padding: 10px;
+    margin: 20px;
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: flex-start; /* Align items to the top */
@@ -14,6 +18,7 @@
     flex-direction: column;
     justify-content: center;
     padding-top: 10px;
+    z-index: 1; /* Ensure createPostContainer elements are above tinymce-container */
 }
 
 /* Ensure .createCommunityHeader content is spaced correctly */
@@ -22,6 +27,7 @@
     justify-content: space-between; /* Space between elements */
     align-items: center;
     margin-bottom: 20px; /* Add some space below the header */
+    z-index: 2; /* Ensure header elements are above tinymce-container */
 }
 
 /* Style adjustments for other elements as provided */
@@ -35,6 +41,7 @@
     font-weight: 600;
     padding: 10px 12px;
     text-decoration: none;
+    z-index: 2; /* Ensure button is above tinymce-container */
 }
 
 .createCommunityButton:hover {
@@ -48,6 +55,7 @@
     border-radius: 100px;
     color: rgb(0, 0, 0);
     background-color: #eaedef;
+    z-index: 2; /* Ensure options are above tinymce-container */
 }
 
 .communityOptions:hover {
@@ -61,6 +69,7 @@
 
 .titleLabel {
     margin-top: 20px;
+    z-index: 2; /* Ensure label is above tinymce-container */
 }
 
 .title {
@@ -69,6 +78,7 @@
     margin-bottom: 20px;
     border-radius: 10px;
     border: solid 2px rgb(153, 153, 153);
+    z-index: 2; /* Ensure title input is above tinymce-container */
 }
 
 .title:hover {
@@ -78,6 +88,8 @@
 .tinymce-container {
     border: solid 2px rgb(153, 153, 153); /* Add a 1px solid border with a light gray color */
     border-radius: 5px; /* Add border radius for rounded corners */
+    position: relative; /* Ensure position is set */
+    z-index: 0; /* Place tinymce-container behind other elements */
 }
 
 .tinymce-container:hover {

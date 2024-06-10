@@ -29,7 +29,7 @@ export class CommunitySearchResultComponent implements OnInit{
         this.searchHighlightedCommunities = communities.map(community => ({
           community,
           searchHighlightedCommunity: `u/${this.truncateHtmlPipe.highlightQueriedText(community.communityName, this.searchQuery)}`,
-          searchHighlightedCommunityDescription: this.truncateHtmlPipe.highlightQueriedText(community.description,this.searchQuery)
+          searchHighlightedCommunityDescription: this.truncateHtmlPipe.highlightQueriedText(this.truncateHtmlPipe.truncateAroundQuery(community.description,this.searchQuery,200),this.searchQuery)
         }));
         if(this.searchHighlightedCommunities.length===0)
           this.atleast1ResultFound=false;

@@ -10,6 +10,7 @@ import { noopInterceptorProvider } from './providers/noopInterceptorProvider';
 import { TruncateHtmlTextPipe } from './pipe/transform/truncate-html-text.pipe';
 import { routeReuseStrategyProvider } from './providers/routeReuseStrategyProvider';
 import { TimeAgoPipe } from './pipe/time-ago.pipe';
+import { HammerModule } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(NgxWebstorageModule.forRoot()),
     provideAnimations(),
     importProvidersFrom(ToastrModule.forRoot()),
+    importProvidersFrom(HammerModule),
     noopInterceptorProvider,
     TruncateHtmlTextPipe,
     TimeAgoPipe,

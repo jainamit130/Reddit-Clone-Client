@@ -35,4 +35,22 @@ export class TruncateHtmlTextPipe implements PipeTransform {
     return text.replace(regex, '<span style="font-size: 50px;"><strong>$1</strong></span>');
   }
 
+  truncateAroundQuery(text: string, query: string, maxLength: number): string {
+    const queryIndex = text.toLowerCase().indexOf(query.toLowerCase());
+    const halfLength = Math.floor(maxLength / 2);
+    const start = Math.max(0, queryIndex - halfLength);
+    const end = Math.min(text.length, queryIndex + query.length + halfLength);
+
+    let truncatedText = text.substring(start, end).trim();
+
+    if (start > 0) {
+      truncatedText = '... ' + truncatedText;
+    }
+    if (end < text.length) {
+      truncatedText += ' ...';
+    }
+
+    return truncatedText;
+  }
+
 }

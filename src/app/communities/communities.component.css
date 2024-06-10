@@ -1,4 +1,6 @@
     .communityColumn{
+        background-color: #f1f1f1;
+        z-index: 999;
         margin-top: 20px;
         overflow-y: scroll;
         height:100vh;

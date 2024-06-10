@@ -27,9 +27,6 @@ export class UserService {
   private activatedSearch = new BehaviorSubject<boolean>(false);
   activatedSearchStatus = this.activatedSearch.asObservable();
   
-  private currentRoute = new BehaviorSubject<string>("");
-  routeStatus = this.currentRoute.asObservable();
-
   updateIsVisible(event:boolean){
     this.isVisible.next(event);
   }
@@ -49,10 +46,6 @@ export class UserService {
   
   updateActivatedStatus(isActivated:boolean){
     this.activatedSearch.next(isActivated);
-  }
-  
-  updateRoute(newRoute:string){
-    this.currentRoute.next(newRoute);
   }
   
   constructor(private httpClient:HttpClient) {}
