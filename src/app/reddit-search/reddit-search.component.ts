@@ -26,6 +26,9 @@ export class RedditSearchComponent implements OnInit{
   constructor(private router:Router,private communityService: CommunityService, private userService:UserService) {}
   
   ngOnInit(): void {
+    this.userService.searchQueryObserver.subscribe((searchQuery) => {
+      this.inputField=searchQuery;
+    });
     this.userService.inputFocused.subscribe(() => {
       this.searchInput.nativeElement.focus();
       this.activateSearch();

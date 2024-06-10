@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { UserService } from '../../shared/user.service';
 
@@ -21,9 +21,13 @@ export class SearchResultNavigationComponent implements OnInit,AfterViewInit{
 
   buttonRefs: { [key: string]: ElementRef } = {};
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,private userService:UserService) {}
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const query = params['q'];
+      this.userService.updateSearchQuery(query);
+    });
     this.activatedRoute.queryParams.subscribe(params => {
       this.searchQuery = params['q'];
     });

@@ -36,7 +36,7 @@
   position: fixed;
   top: 70px; /* Adjusted to align with search bar */
   right:40%;
-  width: 50%;
+  width: 30%;
   border-radius: 8px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
@@ -59,7 +59,8 @@
     width: 35%;
   }
   .searchedContainer {
-    width: 35%;
+    right:40%;
+    width: 40%;
   }
 
   .searchresult{

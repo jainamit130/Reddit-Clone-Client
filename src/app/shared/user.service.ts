@@ -15,6 +15,13 @@ export class UserService {
     this.inputFocused.emit();
   }
 
+  private searchQuery = new BehaviorSubject<string>("");
+  searchQueryObserver = this.searchQuery.asObservable();
+
+  updateSearchQuery(query:string) {
+    this.searchQuery.next(query);
+  }
+
   private isRecentPostsToggleActive = new BehaviorSubject<boolean>(false);
   isRecentPostsToggleObserver = this.isRecentPostsToggleActive.asObservable();
 

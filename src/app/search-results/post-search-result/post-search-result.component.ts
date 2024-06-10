@@ -25,6 +25,7 @@ export class PostSearchResultComponent implements OnInit{
   constructor(private router:Router,private truncateHtmlPipe:TruncateHtmlTextPipe,private activatedRoute:ActivatedRoute,private postService:PostService) {}
 
   ngOnInit(): void {
+    
     this.activatedRoute.queryParams.subscribe(params => {
       this.searchQuery = params['q'];
       this.postService.searchPost(this.searchQuery).subscribe(posts => {

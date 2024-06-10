@@ -43,6 +43,7 @@ export class ProfileComponent implements OnInit,AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    this.userService.updateSearchQuery("");
     this.activatedRoute.queryParams.subscribe(params => {
       this.userId = params['id'] as number;
       this.getUserComments();

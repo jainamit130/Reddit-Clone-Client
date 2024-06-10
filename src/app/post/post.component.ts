@@ -13,6 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../authorization/shared/auth.service';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-post',
@@ -38,6 +39,7 @@ export class PostComponent implements OnInit{
   @ViewChild('comments') myElementRef!: ElementRef;
 
   ngOnInit(): void {
+    this.userService.updateSearchQuery("");
     this.activatedRoute.queryParams.subscribe(params => {
       this.postId=Number(params['postId']);
       this.singleThreadCommentId=params['commentId'];
@@ -81,7 +83,7 @@ export class PostComponent implements OnInit{
     });
   }
 
-  constructor(private authService:AuthService,private router: Router,private sanitizer: DomSanitizer,private communityService:CommunityService,private postService:PostService,private activatedRoute:ActivatedRoute){}
+  constructor(private authService:AuthService,private router: Router,private userService:UserService,private sanitizer: DomSanitizer,private communityService:CommunityService,private postService:PostService,private activatedRoute:ActivatedRoute){}
 
   checkScrollToComments(){
       if (this.openComments && this.myElementRef) {

@@ -6,6 +6,7 @@ import { PostTileComponent } from '../post-tile/post-tile.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommunitiesComponent } from '../communities/communities.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-community',
@@ -24,7 +25,7 @@ export class CommunityComponent implements OnInit{
   community:CommunityDto;
   joinButton:Boolean=true;
 
-  constructor(private sanitizer: DomSanitizer,private router:Router,private communityService:CommunityService,private activatedRoute:ActivatedRoute) {
+  constructor(private sanitizer: DomSanitizer,private router:Router,private communityService:CommunityService,private userService:UserService,private activatedRoute:ActivatedRoute) {
     this.community={
       communityId: 0,
     communityName: "",
@@ -36,7 +37,7 @@ export class CommunityComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    
+    this.userService.updateSearchQuery("");
     this.activatedRoute.queryParams.subscribe(params => {this.communityId=params['id']})
     
     this.communityService.getCommunityWithPosts(this.communityId).subscribe(data => {

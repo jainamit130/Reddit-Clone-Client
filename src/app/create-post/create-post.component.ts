@@ -8,6 +8,7 @@ import { CreatePostRequestPayload } from '../dto/RequestPayload/create-post-requ
 import { CommunityService } from '../shared/community.service';
 import { CommunitySearchComponent } from '../community-search/community-search.component';
 import { CommunitySearchDto } from '../dto/communitySearchDto';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-create-post',
@@ -23,7 +24,7 @@ export class CreatePostComponent implements OnInit{
   searchQuery: string = '';
   currentCommunity!:string;
 
-  constructor(private router:Router,private postService:PostService,private communityService:CommunityService,private activatedRoute:ActivatedRoute){
+  constructor(private router:Router,private userService:UserService,private postService:PostService,private communityService:CommunityService,private activatedRoute:ActivatedRoute){
     this.createPostRequest = {
       communityName:"",
       description:"",
@@ -32,6 +33,7 @@ export class CreatePostComponent implements OnInit{
   }  
 
   ngOnInit(): void {
+    this.userService.updateSearchQuery("");
     this.communityService.currentUserCommunities.subscribe(usercommunities => {
         usercommunities.map(community => {
           this.yourCommunities.push({

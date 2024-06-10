@@ -47,6 +47,7 @@ export class HomeComponent implements OnInit,AfterContentChecked{
     }
 
     ngOnInit(): void {
+      this.userService.updateSearchQuery("");
       this.userService.isRecentPostsToggleObserver.subscribe(isActive => {
         this.isToggleActive=isActive;
         this.isVisible=!isActive;
