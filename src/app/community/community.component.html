@@ -1,20 +1,24 @@
 <div class="communityContainer">
   <div class="communitySection">
     <div class="communityHeader">
-      <h1 class="communityTitle">{{ community.communityName }}</h1>
-      <button (click)="navigateToCreate()" class="joinedButton">
-        <span>+</span> Create Post
-      </button>
-      <button class="joinButton" *ngIf="joinButton" (click)="joinCommunity()">
-        Join
-      </button>
-      <button
-        class="joinedButton"
-        *ngIf="!joinButton"
-        (click)="leaveCommunity()"
-      >
-        Joined
-      </button>
+      <div>
+        <h1 class="communityTitle">{{ community.communityName }}</h1>
+      </div>
+      <div style="display: flex" class="communityHeaderAction">
+        <button (click)="navigateToCreate()" class="joinedButton">
+          <span>+</span> Create Post
+        </button>
+        <button class="joinButton" *ngIf="joinButton" (click)="joinCommunity()">
+          Join
+        </button>
+        <button
+          class="joinedButton"
+          *ngIf="!joinButton"
+          (click)="leaveCommunity()"
+        >
+          Joined
+        </button>
+      </div>
     </div>
     <div class="postsAndAbout">
       <div class="community">
@@ -38,8 +42,6 @@
         </div>
       </div>
       <div class="communityAbout">
-        <h5>About</h5>
-        <p [innerHtml]="sanitizedDescription"></p>
         <div class="metrics">
           <div class="membersCount">
             <p style="justify-self: center">{{ community.numberOfMembers }}</p>
@@ -51,6 +53,16 @@
             </p>
             <p style="justify-self: center">Posts</p>
           </div>
+        </div>
+        <h5>About</h5>
+        <div *ngIf="!isDescriptionTruncated">
+          <p [innerHtml]="sanitizedDescription"></p>
+        </div>
+        <div *ngIf="isDescriptionTruncated">
+          <p [innerHtml]="truncatedDescription"></p>
+          <button (click)="toggleReadMore()" class="readMoreLessButton">
+            {{ readMore ? "Read less" : "Read more" }}
+          </button>
         </div>
       </div>
     </div>

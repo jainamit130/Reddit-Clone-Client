@@ -15,20 +15,32 @@
     justify-content: center;
   }
 
-.metrics{
-  display: flex;
-  width: 200px;
-  align-items: center;
-}
+  .metrics {
+    display: flex;
+    width: 60%;
+    margin: 10px auto; /* Center the metrics container within the parent */
+    justify-content: space-between; /* Space between membersCount and postsCount */
+  }
+  
+  .membersCount, .postsCount {
+    flex: 1; /* Each section takes up equal space */
+    display: flex;
+    flex-direction: column; /* Ensure the text is in a column */
+    align-items: center; /* Center the content horizontally */
+    text-align: center; /* Center the text */
+  }
 
-.membersCount{
-  width: fit-content;
-}
+  .membersCount p, .postsCount p {
+    margin: 0; /* Remove default margin */
+    padding: 2px 0; /* Add small padding to control spacing */
+  }
 
-.postsCount{
-  margin-left: 10px;
-  width: fit-content;
-}
+  .readMoreLessButton{
+    background-color: transparent;
+    border-color: transparent;
+    color: #0045ac;
+    font-size: medium;
+  }
 
 .headerLine{
   margin: 10px;
@@ -43,23 +55,10 @@
   justify-content: center;
   align-items: center;
   right: 0;
-  height: 110px;
+  height: max-content;
   border-radius: 15px;
   background-color: rgb(218, 218, 218);
 }
-
-@media screen and (max-width: 1200px) {
-  .communityHeader {
-    display: none;
-  }
-
-  .reddit-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
 
 .communityTitle{
   height: 100px;
@@ -78,19 +77,13 @@
   bottom: 0;
   padding-top: 10px;
   height: auto;
-  max-height: 80vh; /* Set your desired max height here */
+  max-height: 80vh; 
   width: 250px;
   right: 0;
-  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-y: auto; 
   overflow-x: hidden;
   margin-left: 50px;
   justify-self: right;
-}
-
-@media screen and (max-width: 1200px) {
-  .communityAbout {
-      display: none; /* Hide the section */
-  }
 }
 
 .reddit-container {
@@ -151,23 +144,76 @@
   background-color: #002255;
 }
 
+/* Styles for mobile screens */
+
 @media screen and (max-width: 1170px) {
+  .communityContainer {
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .communitySection {
+    flex-direction: column; /* Change to column layout */
+    align-items: center; /* Center align items */
+  }
+
   .communityHeader {
-    margin-left: 20px;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0; /* Remove left margin */
+    justify-content: center; /* Center align items */
   }
 
   .communityTitle {
-    width: calc(100% - 100px); /* Adjust width */
-    margin-top: 20px;
+    width: 100%; /* Adjust width to full width */
+    padding-top: 20px;
   }
 
   .reddit-container {
-    width: calc(100% - 100px); /* Adjust width */
+    width: 100%; /* Adjust width to full width */
+    margin-top: 10px; /* Adjust margin */
+  }
+
+  .community {
+    order: 2; 
   }
 
   .communityAbout {
-    width: calc(100% - 100px); /* Adjust width */
-    margin-left: 20px;
+    order: 1; 
+    width: 100%; /* Adjust width to full width */
+    position: relative; /* Remove sticky position */
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: none; /* Remove max height */
+  }
+
+  .metrics {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+  }
+
+  .membersCount,
+  .postsCount {
+    margin: 5px 0; /* Adjust margin */
+  }
+
+  .postsAndAbout{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .communityHeaderAction{
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    top:-30px;
+    width: 80%;
+  }
+
+  .communityAbout{
+    width: 80%;
+    top:30px;
+    position: relative;
+    justify-content: center;
   }
 }

@@ -33,7 +33,8 @@ export class CommunitiesComponent implements OnInit {
     this.router.navigateByUrl('/create-community');
   }
 
-  openCommunity(communityId: number): void {
+  openCommunity(communityId: number,event: any): void {
+    this.closeVisibility(event);
     this.router.navigate(['/community'], { queryParams: { id: communityId }, replaceUrl: true });
   }
 

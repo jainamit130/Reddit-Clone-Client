@@ -22,14 +22,14 @@
   padding-bottom: 30px;
   border-radius: 10px;
   width: 350px;
-  max-height: calc(100vh - 20px);
-  top: 0px; /* Adjust top value as needed */
+  height: calc(100vh - 20px);
+  top: 0px;
 }
 
 @media screen and (max-width: 1590px) {
   .homeContainer {
     width: 100%;
-    margin-left: 0; /* Remove left margin to center the container */
+    margin-left: 0;
     justify-content: center;
   }
 }
@@ -123,7 +123,7 @@
 }
 
 .reddit-post:hover {
-  background-color: #e7e7e7;
+  background-color: #f0f0f0;
 }
 
 .post-details {

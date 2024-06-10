@@ -16,9 +16,14 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class CommunityComponent implements OnInit{
   @Input() communityId!:number;
+
   sanitizedDescription!: SafeHtml;
+  truncatedDescription!: SafeHtml;
+  isDescriptionTruncated: boolean = false;
+  readMore: boolean = false;
   community:CommunityDto;
   joinButton:Boolean=true;
+
   constructor(private sanitizer: DomSanitizer,private router:Router,private communityService:CommunityService,private activatedRoute:ActivatedRoute) {
     this.community={
       communityId: 0,
@@ -38,7 +43,7 @@ export class CommunityComponent implements OnInit{
       this.community=data;
       this.communityService.updateCommunityData(this.community.communityName);
       this.sanitizedDescription=this.sanitizer.bypassSecurityTrustHtml(this.community.description);
-    
+      this.checkDescriptionTruncate();
       this.communityService.getUserCommunities().subscribe(communities => {
         this.communityService.updateUserCommunitiesData(communities);
         if(communities.some(community => community.communityId === this.community.communityId))
@@ -47,6 +52,30 @@ export class CommunityComponent implements OnInit{
           this.joinButton=true;
       });
     }); 
+  }
+
+  checkDescriptionTruncate() {
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = this.community.description;
+    const wordCount = tempElement.innerText.split(' ').length;
+
+    if (window.innerWidth <= 1170 && wordCount > 50) {
+      this.isDescriptionTruncated = true;
+      const truncatedText = tempElement.innerText.split(' ').slice(0, 100).join(' ') + '...';
+      this.truncatedDescription = this.sanitizer.bypassSecurityTrustHtml(truncatedText);
+    }
+  }
+
+  toggleReadMore() {
+    this.readMore = !this.readMore;
+    if (this.readMore) {
+      this.truncatedDescription = this.sanitizedDescription;
+    } else {
+      const tempElement = document.createElement('div');
+      tempElement.innerHTML = this.community.description;
+      const truncatedText = tempElement.innerText.split(' ').slice(0, 200).join(' ') + '...';
+      this.truncatedDescription = this.sanitizer.bypassSecurityTrustHtml(truncatedText);
+    }
   }
 
   navigateToPost(postId:number,openedInEditMode:boolean) {
