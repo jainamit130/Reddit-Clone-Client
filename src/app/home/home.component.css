@@ -74,6 +74,10 @@
   background-color: #d4d4d4;
 }
 
+.recentPosts {
+  padding-bottom: 100px;
+}
+
 .clearButton {
   font-weight: 500;
   right: 25px;
