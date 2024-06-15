@@ -1,11 +1,4 @@
-<div
-  class="homeContainer"
-  [ngStyle]="
-    (isVisible && isToggleActive) || (isCommunitiesVisible && isCommunityToggle)
-      ? { 'background-color': '#c7c7c7' }
-      : {}
-  "
->
+<div class="homeContainer">
   <div class="reddit-container">
     <div
       (click)="navigateToPost(post.postId, false)"
@@ -26,6 +19,11 @@
       <div class="headerLine"></div>
     </div>
   </div>
+  <div
+    *ngIf="isVisible && isToggleActive"
+    class="backdrop"
+    (click)="closeVisibility($event)"
+  ></div>
   <div
     style="display: flex; position: fixed; right: 0"
     appSwipe

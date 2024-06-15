@@ -17,6 +17,7 @@ import { DetectOutsideClickDirective } from '../directives/detect-outside-click.
 export class CommunitiesComponent implements OnInit,AfterViewInit {
   communities$: CommunityDto[] = [];
   isVisible = true;
+  isToggleActive = false;
 
   constructor(private cdr: ChangeDetectorRef,private communityService: CommunityService, private router: Router,private userService:UserService) {}
 
@@ -28,6 +29,9 @@ export class CommunitiesComponent implements OnInit,AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.userService.isToggleActiveObserver.subscribe(isToggleActive=> {
+      this.isToggleActive=isToggleActive;
+    })
     this.communityService.getAllCommunities().subscribe(community => {
       this.communities$ = community;
     });
