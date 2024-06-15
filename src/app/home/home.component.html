@@ -1,4 +1,9 @@
 <div class="homeContainer">
+  <div
+    *ngIf="isVisible && isToggleActive"
+    class="backdrop"
+    (click)="closeVisibility($event)"
+  ></div>
   <div class="reddit-container">
     <div
       (click)="navigateToPost(post.postId, false)"
@@ -20,12 +25,7 @@
     </div>
   </div>
   <div
-    *ngIf="isVisible && isToggleActive"
-    class="backdrop"
-    (click)="closeVisibility($event)"
-  ></div>
-  <div
-    style="display: flex; position: fixed; right: 0"
+    style="display: flex; position: fixed; right: 0; z-index: 1500"
     appSwipe
     (swipedLeft)="openVisibility()"
     (swipedRight)="closeVisibility($event)"

@@ -1,9 +1,10 @@
 .createCommunityContainer{
+    overflow-x: hidden;
     justify-content: center;
     margin-left: 300px;
     width: calc(100% - 800px);
     margin: 0 auto;
-    padding-top: 20px;
+    padding: 40px;
 }
 
 .createCommunityHeader{

@@ -1,36 +1,37 @@
-/* Ensure the parent container centers its content */
 .content-wrapper {
     position: absolute;
     z-index: 0;
     padding: 10px;
     margin: 20px;
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: flex-start; /* Align items to the top */
-    padding-top: 10px; /* Maintain padding for the header */
-    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10px; 
+    width: calc(100% - 40px); 
+    overflow-x: hidden; 
 }
 
 .createPostContainer {
     position: relative;
-    width: 900px; /* Fixed width */
+    width: 900px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-top: 10px;
-    z-index: 1; /* Ensure createPostContainer elements are above tinymce-container */
+    z-index: 1; 
+    overflow-x: hidden; 
 }
 
-/* Ensure .createCommunityHeader content is spaced correctly */
+
 .createCommunityHeader {
     display: flex;
-    justify-content: space-between; /* Space between elements */
+    justify-content: space-between; 
     align-items: center;
-    margin-bottom: 20px; /* Add some space below the header */
-    z-index: 2; /* Ensure header elements are above tinymce-container */
+    margin-bottom: 20px; 
+    z-index: 2;
 }
 
-/* Style adjustments for other elements as provided */
+
 .createCommunityButton {
     width: max-content;
     background-color: hsl(16.04deg 100% 42.55%);
@@ -41,7 +42,7 @@
     font-weight: 600;
     padding: 10px 12px;
     text-decoration: none;
-    z-index: 2; /* Ensure button is above tinymce-container */
+    z-index: 2; 
 }
 
 .createCommunityButton:hover {
@@ -55,7 +56,7 @@
     border-radius: 100px;
     color: rgb(0, 0, 0);
     background-color: #eaedef;
-    z-index: 2; /* Ensure options are above tinymce-container */
+    z-index: 2; 
 }
 
 .communityOptions:hover {
@@ -64,21 +65,21 @@
 
 .dropDownSymbol {
     display: inline-block;
-    transform: rotate(180deg); /* Rotate the symbol 180 degrees */
+    transform: rotate(180deg); 
 }
 
 .titleLabel {
     margin-top: 20px;
-    z-index: 2; /* Ensure label is above tinymce-container */
+    z-index: 2; 
 }
 
 .title {
-    width: 100%; /* Adjust width to fit container */
+    width: 100%; 
     height: 50px;
     margin-bottom: 20px;
     border-radius: 10px;
     border: solid 2px rgb(153, 153, 153);
-    z-index: 2; /* Ensure title input is above tinymce-container */
+    z-index: 2; 
 }
 
 .title:hover {
@@ -86,10 +87,11 @@
 }
 
 .tinymce-container {
-    border: solid 2px rgb(153, 153, 153); /* Add a 1px solid border with a light gray color */
-    border-radius: 5px; /* Add border radius for rounded corners */
-    position: relative; /* Ensure position is set */
-    z-index: 0; /* Place tinymce-container behind other elements */
+    border: solid 2px rgb(153, 153, 153); 
+    border-radius: 5px; 
+    position: relative; 
+    z-index: 0; 
+    overflow-x: hidden;
 }
 
 .tinymce-container:hover {
@@ -106,6 +108,6 @@
 
 @media screen and (max-width: 1590px) {
     .communitiesContainer {
-        display: none; /* Hide the section */
+        display: none;
     }
 }
