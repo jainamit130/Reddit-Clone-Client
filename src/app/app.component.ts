@@ -9,6 +9,8 @@ import { CommunitiesComponent } from './communities/communities.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { SearchResultNavigationComponent } from './search-results/search-result-navigation.ts/search-result-navigation.component';
 import { UserService } from './shared/user.service';
+import { LocalStorageService } from 'ngx-webstorage';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -23,9 +25,26 @@ export class AppComponent implements OnInit{
   settingsOn: boolean = false;
   communityToggle:boolean = true;
 
-  constructor(private router: Router,private userService:UserService) {}
+  constructor(private router: Router,private userService:UserService,private localStorage: LocalStorageService) {}
 
   ngOnInit(): void {
+
+    // Refresh once when the website opened for the first time
+    const hasRefreshed = localStorage.getItem('hasRefreshed');
+    if (!hasRefreshed) {
+      localStorage.setItem('hasRefreshed', 'true');
+      window.location.reload();
+    } else {
+      localStorage.removeItem('hasRefreshed');
+    }
+
+    // Scroll to top point of the page while routing
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        window.scrollTo(0, 0);
+      });
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isLoginPage = this.router.url === '/login' || this.router.url === '/signup';

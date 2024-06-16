@@ -1,11 +1,9 @@
 .reddit-container {
-  overflow-x: hidden;
   position: relative;
   padding-top: 10px;
   justify-content: center;
   align-items: center;
   width: 700px;
-  height: 100%;
   margin: 0 auto;
 }
 
@@ -16,7 +14,6 @@
     max-width: 700px;
     justify-content: center;
     align-items: center;
-    max-height: fit-content;
   }
   
   .post-details {
@@ -134,7 +131,6 @@
     justify-items: center;
     align-items: center;
     width: fit-content;
-    height: 33px;
     background-color: #bbbbbb;
   }
   
