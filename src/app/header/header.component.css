@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 1000; 
+  z-index: 1700; 
 }
 
   .content-wrapper {
@@ -126,6 +126,7 @@
   }
 
   .profile-settings{
+    z-index: 1701;
     margin-left: 10px;
   }
   

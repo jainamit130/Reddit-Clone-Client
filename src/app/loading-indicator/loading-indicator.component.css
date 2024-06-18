@@ -5,7 +5,7 @@
     width: 20px; /* Initial width of the loading line */
     height: 2px; /* Height of the loading line */
     background-color: #ff3c00; /* Color of the loading line */
-    z-index: 999; /* Ensures the loading line stays on top of other content */
+    z-index: 1001; /* Ensures the loading line stays on top of other content */
     animation: move 4s infinite linear; /* Animation for moving from left to right */
   }
   
