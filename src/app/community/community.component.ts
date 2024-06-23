@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { CommunityService } from '../shared/community.service';
 import { CommonModule } from '@angular/common';
 import { CommunityDto } from '../dto/CommunityDto';
@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommunitiesComponent } from '../communities/communities.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { UserService } from '../shared/user.service';
+import { LoadingService } from '../configuration/loading.service';
 
 @Component({
   selector: 'app-community',
@@ -15,7 +16,7 @@ import { UserService } from '../shared/user.service';
   templateUrl: './community.component.html',
   styleUrl: './community.component.css'
 })
-export class CommunityComponent implements OnInit{
+export class CommunityComponent implements OnInit,AfterViewInit{
   @Input() communityId!:number;
 
   sanitizedDescription!: SafeHtml;
@@ -25,7 +26,7 @@ export class CommunityComponent implements OnInit{
   community:CommunityDto;
   joinButton:Boolean=true;
 
-  constructor(private sanitizer: DomSanitizer,private router:Router,private communityService:CommunityService,private userService:UserService,private activatedRoute:ActivatedRoute) {
+  constructor(private loadingService:LoadingService,private sanitizer: DomSanitizer,private router:Router,private communityService:CommunityService,private userService:UserService,private activatedRoute:ActivatedRoute) {
     this.community={
       communityId: 0,
     communityName: "",
@@ -34,6 +35,10 @@ export class CommunityComponent implements OnInit{
     numberOfMembers: 0,
     posts: []
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.loadingService.setLoadingComponent(false);
   }
 
   ngOnInit(): void {

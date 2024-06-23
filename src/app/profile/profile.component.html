@@ -29,6 +29,7 @@
   <div class="content">
     <div *ngIf="showingPosts">
       <div class="reddit-container">
+        <div *ngIf="userProfile.posts.length === 0"></div>
         <div
           (click)="navigateToPost(post.postId, null, false)"
           *ngFor="let post of userProfile.posts"

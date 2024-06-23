@@ -14,6 +14,7 @@ import { AuthService } from '../authorization/shared/auth.service';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
 import { UserService } from '../shared/user.service';
+import { LoadingService } from '../configuration/loading.service';
 
 @Component({
   selector: 'app-post',
@@ -22,7 +23,7 @@ import { UserService } from '../shared/user.service';
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })
-export class PostComponent implements OnInit{
+export class PostComponent implements OnInit,AfterViewInit{
 
   userPost:boolean=false;
   singleThreadCommentId:number|null=null;
@@ -37,6 +38,10 @@ export class PostComponent implements OnInit{
   postAction: boolean = false;
 
   @ViewChild('comments') myElementRef!: ElementRef;
+
+  ngAfterViewInit(): void {
+    this.loadingService.setLoadingComponent(false);
+  }
 
   ngOnInit(): void {
     this.userService.updateSearchQuery("");
@@ -83,7 +88,7 @@ export class PostComponent implements OnInit{
     });
   }
 
-  constructor(private authService:AuthService,private router: Router,private userService:UserService,private sanitizer: DomSanitizer,private communityService:CommunityService,private postService:PostService,private activatedRoute:ActivatedRoute){}
+  constructor(private authService:AuthService,private router: Router,private userService:UserService,private sanitizer: DomSanitizer,private communityService:CommunityService,private postService:PostService,private activatedRoute:ActivatedRoute,private loadingService:LoadingService){}
 
   checkScrollToComments(){
       if (this.openComments && this.myElementRef) {

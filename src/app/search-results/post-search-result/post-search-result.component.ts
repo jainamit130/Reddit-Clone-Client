@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { PostService } from '../../shared/post.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { PostTileComponent } from '../../post-tile/post-tile.component';
 import { searchHighlightedPost } from '../../dto/searchHighlightedPost';
 import { TruncateHtmlTextPipe } from '../../pipe/transform/truncate-html-text.pipe';
 import { NoSearchResultComponent } from '../no-search-result/no-search-result.component';
+import { LoadingService } from '../../configuration/loading.service';
 
 @Component({
   selector: 'app-post-search-result',
@@ -15,14 +16,18 @@ import { NoSearchResultComponent } from '../no-search-result/no-search-result.co
   styleUrl: './post-search-result.component.css'
 })
 
-export class PostSearchResultComponent implements OnInit{
+export class PostSearchResultComponent implements OnInit,AfterViewInit{
   
   searchHighlightedPosts: Array<searchHighlightedPost> = [];
   searchQuery:string=""; 
 
   atleast1ResultFound:boolean = true;
   
-  constructor(private router:Router,private truncateHtmlPipe:TruncateHtmlTextPipe,private activatedRoute:ActivatedRoute,private postService:PostService) {}
+  constructor(private loadingService:LoadingService,private router:Router,private truncateHtmlPipe:TruncateHtmlTextPipe,private activatedRoute:ActivatedRoute,private postService:PostService) {}
+
+  ngAfterViewInit(): void {
+    this.loadingService.setLoadingComponent(false);
+  }
 
   ngOnInit(): void {
     

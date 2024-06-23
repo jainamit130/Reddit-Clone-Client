@@ -5,6 +5,7 @@ import { TruncateHtmlTextPipe } from '../../pipe/transform/truncate-html-text.pi
 import { CommunityService } from '../../shared/community.service';
 import { CommonModule } from '@angular/common';
 import { NoSearchResultComponent } from '../no-search-result/no-search-result.component';
+import { LoadingService } from '../../configuration/loading.service';
 
 @Component({
   selector: 'app-community-search-result',
@@ -20,7 +21,11 @@ export class CommunitySearchResultComponent implements OnInit{
 
   atleast1ResultFound:boolean = true;
 
-  constructor(private router:Router,private activatedRoute:ActivatedRoute,private communityService:CommunityService,private truncateHtmlPipe:TruncateHtmlTextPipe) {}
+  constructor(private router:Router,private activatedRoute:ActivatedRoute,private communityService:CommunityService,private truncateHtmlPipe:TruncateHtmlTextPipe,private loadingService:LoadingService) {}
+
+  ngAfterViewInit(): void {
+    this.loadingService.setLoadingComponent(false);
+  }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
