@@ -39,7 +39,11 @@ export class TokenInterceptor implements HttpInterceptor {
         }
     
         return handledRequest$.pipe(
-            finalize(() => this.loadingService.setLoading(false))
+            finalize(() => {
+                setTimeout(() => {
+                    this.loadingService.setLoading(false);
+                }, 1000); 
+            })
         );
     }
 
