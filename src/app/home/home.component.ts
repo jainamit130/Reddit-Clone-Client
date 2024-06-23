@@ -1,4 +1,4 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
 import { PostService } from '../shared/post.service';
 import { PostDto } from '../dto/postDto';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,7 @@ import { UserService } from '../shared/user.service';
 import { ScreenWidthToggleDirective } from '../directives/screen-width-toggle.directive';
 import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
 import { SwipeDirective } from '../directives/swipe.directive';
+import { LoadingService } from '../configuration/loading.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ import { SwipeDirective } from '../directives/swipe.directive';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit,AfterContentChecked{
+export class HomeComponent implements OnInit,AfterContentChecked,AfterViewInit{
  
     posts$: Array<PostDto> = [];
     recentPosts$: Array<PostDto> = [];
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit,AfterContentChecked{
     isVisible:boolean=false;
     isCommunitiesVisible:boolean=false;
 
-    constructor(private cdr: ChangeDetectorRef,private userService:UserService,private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
+    constructor(private loadingService:LoadingService,private cdr: ChangeDetectorRef,private userService:UserService,private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
 
     ngAfterContentChecked(): void {
       if(this.isLoggedIn && this.recentPosts$.length > 0){
@@ -40,6 +41,10 @@ export class HomeComponent implements OnInit,AfterContentChecked{
       } else {
         this.recentPostsVisible=false;
       }
+    }
+
+    ngAfterViewInit(): void {
+      this.loadingService.setLoadingComponent(false);
     }
 
     activateToggle(event: boolean): void {
