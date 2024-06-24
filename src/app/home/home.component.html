@@ -5,6 +5,11 @@
     (click)="closeVisibility($event)"
   ></div>
   <div class="reddit-container">
+    <div *ngIf="noPosts" class="emptyHome">
+      <img src="../../assets/empty-profile.png" class="empty-posts-cat" />
+      <div>Please do a favor and create a post.</div>
+      <div>This cat is hungry</div>
+    </div>
     <div
       (click)="navigateToPost(post.postId, false)"
       *ngFor="let post of posts$"

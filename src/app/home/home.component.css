@@ -88,6 +88,21 @@
   padding-bottom: 150px;
 }
 
+.emptyHome {
+  margin-top: 20px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  height: 100%; 
+}
+
+.empty-posts-cat{
+  height: 80px;
+  width: 80px;
+}
+
 .clearButton {
   font-weight: 500;
   right: 25px;

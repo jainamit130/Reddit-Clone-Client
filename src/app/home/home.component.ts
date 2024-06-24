@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit,AfterContentChecked{
     isCommunityToggle:boolean=false;
     isVisible:boolean=false;
     isCommunitiesVisible:boolean=false;
+    noPosts: boolean = false;
 
     constructor(private cdr: ChangeDetectorRef,private userService:UserService,private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
 
@@ -79,6 +80,9 @@ export class HomeComponent implements OnInit,AfterContentChecked{
             }
           });
           this.posts$=posts;
+          if(this.posts$.length===0){
+            this.noPosts=true;
+          }
         });
       })
       this.authService.loggedInStatus.subscribe(isLogin => {
