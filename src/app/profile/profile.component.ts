@@ -33,6 +33,8 @@ export class ProfileComponent implements OnInit,AfterViewInit {
   userId!: number;
   showingPosts: boolean = true;
   showingComments: boolean = false;
+  emptyComments: boolean = false;
+  emptyPosts: boolean = false;
   isUser:boolean=false;
 
   constructor(
@@ -46,7 +48,7 @@ export class ProfileComponent implements OnInit,AfterViewInit {
   ngOnInit(): void {
     this.userService.updateSearchQuery("");
     this.activatedRoute.queryParams.subscribe(params => {
-      this.userId = params['id'] as number;
+      this.userId = parseInt(params['id'], 10);
       if(this.authService.getUserId()===this.userId){
         this.isUser=true;
       }
@@ -70,6 +72,12 @@ export class ProfileComponent implements OnInit,AfterViewInit {
         numberOfComments:userProfile.numberOfComments,
         numberOfPosts:userProfile.numberOfPosts,
         joinDate:userProfile.joinDate
+      }
+      if(this.userProfile.comments.length===0){
+        this.emptyComments=true;
+      }
+      if(this.userProfile.posts.length===0){
+        this.emptyPosts=true;
       }
     });
   }
@@ -106,4 +114,5 @@ export class ProfileComponent implements OnInit,AfterViewInit {
     this.commentsButton.nativeElement.style.backgroundColor = '#c7c7c7';
     this.postsButton.nativeElement.style.backgroundColor = '#f1f1f1';
   }
+
 }

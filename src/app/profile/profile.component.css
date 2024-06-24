@@ -8,6 +8,21 @@
   box-sizing: border-box;
 }
 
+.emptyProfile {
+  margin-top: 20px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  height: 100%; 
+}
+
+.empty-profile-cat{
+  height: 80px;
+  width: 80px;
+}
+
 .profile-info {
   border: 2px solid #576F76;
   background-color: #61b2ca;

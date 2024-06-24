@@ -32,12 +32,7 @@ export class PostTileComponent implements OnInit {
   constructor(private router:Router,private postService: PostService,private truncateHtmlPipe:TruncateHtmlTextPipe) {}
   
   ngOnInit(): void {
-    this.trucatedDescription=this.truncateHtmlPipe.transform(this.post.description,200);
-
-    // this.postService.getPost(this.post.postId).subscribe(post => {
-    //   this.post=post;
-    //   this.trucatedDescription=this.truncateHtmlPipe.transform(this.post.description,200);
-    // });    
+    this.trucatedDescription=this.truncateHtmlPipe.transform(this.post.description,200);   
   }
   
   updatePost(currentPost:PostDto,isForComment:boolean){

@@ -25,11 +25,14 @@
     </button>
   </div>
 
-  <div class="headerLine"></div>
   <div class="content">
     <div *ngIf="showingPosts">
       <div class="reddit-container">
-        <div *ngIf="userProfile.posts.length === 0"></div>
+        <div class="headerLine"></div>
+        <div *ngIf="emptyPosts" class="emptyProfile">
+          <img src="../../assets/empty-profile.png" class="empty-profile-cat" />
+          <div>Wow such empty</div>
+        </div>
         <div
           (click)="navigateToPost(post.postId, null, false)"
           *ngFor="let post of userProfile.posts"
@@ -50,6 +53,10 @@
     <div *ngIf="showingComments">
       <div class="reddit-container">
         <div class="headerLine"></div>
+        <div *ngIf="emptyComments" class="emptyProfile">
+          <img src="../../assets/empty-profile.png" class="empty-profile-cat" />
+          <div>Wow such empty</div>
+        </div>
         <div
           (click)="navigateToPost(comment.postId, comment.commentId, false)"
           *ngFor="let comment of userProfile.comments"
