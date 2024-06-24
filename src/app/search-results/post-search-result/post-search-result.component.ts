@@ -16,7 +16,7 @@ import { LoadingService } from '../../configuration/loading.service';
   styleUrl: './post-search-result.component.css'
 })
 
-export class PostSearchResultComponent implements OnInit,AfterViewInit{
+export class PostSearchResultComponent implements OnInit{
   
   searchHighlightedPosts: Array<searchHighlightedPost> = [];
   searchQuery:string=""; 
@@ -24,10 +24,6 @@ export class PostSearchResultComponent implements OnInit,AfterViewInit{
   atleast1ResultFound:boolean = true;
   
   constructor(private loadingService:LoadingService,private router:Router,private truncateHtmlPipe:TruncateHtmlTextPipe,private activatedRoute:ActivatedRoute,private postService:PostService) {}
-
-  ngAfterViewInit(): void {
-    this.loadingService.setLoadingComponent(false);
-  }
 
   ngOnInit(): void {
     

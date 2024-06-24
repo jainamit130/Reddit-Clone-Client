@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, catchError, filter, finalize, switchMap, take, throwError } from "rxjs";
+import { BehaviorSubject, Observable, catchError, filter, finalize, switchMap, take, tap, throwError } from "rxjs";
 import { AuthService } from "../authorization/shared/auth.service";
 import { LogInResponse } from "../dto/ResponsePayload/log-in-response";
 import { LoadingService } from "./loading.service";
@@ -10,12 +10,18 @@ import { LoadingService } from "./loading.service";
 })
 export class TokenInterceptor implements HttpInterceptor {
     isTokenRefershing: boolean=false;
+    private activeRequests: number = 0;
     refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject(null);
 
     constructor(private authService: AuthService,private loadingService:LoadingService){}
     
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        this.loadingService.setLoading(true);
+        this.activeRequests++;
+
+        // Set loading to true when first request starts
+        if (this.activeRequests === 1) {
+            this.loadingService.setLoading(true);
+        }
     
         let handledRequest$: Observable<HttpEvent<any>>;
     
@@ -39,10 +45,16 @@ export class TokenInterceptor implements HttpInterceptor {
         }
     
         return handledRequest$.pipe(
-            finalize(() => {
-                setTimeout(() => {
-                    this.loadingService.setLoading(false);
-                }, 1000); 
+            tap(() => {}, () => {}, () => {
+                // Decrement activeRequests counter when request completes (success or error)
+                this.activeRequests--;
+
+                // Set loading to false when all requests are complete
+                if (this.activeRequests === 0) {
+                    setTimeout(() => {
+                        this.loadingService.setLoading(false);
+                    }, 1000);
+                }
             })
         );
     }

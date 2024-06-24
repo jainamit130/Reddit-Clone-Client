@@ -1,11 +1,10 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../shared/user.service';
 import { userSearch } from '../../dto/userSearch';
 import { CommonModule } from '@angular/common';
 import { TimeAgoPipe } from '../../pipe/time-ago.pipe';
 import { NoSearchResultComponent } from '../no-search-result/no-search-result.component';
-import { LoadingService } from '../../configuration/loading.service';
 
 @Component({
   selector: 'app-people-search-result',
@@ -14,17 +13,12 @@ import { LoadingService } from '../../configuration/loading.service';
   templateUrl: './people-search-result.component.html',
   styleUrl: './people-search-result.component.css'
 })
-export class PeopleSearchResultComponent implements AfterViewInit{
+export class PeopleSearchResultComponent{
   searchQuery:string=""; 
   searchedUsers:Array<userSearch>=[];
   atleast1ResultFound:boolean = true;
 
-  constructor(private router:Router,private activatedRoute:ActivatedRoute,private userService:UserService,  private loadingService:LoadingService) {}
-
-  ngAfterViewInit(): void {
-    this.loadingService.setLoadingComponent(false);
-  }
-
+  constructor(private router:Router,private activatedRoute:ActivatedRoute,private userService:UserService) {}
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {

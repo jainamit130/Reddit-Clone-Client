@@ -21,7 +21,7 @@ import { LoadingService } from '../configuration/loading.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit,AfterContentChecked,AfterViewInit{
+export class HomeComponent implements OnInit,AfterContentChecked{
  
     posts$: Array<PostDto> = [];
     recentPosts$: Array<PostDto> = [];
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit,AfterContentChecked,AfterViewInit{
     isVisible:boolean=false;
     isCommunitiesVisible:boolean=false;
 
-    constructor(private loadingService:LoadingService,private cdr: ChangeDetectorRef,private userService:UserService,private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
+    constructor(private cdr: ChangeDetectorRef,private userService:UserService,private communityService: CommunityService,private authService:AuthService,private postService: PostService,private router:Router) {}
 
     ngAfterContentChecked(): void {
       if(this.isLoggedIn && this.recentPosts$.length > 0){
@@ -41,10 +41,6 @@ export class HomeComponent implements OnInit,AfterContentChecked,AfterViewInit{
       } else {
         this.recentPostsVisible=false;
       }
-    }
-
-    ngAfterViewInit(): void {
-      this.loadingService.setLoadingComponent(false);
     }
 
     activateToggle(event: boolean): void {

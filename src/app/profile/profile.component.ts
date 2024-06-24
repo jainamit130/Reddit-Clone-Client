@@ -9,7 +9,6 @@ import { CommentTileComponent } from '../comment-tile/comment-tile.component';
 import { AuthService } from '../authorization/shared/auth.service';
 import { UserProfileDto } from '../dto/UserProfileDto';
 import { TimeAgoPipe } from '../pipe/time-ago.pipe';
-import { LoadingService } from '../configuration/loading.service';
 
 @Component({
   selector: 'app-profile',
@@ -42,7 +41,6 @@ export class ProfileComponent implements OnInit,AfterViewInit {
     private postService: PostService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private loadingService:LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +55,6 @@ export class ProfileComponent implements OnInit,AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.loadingService.setLoadingComponent(false);
     this.postsButton.nativeElement.style.backgroundColor = '#c7c7c7';
   }
 

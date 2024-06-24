@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostDto } from '../dto/postDto';
 import { CommentComponent } from '../comment/comment.component';
@@ -14,7 +14,6 @@ import { AuthService } from '../authorization/shared/auth.service';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { DetectOutsideClickDirective } from '../directives/detect-outside-click.directive';
 import { UserService } from '../shared/user.service';
-import { LoadingService } from '../configuration/loading.service';
 
 @Component({
   selector: 'app-post',
@@ -23,7 +22,7 @@ import { LoadingService } from '../configuration/loading.service';
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })
-export class PostComponent implements OnInit,AfterViewInit{
+export class PostComponent implements OnInit{
 
   userPost:boolean=false;
   singleThreadCommentId:number|null=null;
@@ -38,10 +37,6 @@ export class PostComponent implements OnInit,AfterViewInit{
   postAction: boolean = false;
 
   @ViewChild('comments') myElementRef!: ElementRef;
-
-  ngAfterViewInit(): void {
-    this.loadingService.setLoadingComponent(false);
-  }
 
   ngOnInit(): void {
     this.userService.updateSearchQuery("");
@@ -88,7 +83,7 @@ export class PostComponent implements OnInit,AfterViewInit{
     });
   }
 
-  constructor(private authService:AuthService,private router: Router,private userService:UserService,private sanitizer: DomSanitizer,private communityService:CommunityService,private postService:PostService,private activatedRoute:ActivatedRoute,private loadingService:LoadingService){}
+  constructor(private authService:AuthService,private router: Router,private userService:UserService,private sanitizer: DomSanitizer,private communityService:CommunityService,private postService:PostService,private activatedRoute:ActivatedRoute){}
 
   checkScrollToComments(){
       if (this.openComments && this.myElementRef) {

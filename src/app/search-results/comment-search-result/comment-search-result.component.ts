@@ -3,11 +3,9 @@ import { CommentService } from '../../shared/comment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TruncateHtmlTextPipe } from '../../pipe/transform/truncate-html-text.pipe';
 import { searchHighlightedComment } from '../../dto/searchHighlightedComment';
-import { PostService } from '../../shared/post.service';
 import { CommonModule } from '@angular/common';
 import { NoSearchResultComponent } from '../no-search-result/no-search-result.component';
 import { TimeAgoPipe } from '../../pipe/time-ago.pipe';
-import { LoadingService } from '../../configuration/loading.service';
 
 @Component({
   selector: 'app-comment-search-result',
@@ -23,12 +21,7 @@ export class CommentSearchResultComponent implements OnInit{
   searchQuery:string=""; 
   atleast1ResultFound:boolean = true;
 
-  constructor(private loadingService: LoadingService,private router:Router,private truncateHtmlPipe:TruncateHtmlTextPipe,private activatedRoute:ActivatedRoute,private commentService:CommentService,private postService:PostService) {}
-
-
-  ngAfterViewInit(): void {
-    this.loadingService.setLoadingComponent(false);
-  }
+  constructor(private router:Router,private truncateHtmlPipe:TruncateHtmlTextPipe,private activatedRoute:ActivatedRoute,private commentService:CommentService) {}
 
 
   ngOnInit(): void {
