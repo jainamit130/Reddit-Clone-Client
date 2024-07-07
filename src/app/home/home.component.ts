@@ -87,11 +87,11 @@ export class HomeComponent implements OnInit,AfterContentChecked{
       })
       this.authService.loggedInStatus.subscribe(isLogin => {
         this.isLoggedIn=isLogin;
-        if(this.isLoggedIn){
-          this.userService.getRecentPosts().subscribe(recentPosts => {
-            this.recentPosts$=recentPosts.reverse();
-          })
-        }
+        // if(this.isLoggedIn){
+        //   this.userService.getRecentPosts().subscribe(recentPosts => {
+        //     this.recentPosts$=recentPosts.reverse();
+        //   })
+        // }
       })
       this.communityService.getUserCommunities().subscribe(communities => {
         this.communityService.updateUserCommunitiesData(communities);
