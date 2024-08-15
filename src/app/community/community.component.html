@@ -27,13 +27,14 @@
             <div class="headerLine"></div>
             <div *ngFor="let post of community.posts">
               <div
-                (click)="navigateToPost(post.postId, false)"
+                (click)="navigateToPost(post.postId, false, false)"
                 class="reddit-post"
               >
                 <app-post-tile
                   [showCommunityName]="false"
                   [post]="post"
-                  (postEditOpened)="navigateToPost(post.postId, true)"
+                  (postEditOpened)="navigateToPost(post.postId, true, false)"
+                  (showComments)="navigateToPost(post.postId, false, true)"
                 ></app-post-tile>
               </div>
               <div class="headerLine"></div>

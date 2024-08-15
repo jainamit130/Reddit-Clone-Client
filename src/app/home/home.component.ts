@@ -117,14 +117,14 @@ export class HomeComponent implements OnInit,AfterContentChecked{
       });
     }
 
-    isCommentsClicked(postId:number){
-      this.router.navigate(['/post'],{queryParams:{postId:postId,openComments:1}});
+    navigateToPost(postId:number,openedInEditMode:boolean,openComments:boolean) {
+      if (!((this.isVisible && this.isToggleActive) || (this.isCommunitiesVisible && this.isCommunityToggle))) {
+        this.router.navigate(['/post'],{queryParams:{postId:postId,openedInEditMode,openComments}});
+      }
     }
 
-    navigateToPost(postId:number,openedInEditMode:boolean) {
-      if (!((this.isVisible && this.isToggleActive) || (this.isCommunitiesVisible && this.isCommunityToggle))) {
+    navigateToRecentPost(postId:number,openedInEditMode:boolean) {
       this.router.navigate(['/post'],{queryParams:{postId:postId,openedInEditMode}});
-      }
     }
 
     navigateToCommunity(communityId: number) {

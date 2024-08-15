@@ -34,15 +34,16 @@
           <div>Wow such empty</div>
         </div>
         <div
-          (click)="navigateToPost(post.postId, null, false)"
+          (click)="navigateToPost(post.postId, null, false, false)"
           *ngFor="let post of userProfile.posts"
         >
           <div class="reddit-post">
             <app-post-tile
               [isUserPost]="isUser"
-              (postEditOpened)="navigateToPost(post.postId, null, true)"
+              (postEditOpened)="navigateToPost(post.postId, null, true, false)"
               [post]="post"
               (updatePost)="updatePost(post)"
+              (showComments)="navigateToPost(post.postId, null, false, true)"
             ></app-post-tile>
           </div>
           <div class="headerLine"></div>
@@ -58,7 +59,9 @@
           <div>Wow such empty</div>
         </div>
         <div
-          (click)="navigateToPost(comment.postId, comment.commentId, false)"
+          (click)="
+            navigateToPost(comment.postId, comment.commentId, false, false)
+          "
           *ngFor="let comment of userProfile.comments"
         >
           <div class="reddit-post">
