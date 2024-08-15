@@ -23,7 +23,7 @@ export const routes: Routes = [
   { path: 'submit', component: CreatePostComponent,canActivate:[authGuard]},
   { path: 'create-community', component: CreateCommunityComponent,canActivate:[authGuard]},
   { path: 'community', component: CommunityComponent},
-  { path: 'profile', component: ProfileComponent,canActivate:[authGuard]},
+  { path: 'profile', component: ProfileComponent},
   {
     path: 'search', component: SearchResultNavigationComponent, children: [
       { path: 'posts', component: PostSearchResultComponent },
