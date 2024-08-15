@@ -71,7 +71,7 @@ export class PostComponent implements OnInit{
         this.isLoggedIn=isLogin;
       });
       
-      if(params['openComments'])
+      if(params['openComments']==="true")
         this.openComments=true;
       this.communityService.getCommunityOfPost(this.postId)
       .subscribe((community) => {this.communityService.updateCommunityData(community.communityName);});      
